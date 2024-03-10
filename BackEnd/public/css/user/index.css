@@ -1,0 +1,40 @@
+.labelContainer {
+    background-color: #555555;
+    /*margin-top: 15px;*/
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+}
+.labelBox {
+    width: 14%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+.box {
+    /*background-color:#4caf50;*/
+    width: 14%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    overflow: hidden;
+    margin-top: auto;
+    margin-bottom: auto;
+    /*border-right: solid 2px #555555;*/
+}
+.outerContainerForEntries {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: hidden;
+}
+.entryContainer {
+    /*background-color:#555555;*/
+    display: flex;
+    flex-direction: row;
+    border-top: solid 2px #555555;
+}
+

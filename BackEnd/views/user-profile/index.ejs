@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('../includes/link.ejs') %>
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/user-profile/index.css"/>
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/sidebar.css"/>
+    <link rel="stylesheet" href="/css/pagination.css" />
+
+<!--    Date Picker cdn-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <title>User Profile</title>
+</head>
+<body>
+    <%- include('../includes/header.ejs') %>
+
+    <div style="display: flex; flex-direction: row;padding-top: 10px;">
+        <!--        This is the sidebar Menu-->
+        <%- include('../includes/sideMenu.ejs') %>
+
+        <% if(message.success) { %>
+            <%- include('../includes/alerts/success.ejs') %>
+        <% } else if(message.error) {%>
+            <%- include('../includes/alerts/danger.ejs') %>
+        <% } %>
+    </div>
+
+    <main class="primaryContainer" >
+
+        <h2 class="headTitle">User Profile</h2>
+
+        <form action="/user-profile" method="post" class="formContainer">
+
+            <% if(userProfile){ %>
+            <input type="text" id="id" name="id" class="textInput" hidden="hidden" value="<%=userProfile._id%>"><br>
+
+            <input type="text" id="page" name="page" class="textInput" hidden="hidden" value="<%=page%>"><br>
+            <% } %>
+
+            <!-- firstname -->
+            <label for="firstname" class="label">First Name:</label>
+            <input type="text" id="firstname" name="firstname" class="textInput"  value="<%= userProfile.firstname %>" required><br>
+
+            <!-- lastname -->
+            <label for="lastname" class="label">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" class="textInput" value="<%= userProfile.lastname %>" required><br>
+
+            <!-- Date of Birth -->
+            <label for="dateOfBirth" class="label">Date of Birth:</label>
+            <input type="text" id="dateOfBirth" name="dateOfBirth" class="textInput" value="<%= userProfile.dateOfBirth%>" readonly>
+
+            <!-- phone number -->
+            <label for="phoneNumber" class="label">Phone Number:</label>
+            <input type="number" id="phoneNumber" name="phoneNumber" class="textInput" value="<%= userProfile.phoneNumber %>" required><br>
+
+            <!-- Address -->
+            <label for="address" class="label">Address:</label>
+            <textarea id="address" name="address" rows="4" class="textInput" placeholder="Enter your address"><%= userProfile.address %></textarea>
+
+            <!-- Submit Button -->
+            <div style="display: flex; flex-direction: row;">
+                <input type="submit" value="Submit" class="submitButton">
+
+                <a type="submit" class="submitButton" href="/users/?page=<%=page%>" style="background-color: red;text-decoration: none">X</a>
+
+            </div>
+        </form>
+
+
+
+    </main>
+    <%- include('../includes/footer.ejs')%>
+    <%- include('../includes/scriptBottom.ejs') %>
+    <script>
+        $(function() {
+            // Initialize the datepicker with changeMonth and changeYear options
+            $("#dateOfBirth").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-100:+0"
+            });
+        });
+    </script>
+</body>
+</html>

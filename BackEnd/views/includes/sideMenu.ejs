@@ -1,0 +1,37 @@
+<button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" style="width:40px;height:40px;font-size: larger;margin-top: 20px;border-bottom-left-radius: 0;border-top-left-radius: 0;">
+    >
+</button>
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div>
+            <div class="dashboardBodyContainer">
+                <a class="dashboardBodyButton" href="/dashboard"> DashBoard</a>
+            </div>
+        </div>
+        <div class="accordion" id="accordionExample">
+            <% sideMenu.map((item, index) => {%>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="<%= `heading${index + 1}` %>">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="<%= `#collapse${index + 1}` %>" aria-expanded="true" aria-controls="<%= `collapse${index + 1}` %>">
+                            <%= item.name %>
+                        </button>
+                    </h2>
+                    <div id="<%= `collapse${index + 1}` %>" class="accordion-collapse collapse show" aria-labelledby="<%= `heading${index + 1}` %>" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="accordionBodyContainer">
+                                <a class="accordionBodyButton" href="/<%=item.href%>/add"> <%= item.add %></a>
+                            </div>
+                            <div class="accordionBodyContainer">
+                                <a class="accordionBodyButton" href="/<%=item.href%>"> <%= item.view %></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</div>

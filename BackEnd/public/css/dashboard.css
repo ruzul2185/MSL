@@ -1,0 +1,45 @@
+
+.dashboardStatsContainer {
+    display: flex;
+    flex-direction: row;
+}
+.totalContainer {
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.countContainer {
+    padding: 10px 10px 10px 20px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+.nameContainer {
+    padding-left: 30px;
+    padding-right: 50px;
+    padding-bottom: 10px;
+    font-size: larger;
+    font-weight: bold;
+
+}
+.iconInfoContainer {
+    display: flex;
+    flex-direction: column;
+}
+.iconContainer {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.donutContainer {
+    display: flex;
+    width: 600px;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    /*border: solid 2px #333333;*/
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

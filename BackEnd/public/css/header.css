@@ -1,0 +1,15 @@
+.headerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.logoutButton {
+    color: #000000;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    font-size: large;
+    padding: 10px;
+    border-radius: 10px;
+}

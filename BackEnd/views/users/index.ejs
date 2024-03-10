@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('../includes/link.ejs') %>
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/user/index.css"/>
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/sidebar.css"/>
+    <link rel="stylesheet" href="/css/pagination.css" />
+    <title>User</title>
+</head>
+<body>
+<!--This is the header-->
+<%- include('../includes/header.ejs') %>
+
+    <div style="display: flex; flex-direction: row;padding-top: 10px;">
+        <!--        This is the sidebar Menu-->
+        <%- include('../includes/sideMenu.ejs') %>
+
+        <% if(message.success) { %>
+            <%- include('../includes/alerts/success.ejs') %>
+        <% } else if(message.error) {%>
+            <%- include('../includes/alerts/danger.ejs') %>
+        <% } %>
+
+    </div>
+    <main class="primaryContainer" >
+
+        <div class="outerContainerForEntries">
+            <div class="labelContainer">
+                <div class="labelBox" style="width: 5%;">
+                    S. No.
+                </div>
+                <div class="labelBox">
+                    Username
+                </div>
+                <div class="labelBox" style="width: 20%;">
+                    Password
+                </div>
+                <div class="labelBox">
+                    Role
+                </div>
+                <div class="labelBox">
+                    Active
+                </div>
+                <div class="labelBox">
+                    Created
+                </div>
+                <div class="labelBox">
+                    Updated
+                </div>
+                <div class="labelBox" style="width: 12%;">
+                    Edit
+                </div>
+                <div class="labelBox" style="width: 12%;">
+                    Delete
+                </div>
+            </div>
+            <% users.forEach(entry => { %>
+            <div class="entryContainer">
+                <div class="box" style="width: 5%;">
+                    <%= entry.id %>
+                </div>
+                <div class="box" style="word-wrap: break-word;  ">
+                    <%= entry.username %>
+                </div>
+                <div class="box" style="width: 20%;text-overflow: ellipsis;">
+                    <%= entry.password %>
+                </div>
+                <div class="box">
+                    <%= entry.role %>
+                </div>
+                <div class="box">
+                    <%= entry.active ?  "Yes" : "No" %>
+                </div>
+                <div class="box">
+                    <%= entry.createdAt %>
+                </div>
+                <div class="box">
+                    <%= entry.updatedAt %>
+                </div>
+                <div class="box" style="width: 12%;">
+                    <a class="btn btn-success" href="/users/update/?id=<%= entry._id %>&page=<%= page %>">
+                        Edit
+                    </a>
+                </div>
+                <div class="box" style="width: 12%;">
+                        <a class="btn btn-danger" href="/users/delete/?id=<%= entry._id %>&page=<%= page %>">
+                            Delete
+                        </a>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+
+        <%- include('../includes/pagination.ejs') %>
+
+    </main>
+
+<!--This line is for footer-->
+<%- include('../includes/footer.ejs')%>
+<%- include('../includes/scriptBottom.ejs') %>
+</body>
+</html>
