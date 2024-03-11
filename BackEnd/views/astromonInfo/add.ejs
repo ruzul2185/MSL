@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('../includes/link.ejs') %>
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/user/index.css"/>
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/sidebar.css"/>
+    <link rel="stylesheet" href="/css/user/add-user.css"/>
+    <title>Add Astromon Information</title>
+</head>
+<body>
+<%- include('../includes/header.ejs') %>
+<div style="display: flex; flex-direction: row;padding-top: 10px;">
+    <%- include('../includes/sideMenu.ejs') %>
+
+    <% if(message.success) { %>
+        <%- include('../includes/alerts/success.ejs') %>
+    <% } else if(message.error) {%>
+        <%- include('../includes/alerts/danger.ejs') %>
+    <% } %>
+</div>
+<main class="primaryContainer" >
+
+    <h2 class="headTitle">Add Astromon Information</h2>
+
+    <!--        <form action="/users/add" method="post" class="formContainer">-->
+    <form action="<%= astromonInfo ? "/astromon-infos/update" : "/astromon-infos/add" %>" method="post" class="formContainer">
+
+        <% if(astromonInfo){ %>
+        <input type="text" id="id" name="id" class="textInput" hidden="hidden" value="<%=astromonInfo._id%>"><br>
+
+        <input type="text" id="page" name="page" class="textInput" hidden="hidden" value="<%=page%>"><br>
+        <% } %>
+
+        <!-- Astromon_Associated -->
+        <label for="Astromon_Associated" class="label">Astromon Associated:</label>
+        <input type="text" id="Astromon_Associated" name="Astromon_Associated" class="textInput"  value="<%= astromonInfo ? astromonInfo.Astromon_Associated : '' %>" required><br>
+
+        <!-- Leader_Skill_Name -->
+        <label for="Leader_Skill_Name" class="label">Leader Skill Name:</label>
+        <input type="text" id="Leader_Skill_Name" name="Leader_Skill_Name" class="textInput"  value="<%= astromonInfo ? astromonInfo.Leader_Skill_Name : '' %>" required><br>
+
+        <!-- Leader_Skill_Title -->
+        <label for="Leader_Skill_Title" class="label">Leader Skill Title:</label>
+        <input type="text" id="Leader_Skill_Title" name="Leader_Skill_Title" class="textInput" value="<%= astromonInfo ? astromonInfo.Leader_Skill_Title : '' %>" required><br>
+
+        <!-- Leader_Skill_Desc -->
+        <label for="Leader_Skill_Desc" class="label">Leader Skill Desc:</label>
+        <input type="text" id="Leader_Skill_Desc" name="Leader_Skill_Desc" class="textInput" value="<%= astromonInfo ? astromonInfo.Leader_Skill_Desc : '' %>" required><br>
+
+        <!-- Leader_Skill_Url -->
+        <label for="Leader_Skill_Url" class="label">Leader Skill Url:</label>
+        <input type="text" id="Leader_Skill_Url" name="Leader_Skill_Url" class="textInput" value="<%= astromonInfo ? astromonInfo.Leader_Skill_Url : '' %>" required><br>
+
+        <!-- Passive_Skill_Name -->
+        <label for="Passive_Skill_Name" class="label">Passive Skill Name:</label>
+        <input type="text" id="Passive_Skill_Name" name="Passive_Skill_Name" class="textInput" value="<%= astromonInfo ? astromonInfo.Passive_Skill_Name : '' %>" required><br>
+
+        <!-- Passive_Skill_Target Dropdown -->
+        <label for="Passive_Skill_Target" class="label">Passive Skill Target:</label>
+        <select id="Passive_Skill_Target" name="Passive_Skill_Target" class="dropdown" required>
+            <option value="One Target" <%= astromonInfo && astromonInfo.Passive_Skill_Target === 'One Target' ? 'selected' : '' %>>One Target</option>
+            <option value="All Targets" <%= astromonInfo && astromonInfo.Passive_Skill_Target === 'All Targets' ? 'selected' : '' %>>All Targets</option>
+            <option value="Self" <%= astromonInfo && astromonInfo.Passive_Skill_Target === 'Self' ? 'selected' : '' %>>Self</option>
+            <option value="All Allies" <%= astromonInfo && astromonInfo.Passive_Skill_Target === 'All Allies' ? 'selected' : '' %>>All Allies</option>
+            <!-- Add more role options as needed -->
+        </select><br>
+
+        <!-- Passive_Skill_Desc -->
+        <label for="Passive_Skill_Desc" class="label">Passive Skill Desc:</label>
+        <input type="text" id="Passive_Skill_Desc" name="Passive_Skill_Desc" class="textInput" value="<%= astromonInfo ? astromonInfo.Passive_Skill_Desc : '' %>" required><br>
+
+        <!-- Passive_Skill_Url -->
+        <label for="Passive_Skill_Url" class="label">Passive Skill Url:</label>
+        <input type="text" id="Passive_Skill_Url" name="Passive_Skill_Url" class="textInput" value="<%= astromonInfo ? astromonInfo.Passive_Skill_Url : '' %>" required><br>
+
+        <!-- Active_Skill_Name -->
+        <label for="Active_Skill_Name" class="label">Active Skill Name:</label>
+        <input type="text" id="Active_Skill_Name" name="Active_Skill_Name" class="textInput" value="<%= astromonInfo ? astromonInfo.Active_Skill_Name : '' %>" required><br>
+
+        <!-- Active_Skill_Target Dropdown -->
+        <label for="Active_Skill_Target" class="label">Active Skill Target:</label>
+        <select id="Active_Skill_Target" name="Active_Skill_Target" class="dropdown" required>
+            <option value="One Target" <%= astromonInfo && astromonInfo.Active_Skill_Target === 'One Target' ? 'selected' : '' %>>One Target</option>
+            <option value="All Targets" <%= astromonInfo && astromonInfo.Active_Skill_Target === 'All Targets' ? 'selected' : '' %>>All Targets</option>
+            <option value="Self" <%= astromonInfo && astromonInfo.Active_Skill_Target === 'Self' ? 'selected' : '' %>>Self</option>
+            <option value="All Allies" <%= astromonInfo && astromonInfo.Active_Skill_Target === 'All Allies' ? 'selected' : '' %>>All Allies</option>
+            <!-- Add more role options as needed -->
+        </select><br>
+
+        <!-- Active_Skill_Desc -->
+        <label for="Active_Skill_Desc" class="label">Active Skill Desc:</label>
+        <input type="text" id="Active_Skill_Desc" name="Active_Skill_Desc" class="textInput" value="<%= astromonInfo ? astromonInfo.Active_Skill_Desc : '' %>" required><br>
+
+        <!-- Active_Skill_Url -->
+        <label for="Active_Skill_Url" class="label">Active Skill Url:</label>
+        <input type="text" id="Active_Skill_Url" name="Active_Skill_Url" class="textInput" value="<%= astromonInfo ? astromonInfo.Active_Skill_Url : '' %>" required><br>
+
+        <!-- Super_Skill_Name -->
+        <label for="Super_Skill_Name" class="label">Super Skill Name:</label>
+        <input type="text" id="Super_Skill_Name" name="Super_Skill_Name" class="textInput" value="<%= astromonInfo ? astromonInfo.Super_Skill_Name : '' %>" ><br>
+
+        <!-- Super_Skill_Target Dropdown -->
+        <label for="Super_Skill_Target" class="label">Super Skill Target:</label>
+        <select id="Super_Skill_Target" name="Super_Skill_Target" class="dropdown" >
+            <option value="One Target" <%= astromonInfo && astromonInfo.Super_Skill_Target === 'One Target' ? 'selected' : '' %>>One Target</option>
+            <option value="All Targets" <%= astromonInfo && astromonInfo.Super_Skill_Target === 'All Targets' ? 'selected' : '' %>>All Targets</option>
+            <option value="Self" <%= astromonInfo && astromonInfo.Super_Skill_Target === 'Self' ? 'selected' : '' %>>Self</option>
+            <option value="All Allies" <%= astromonInfo && astromonInfo.Super_Skill_Target === 'All Allies' ? 'selected' : '' %>>All Allies</option>
+            <!-- Add more role options as needed -->
+        </select><br>
+
+        <!-- Super_Skill_Desc -->
+        <label for="Super_Skill_Desc" class="label">Super Skill Desc:</label>
+        <input type="text" id="Super_Skill_Desc" name="Super_Skill_Desc" class="textInput" value="<%= astromonInfo ? astromonInfo.Super_Skill_Desc : '' %>" ><br>
+
+        <!-- Super_Skill_Url -->
+        <label for="Super_Skill_Url" class="label">Super Skill Url:</label>
+        <input type="text" id="Super_Skill_Url" name="Super_Skill_Url" class="textInput" value="<%= astromonInfo ? astromonInfo.Super_Skill_Url : '' %>" ><br>
+
+        <!-- Submit Button -->
+        <div style="display: flex; flex-direction: row;">
+            <input type="submit" value="Submit" class="submitButton">
+            <% if(astromonInfo) { %>
+            <a type="submit" class="submitButton" href="/astromon-infos/?page=<%=page%>" style="background-color: red;text-decoration: none">X</a>
+            <% } %>
+        </div>
+    </form>
+
+
+</main>
+<%- include('../includes/footer.ejs')%>
+<%- include('../includes/scriptBottom.ejs') %>
+</body>
+</html>

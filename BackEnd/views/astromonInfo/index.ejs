@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('../includes/link.ejs') %>
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/user/index.css"/>
+    <link rel="stylesheet" href="/css/astromonInfo/index.css"/>
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/sidebar.css"/>
+    <link rel="stylesheet" href="/css/pagination.css" />
+    <title>Astromon Info</title>
+</head>
+<body>
+<!--This is the header-->
+<%- include('../includes/header.ejs') %>
+
+<div style="display: flex; flex-direction: row;padding-top: 10px;">
+    <!--        This is the sidebar Menu-->
+    <%- include('../includes/sideMenu.ejs') %>
+
+    <% if(message.success) { %>
+        <%- include('../includes/alerts/success.ejs') %>
+    <% } else if(message.error) {%>
+        <%- include('../includes/alerts/danger.ejs') %>
+    <% } %>
+
+</div>
+<main class="cardContainer" >
+
+    <div class="innerContainer">
+        <% astromonInfo.forEach((entry, index) => { %>
+            <div class="card" style="width: 350px; background-color: white; color: white; font-size: small; margin-right: 20px; margin-bottom: 20px;border:none;">
+                <div class="card" style="width: 350px;background-color: #333;color:white;font-size: small; display: flex;flex-direction: column;">
+                    <div style="text-align: center;padding-top: 10px;font-weight: bold;">
+                        <%= entry.Astromon_Associated %>
+                    </div>
+                    <hr/>
+                    <div class="card-body" style="display: flex; flex-direction: row; justify-content: space-between;padding-top: 0;padding-bottom: 0; ">
+                        <div style="width:150px;display: flex;flex-direction: column;align-items: center">
+                            <p style=""><%= entry.Leader_Skill_Title%></p>
+                            <img src="<%= entry.Leader_Skill_Url %>" class="card-img-top" alt="..." style="height:60px;width:60px;">
+                        </div>
+                        <div style="width:100%; text-align: center;">
+                            <p class="card-text" style="font-weight: bold;"><%= entry.Leader_Skill_Name %></p>
+                            <p class="card-text" style="display: flex;flex-direction: column;justify-content: center;"><%= entry.Leader_Skill_Desc %></p>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="card-body" style="display: flex; flex-direction: row; justify-content: space-between;padding-top: 0; padding-bottom: 0;">
+                        <div style="width:150px;display: flex;flex-direction: column;align-items: center">
+                            <p style="font-weight: bold;"><%= entry.Passive_Skill_Target %></p>
+                            <img src="<%= entry.Passive_Skill_Url %>" class="card-img-top" alt="..." style="height:60px;width:60px;">
+                        </div>
+                        <div style="width:100%; text-align: center;">
+                            <p class="card-text" style="font-weight: bold;"><%= entry.Passive_Skill_Name %></p>
+                            <p class="card-text" style="display: flex;flex-direction: column;justify-content: center;"><%= entry.Passive_Skill_Desc %></p>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="card-body" style="display: flex; flex-direction: row; justify-content: space-between;padding-top: 0;padding-bottom: 0; ">
+                        <div style="width:150px;display: flex;flex-direction: column;align-items: center">
+                            <p style="font-weight: bold;"><%= entry.Active_Skill_Target %></p>
+                            <img src="<%= entry.Active_Skill_Url %>" class="card-img-top" alt="..." style="height:60px;width:60px;">
+                        </div>
+                        <div style="width:100%; text-align: center;">
+                            <p class="card-text" style="font-weight: bold;"><%= entry.Active_Skill_Name %></p>
+                            <p class="card-text" style="display: flex;flex-direction: column;justify-content: center;"><%= entry.Active_Skill_Desc %></p>
+                        </div>
+                    </div>
+                    <hr/>
+                    <% if(entry.Super_Skill_Name !== '') { %>
+                        <div class="card-body" style="display: flex; flex-direction: row; justify-content: space-between;padding-top: 0; ">
+                            <div style="width:150px;display: flex;flex-direction: column;align-items: center">
+                                <p style="font-weight: bold;"><%= entry.Super_Skill_Target %></p>
+                                <img src="<%= entry.Super_Skill_Url %>" class="card-img-top" alt="..." style="height:60px;width:60px;">
+                            </div>
+                            <div style="width:100%; text-align: center;">
+                                <p class="card-text" style="font-weight: bold;"><%= entry.Super_Skill_Name %></p>
+                                <p class="card-text" style="display: flex;flex-direction: column;justify-content: center;"><%= entry.Super_Skill_Desc %></p>
+                            </div>
+                        </div>
+                    <% } %>
+                    <div class="card-body" style="display: flex; flex-direction: row; justify-content: space-around;padding-top: 0;align-items: center;">
+                        <a href="/astromon-infos/update/?id=<%= entry._id %>&page=<%= page %>" class="btn bg-success" style="color: #eeeeee;">Edit</a>
+                        <a href="/astromon-infos/delete/?id=<%= entry._id %>&page=<%= page %>" class="btn bg-danger" style="color: #eeeeee;">Delete</a>
+                    </div>
+                </div>
+            </div>
+
+            <% if ((index + 1) % 4 === 0) { %>
+        </div>
+        <div class="innerContainer">
+            <% } %>
+            <% }) %>
+    </div>
+
+    <%- include('../includes/pagination.ejs') %>
+
+</main>
+
+<!--This line is for footer-->
+<%- include('../includes/footer.ejs')%>
+<%- include('../includes/scriptBottom.ejs') %>
+</body>
+</html>

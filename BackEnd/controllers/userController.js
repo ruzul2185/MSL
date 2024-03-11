@@ -41,6 +41,7 @@ const viewUserPage = asyncHandler(async (req, res, next) => {
         iterator: iterator,
         numOfPages: numOfPages,
         message: req.flash(),
+        title: 'users',
     });
 });
 

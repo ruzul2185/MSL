@@ -1,0 +1,10 @@
+.cardContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 100px 100px;
+}
+.innerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
