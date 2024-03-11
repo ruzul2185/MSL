@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('../includes/link.ejs') %>
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/sidebar.css"/>
+    <link rel="stylesheet" href="/css/user/add-user.css"/>
+    <title>Add Skill</title>
+</head>
+<body>
+<%- include('../includes/header.ejs') %>
+<div style="display: flex; flex-direction: row;padding-top: 10px;">
+    <%- include('../includes/sideMenu.ejs') %>
+
+    <% if(message.success) { %>
+        <%- include('../includes/alerts/success.ejs') %>
+    <% } else if(message.error) {%>
+        <%- include('../includes/alerts/danger.ejs') %>
+    <% } %>
+</div>
+<main class="primaryContainer" >
+
+    <h2 class="headTitle">Add Skills</h2>
+
+    <!--        <form action="/users/add" method="post" class="formContainer">-->
+    <form action="<%= skill ? "/skills/update" : "/skills/add" %>" method="post" class="formContainer">
+
+        <% if(skill){ %>
+        <input type="text" id="id" name="id" class="textInput" hidden="hidden" value="<%=skill._id%>"><br>
+
+        <input type="text" id="page" name="page" class="textInput" hidden="hidden" value="<%=page%>"><br>
+        <% } %>
+
+        <!-- Name -->
+        <label for="Name" class="label">Skill Name:</label>
+        <input type="text" id="Name" name="Name" class="textInput"  value="<%= skill ? skill.Name : '' %>" required><br>
+
+        <!-- Desc -->
+        <label for="Desc" class="label">Description (use & sign where figure are to be inserted):</label>
+        <input type="text" id="Desc" name="Desc" class="textInput"  value="<%= skill ? skill.Desc : '' %>" required><br>
+
+        <!-- AI_Desc -->
+        <label for="AI_Desc" class="label">AI Description (Auto Only):</label>
+        <input type="text" id="AI_Desc" name="AI_Desc" class="textInput"  value="<%= skill ? skill.AI_Desc : '' %>" ><br>
+
+        <!-- Url -->
+        <label for="Url" class="label">URL:</label>
+        <input type="text" id="Url" name="Url" class="textInput"  value="<%= skill ? skill.Url : '' %>" required><br>
+
+        <!-- Type Dropdown -->
+        <label for="Type" class="label">Type:</label>
+        <select id="Type" name="Type" class="dropdown" required>
+            <option value="Active" <%= skill && skill.Type === 'Active' ? 'selected' : '' %>>Active</option>
+            <option value="Passive" <%= skill && skill.Type === 'Passive' ? 'selected' : '' %>>Passive</option>
+            <option value="Super" <%= skill && skill.Type === 'Super' ? 'selected' : '' %>>Super</option>
+            <option value="Ultimate" <%= skill && skill.Type === 'Ultimate' ? 'selected' : '' %>>Ultimate</option>
+            <!-- Add more role options as needed -->
+        </select><br>
+
+        <!-- Submit Button -->
+        <div style="display: flex; flex-direction: row;">
+            <input type="submit" value="Submit" class="submitButton">
+            <% if(skill) { %>
+            <a type="submit" class="submitButton" href="/skills/?page=<%=page%>" style="background-color: red;text-decoration: none">X</a>
+            <% } %>
+        </div>
+    </form>
+
+
+</main>
+<%- include('../includes/footer.ejs')%>
+<%- include('../includes/scriptBottom.ejs') %>
+</body>
+</html>

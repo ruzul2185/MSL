@@ -11,9 +11,14 @@ const skillSchema = new mongoose.Schema({
     },
     AI_Desc: {
         type: String,
-        required: false
+        required: false,
+        default: ''
     },
     Url: {
+        type: String,
+        required: true
+    },
+    Type: {
         type: String,
         required: true
     }

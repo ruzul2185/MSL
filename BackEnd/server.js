@@ -59,6 +59,8 @@ app.use('/auth',require('./routes/controllers/authRoutes'));
 app.use('/dashboard',require('./routes/controllers/dashboardRoutes'));
 app.use('/users',require('./routes/controllers/userRoutes'));
 app.use('/astromon-infos',require('./routes/controllers/astromonInfoRoutes'));
+app.use('/astromons',require('./routes/controllers/astromonRoutes'));
+app.use('/skills',require('./routes/controllers/skillRoutes'));
 app.use('/api/auth', require('./routes/apis/authRoutes'));
 app.use('/api/users', require('./routes/apis/userRoutes'));
 

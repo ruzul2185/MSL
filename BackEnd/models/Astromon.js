@@ -6,11 +6,6 @@ const astromonSchema = new mongoose.Schema({
         required: true
     },
     // Dropdown
-    Type: {
-        type: String,
-        required: true
-    },
-    // Dropdown
     Evolution_Level: {
         type: String,
         required:true
@@ -32,19 +27,19 @@ const astromonSchema = new mongoose.Schema({
         required: true
     },
     Critical_Dmg: {
-        type: Number,
+        type: String,
         required: true
     },
     Critical_Rate: {
-        type: Number,
+        type: String,
         required: true
     },
     Resist: {
-        type: Number,
+        type: String,
         required: true
     },
     Critical_Resist: {
-        type: Number,
+        type: String,
         required: true
     },
     // Dropdown
@@ -61,6 +56,25 @@ const astromonSchema = new mongoose.Schema({
     Passive_Skill: {
         type: String,
         required: true
+    },
+    // Dropdown
+    Super_Skill: {
+        type: String,
+        default: '',
+        required: false
+    },
+    Active_Skill_Figure: {
+        type: String,
+        required: true
+    },
+    Passive_Skill_Figure: {
+        type: String,
+        required: true
+    },
+    Super_Skill_Figure: {
+        type: String,
+        default: '',
+        required: false
     },
     Active_Book: {
         type: String,

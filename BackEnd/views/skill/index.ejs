@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('../includes/link.ejs') %>
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/skill/index.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/sidebar.css"/>
+    <link rel="stylesheet" href="/css/pagination.css" />
+    <title>Astromon Info</title>
+</head>
+<body>
+<!--This is the header-->
+<%- include('../includes/header.ejs') %>
+
+<div style="display: flex; flex-direction: row;padding-top: 10px;">
+    <!--        This is the sidebar Menu-->
+    <%- include('../includes/sideMenu.ejs') %>
+
+    <% if(message.success) { %>
+        <%- include('../includes/alerts/success.ejs') %>
+    <% } else if(message.error) {%>
+        <%- include('../includes/alerts/danger.ejs') %>
+    <% } %>
+
+</div>
+<main class="mainContainer" >
+
+    <div style="display: flex; flex-direction: row; justify-content: space-evenly; flex-wrap: wrap;font-size: small;">
+        <% skill.forEach(skill => {%>
+            <div style="background-color: #333333; color: white; width: 250px; margin-bottom: 20px;padding-bottom: 10px; display: flex; flex-direction: column; align-items: center; text-align: center;justify-content: center;">
+                <div style="font-weight: bold;"><%= skill.Name %></div>
+                <img src="<%= skill.Url %>" alt="..." style="height: 100px; width: 100px; margin-top: 10px;" />
+                <p><%= skill.Desc %></p>
+                <p><%= skill.AI_Desc %></p>
+                <p><%= skill.Type %></p>
+                <div>
+                    <a class="btn btn-success" href="/skills/update/?id=<%= skill._id %>&page=<%= page %>">Edit</a>
+                    <a class="btn btn-danger" href="/skills/delete/?id=<%= skill._id %>&page=<%= page %>">Delete</a>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+
+    <%- include('../includes/pagination.ejs') %>
+
+</main>
+
+<!--This line is for footer-->
+<%- include('../includes/footer.ejs')%>
+<%- include('../includes/scriptBottom.ejs') %>
+</body>
+</html>

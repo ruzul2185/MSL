@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('../includes/link.ejs') %>
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/user/index.css"/>
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/sidebar.css"/>
+    <link rel="stylesheet" href="/css/user/add-user.css"/>
+    <title>Add Astromon Information</title>
+</head>
+<body>
+<%- include('../includes/header.ejs') %>
+<div style="display: flex; flex-direction: row;padding-top: 10px;">
+    <%- include('../includes/sideMenu.ejs') %>
+
+    <% if(message.success) { %>
+        <%- include('../includes/alerts/success.ejs') %>
+    <% } else if(message.error) {%>
+        <%- include('../includes/alerts/danger.ejs') %>
+    <% } %>
+</div>
+<main class="primaryContainer" >
+
+    <h2 class="headTitle">Add Astromon Information</h2>
+
+    <!--        <form action="/users/add" method="post" class="formContainer">-->
+    <form action="<%= astromon ? "/astromons/update" : "/astromons/add" %>" method="post" class="formContainer">
+
+        <% if(astromon){ %>
+        <input type="text" id="id" name="id" class="textInput" hidden="hidden" value="<%=astromonInfo._id%>"><br>
+
+        <input type="text" id="page" name="page" class="textInput" hidden="hidden" value="<%=page%>"><br>
+        <% } %>
+
+        <!-- Name -->
+        <label for="Name" class="label">Name:</label>
+        <input type="text" id="Name" name="Name" class="textInput"  value="<%= astromon ? astromon.Name : '' %>" required><br>
+
+        <!-- Type Dropdown -->
+        <label for="Element" class="label">Element:</label>
+        <select id="Element" name="Element" class="dropdown" required>
+            <option value="Fire" <%= astromon && astromon.Element === 'Fire' ? 'selected' : '' %>>Fire</option>
+            <option value="Water" <%= astromon && astromon.Element === 'Water' ? 'selected' : '' %>>Water</option>
+            <option value="Wood" <%= astromon && astromon.Element === 'Wood' ? 'selected' : '' %>>Wood</option>
+            <option value="Light" <%= astromon && astromon.Element === 'Light' ? 'selected' : '' %>>Light</option>
+            <option value="Dark" <%= astromon && astromon.Element === 'Dark' ? 'selected' : '' %>>Dark</option>
+            <!-- Add more role options as needed -->
+        </select><br>
+
+        <!-- Evolution_Level Dropdown -->
+        <label for="Evolution_Level" class="label">Evolution Level:</label>
+        <select id="Evolution_Level" name="Evolution_Level" class="dropdown" required>
+            <option value="Evo 1" <%= astromon && astromon.Evolution_Level === 'Evo 1' ? 'selected' : '' %>>Evo 1</option>
+            <option value="Evo 2" <%= astromon && astromon.Evolution_Level === 'Evo 2' ? 'selected' : '' %>>Evo 2</option>
+            <option value="Evo 3" <%= astromon && astromon.Evolution_Level === 'Evo 3' ? 'selected' : '' %>>Evo 3</option>
+            <option value="Super Evo" <%= astromon && astromon.Evolution_Level === 'Super Evo' ? 'selected' : '' %>>Super Evo</option>
+            <option value="Ultimate Evo" <%= astromon && astromon.Evolution_Level === 'Ultimate Evo' ? 'selected' : '' %>>Ultimate Evo</option>
+            <!-- Add more role options as needed -->
+        </select><br>
+
+        <!-- HP -->
+        <label for="HP" class="label">HP:</label>
+        <input type="number" id="HP" name="HP" class="textInput" value="<%= astromon ? astromon.HP : '' %>" required><br>
+
+        <!-- Attack -->
+        <label for="Attack" class="label">Attack:</label>
+        <input type="number" id="Attack" name="Attack" class="textInput" value="<%= astromon ? astromon.Attack : '' %>" required><br>
+
+        <!-- Defence -->
+        <label for="Defence" class="label">Defence:</label>
+        <input type="number" id="Defence" name="Defence" class="textInput" value="<%= astromon ? astromon.Defence : '' %>" required><br>
+
+        <!-- Recovery -->
+        <label for="Recovery" class="label">Recovery:</label>
+        <input type="number" id="Recovery" name="Recovery" class="textInput" value="<%= astromon ? astromon.Recovery : '' %>" required><br>
+
+        <!-- Critical_Dmg -->
+        <label for="Critical_Dmg" class="label">Critical Dmg:</label>
+        <input type="text" id="Critical_Dmg" name="Critical_Dmg" class="textInput" value="<%= astromon ? astromon.Critical_Dmg : '' %>" required><br>
+
+        <!-- Critical_Rate -->
+        <label for="Critical_Rate" class="label">Critical Rate:</label>
+        <input type="text" id="Critical_Rate" name="Critical_Rate" class="textInput" value="<%= astromon ? astromon.Critical_Rate : '' %>" required><br>
+
+        <!-- Resist -->
+        <label for="Resist" class="label">Resist:</label>
+        <input type="text" id="Resist" name="Resist" class="textInput" value="<%= astromon ? astromon.Resist : '' %>" required><br>
+
+        <!-- Critical_Resist -->
+        <label for="Critical_Resist" class="label">Critical Resist:</label>
+        <input type="text" id="Critical_Resist" name="Critical_Resist" class="textInput" value="<%= astromon ? astromon.Critical_Resist : '' %>" required><br>
+
+        <!-- Active_Skill Dropdown -->
+        <label for="Active_Skill" class="label">Active Skill:</label>
+        <select id="Active_Skill" name="Evolution_Level" class="dropdown" required>
+            <option value="Evo 1" <%= astromon && astromon.Evolution_Level === 'Evo 1' ? 'selected' : '' %>>Evo 1</option>
+            <option value="Evo 2" <%= astromon && astromon.Evolution_Level === 'Evo 2' ? 'selected' : '' %>>Evo 2</option>
+            <option value="Evo 3" <%= astromon && astromon.Evolution_Level === 'Evo 3' ? 'selected' : '' %>>Evo 3</option>
+            <option value="Super Evo" <%= astromon && astromon.Evolution_Level === 'Super Evo' ? 'selected' : '' %>>Super Evo</option>
+            <option value="Ultimate Evo" <%= astromon && astromon.Evolution_Level === 'Ultimate Evo' ? 'selected' : '' %>>Ultimate Evo</option>
+            <!-- Add more role options as needed -->
+        </select><br>
+
+        <!-- Active_Skill_Figure -->
+        <label for="Active_Skill_Figure" class="label">Active Skill Figure(use , as separator):</label>
+        <input type="text" id="Active_Skill_Figure" name="Active_Skill_Figure" class="textInput" value="<%= astromon ? astromon.Active_Skill_Figure : '' %>" required><br>
+
+        <!-- Passive_Skill Dropdown -->
+        <label for="Passive_Skill" class="label">Passive Skill:</label>
+        <select id="Passive_Skill" name="Passive_Skill" class="dropdown" required>
+            <option value="Evo 1" <%= astromon && astromon.Evolution_Level === 'Evo 1' ? 'selected' : '' %>>Evo 1</option>
+            <option value="Evo 2" <%= astromon && astromon.Evolution_Level === 'Evo 2' ? 'selected' : '' %>>Evo 2</option>
+            <option value="Evo 3" <%= astromon && astromon.Evolution_Level === 'Evo 3' ? 'selected' : '' %>>Evo 3</option>
+            <option value="Super Evo" <%= astromon && astromon.Evolution_Level === 'Super Evo' ? 'selected' : '' %>>Super Evo</option>
+            <option value="Ultimate Evo" <%= astromon && astromon.Evolution_Level === 'Ultimate Evo' ? 'selected' : '' %>>Ultimate Evo</option>
+            <!-- Add more role options as needed -->
+        </select><br>
+
+        <!-- Active_Skill_Figure -->
+        <label for="Passive_Skill_Figure" class="label">Passive Skill Figure(use , as separator):</label>
+        <input type="text" id="Passive_Skill_Figure" name="Passive_Skill_Figure" class="textInput" value="<%= astromon ? astromon.Passive_Skill_Figure : '' %>" required><br>
+
+        <!-- Super_Skill Dropdown -->
+        <label for="Super_Skill" class="label">Super Skill:</label>
+        <select id="Super_Skill" name="Super_Skill" class="dropdown" required>
+            <option value="Evo 1" <%= astromon && astromon.Super_Skill === 'Evo 1' ? 'selected' : '' %>>Evo 1</option>
+            <option value="Evo 2" <%= astromon && astromon.Super_Skill === 'Evo 2' ? 'selected' : '' %>>Evo 2</option>
+            <option value="Evo 3" <%= astromon && astromon.Super_Skill === 'Evo 3' ? 'selected' : '' %>>Evo 3</option>
+            <option value="Super Evo" <%= astromon && astromon.Super_Skill === 'Super Evo' ? 'selected' : '' %>>Super Evo</option>
+            <option value="Ultimate Evo" <%= astromon && astromon.Super_Skill === 'Ultimate Evo' ? 'selected' : '' %>>Ultimate Evo</option>
+            <!-- Add more role options as needed -->
+        </select><br>
+
+        <!-- Super_Skill_Figure -->
+        <label for="Super_Skill_Figure" class="label">Super Skill Figure(use , as separator):</label>
+        <input type="text" id="Super_Skill_Figure" name="Super_Skill_Figure" class="textInput" value="<%= astromon ? astromon.Super_Skill_Figure : '' %>" required><br>
+
+        <!-- Active_Book -->
+        <label for="Active_Book" class="label">Active Book:</label>
+        <input type="text" id="Active_Book" name="Active_Book" class="textInput" value="<%= astromon ? astromon.Active_Book : '' %>" required><br>
+
+        <!-- Passive_Book -->
+        <label for="Passive_Book" class="label">Passive Book:</label>
+        <input type="text" id="Passive_Book" name="Passive_Book" class="textInput" value="<%= astromon ? astromon.Passive_Book : '' %>" required><br>
+
+        <!-- Astromon_Info -->
+        <label for="Astromon_Info" class="label">Astromon Info:</label>
+        <input type="text" id="Astromon_Info" name="Astromon_Info" class="textInput" value="<%= astromon ? astromon.Astromon_Info : '' %>" required><br>
+
+        <!-- Submit Button -->
+        <div style="display: flex; flex-direction: row;">
+            <input type="submit" value="Submit" class="submitButton">
+            <% if(astromon) { %>
+            <a type="submit" class="submitButton" href="/astromons/?page=<%=page%>" style="background-color: red;text-decoration: none">X</a>
+            <% } %>
+        </div>
+    </form>
+
+
+</main>
+<%- include('../includes/footer.ejs')%>
+<%- include('../includes/scriptBottom.ejs') %>
+</body>
+</html>
