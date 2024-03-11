@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <%- include('../includes/link.ejs') %>
     <link rel="stylesheet" href="/css/global.css" />
-    <link rel="stylesheet" href="/css/user/index.css"/>
+    <link rel="stylesheet" href="/css/astromon/index.css"/>
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/sidebar.css"/>
     <link rel="stylesheet" href="/css/pagination.css" />
-    <title>Astromon Info</title>
+    <title>Astromon</title>
 </head>
 <body>
 <!--This is the header-->
@@ -28,9 +28,107 @@
     <% } %>
 
 </div>
-<main class="cardContainer" >
+<main class="baseContainer" >
 
-
+    <div style="display: flex;flex-direction: row;justify-content: space-evenly;flex-wrap: wrap;">
+        <% astromon.forEach(item => { %>
+            <div style="background-color: #333333;width:400px;color: white;font-size: small;padding-top: 10px; padding-bottom: 10px;display: flex;flex-direction: column;justify-content: space-evenly;margin-top:10px;">
+                <div style="text-align: center;font-weight: bold;font-size: larger;padding-bottom: 10px;">
+                    <%= item.Name %>
+                </div>
+                <div style="display: flex;flex-direction: row;justify-content: space-around;">
+                    <div style="text-align: center;">
+                        <img src="<%= item.URL%>" alt="..." style="width: 120px;height: 120px;"/>
+                        <p style="font-weight: bold;"><%= item.Type %></p>
+                    </div>
+                    <div>
+                        <div style="text-align: center; font-weight: bold;">
+                            Lv. 60
+                        </div>
+                        <div style="display: flex;flex-direction: row;">
+                            <div>
+                                <div style="display: flex;flex-direction: row;justify-content: space-between;margin-bottom: -10px;">
+                                    <p style="font-weight: bold;">HP:</p>
+                                    <p style="margin-left: 5px;"><%=item.HP%></p>
+                                </div>
+                                <div style="display: flex;flex-direction: row;justify-content: space-between;margin-bottom: -10px;">
+                                    <p style="font-weight: bold;">Attack:</p>
+                                    <p style="margin-left: 5px;"><%=item.Attack%></p>
+                                </div>
+                                <div style="display: flex;flex-direction: row;justify-content: space-between;margin-bottom: -10px;">
+                                    <p style="font-weight: bold;">Defense:</p>
+                                    <p style="margin-left: 5px;"><%=item.Defence%></p>
+                                </div>
+                                <div style="display: flex;flex-direction: row;justify-content: space-between;margin-bottom: -10px;">
+                                    <p style="font-weight: bold;">Recovery:</p>
+                                    <p style="margin-left: 5px;"><%=item.Recovery%></p>
+                                </div>
+                            </div>
+                            <div style="padding-left: 10px;">
+                                <div style="display: flex;flex-direction: row;justify-content: space-between;margin-bottom: -10px;">
+                                    <p style="font-weight: bold;">Crit Dmg:</p>
+                                    <p style="margin-left: 5px;"><%=item.Critical_Dmg%></p>
+                                </div>
+                                <div style="display: flex;flex-direction: row;justify-content: space-between;margin-bottom: -10px;">
+                                    <p style="font-weight: bold;">Crit Rate:</p>
+                                    <p style="margin-left: 5px;"><%=item.Critical_Rate%></p>
+                                </div>
+                                <div style="display: flex;flex-direction: row;justify-content: space-between;margin-bottom: -10px;">
+                                    <p style="font-weight: bold;">Resist:</p>
+                                    <p style="margin-left: 5px;"><%=item.Resist%></p>
+                                </div>
+                                <div style="display: flex;flex-direction: row;justify-content: space-between;margin-bottom: -10px;">
+                                    <p style="font-weight: bold;">Crit Res:</p>
+                                    <p style="margin-left: 5px;"><%=item.Critical_Resist%></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div style="text-align: center;font-weight: bold;">
+                        <%= item.Passive_Skill%>
+                    </div>
+                    <div style="display: flex;flex-direction: row;justify-content: space-around">
+                        <img src="<%= item.Passive_Skill_Object.Url%>" alt="..." style="height: 70px;width: 70px;"/>
+                        <div style="width:300px;">
+                            <p><%= item.Passive_Skill_Object.Desc%></p>
+                            <p>Books: <%=item.Passive_Book%></p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div style="text-align: center;font-weight: bold;">
+                        <%= item.Active_Skill%>
+                    </div>
+                    <div style="display: flex;flex-direction: row;justify-content: space-around">
+                        <img src="<%= item.Active_Skill_Object.Url%>" alt="..." style="height: 70px;width: 70px;"/>
+                        <div style="width:300px;">
+                            <p><%= item.Active_Skill_Object.Desc%></p>
+                            <p>Books: <%=item.Active_Book%></p>
+                        </div>
+                    </div>
+                </div>
+                <% if (item.Ultimate_Skill !== '' && item.Ultimate_Skill !== 'None'){ %>
+                    <div>
+                        <div style="text-align: center;font-weight: bold;">
+                            <%= item.Ultimate_Skill%>
+                        </div>
+                        <div style="display: flex;flex-direction: row;justify-content: space-around">
+                            <img src="<%= item.Ultimate_Skill_Object.Url%>" alt="..." style="height: 70px;width: 70px;"/>
+                            <div style="width:300px;">
+                                <p><%= item.Ultimate_Skill_Object.Desc%></p>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+                <div style="display: flex;flex-direction: row;justify-content: space-evenly;margin-top: 5px;">
+                    <a class="btn btn-success" href="/astromons/update/?id=<%= item._id %>&page=<%= page %>">Edit</a>
+                    <a class="btn btn-danger" href="/astromons/delete/?id=<%= item._id %>&page=<%= page %>">Delete</a>
+                </div>
+            </div>
+        <% }) %>
+    </div>
 
     <%- include('../includes/pagination.ejs') %>
 

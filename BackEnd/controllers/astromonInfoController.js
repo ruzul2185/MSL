@@ -58,10 +58,6 @@ const addAstromonInfoPage = asyncHandler(async (req, res, next) => {
 const addAstromonInfo = asyncHandler(async (req, res, next) => {
     const {
         Astromon_Associated,
-        Leader_Skill_Name,
-        Leader_Skill_Title,
-        Leader_Skill_Desc,
-        Leader_Skill_Url,
         Passive_Skill_Name,
         Passive_Skill_Target,
         Passive_Skill_Desc,
@@ -78,10 +74,6 @@ const addAstromonInfo = asyncHandler(async (req, res, next) => {
 
     const AstromonInfoObject = {
         Astromon_Associated,
-        Leader_Skill_Name,
-        Leader_Skill_Title,
-        Leader_Skill_Desc,
-        Leader_Skill_Url,
         Passive_Skill_Name,
         Passive_Skill_Target,
         Passive_Skill_Desc,
@@ -136,10 +128,6 @@ const updateAstromonInfo = asyncHandler(async (req, res, next) => {
         id,
         page,
         Astromon_Associated,
-        Leader_Skill_Name,
-        Leader_Skill_Title,
-        Leader_Skill_Desc,
-        Leader_Skill_Url,
         Passive_Skill_Name,
         Passive_Skill_Target,
         Passive_Skill_Desc,
@@ -157,10 +145,6 @@ const updateAstromonInfo = asyncHandler(async (req, res, next) => {
     const oldUser = await AstromonInfo.findById(id).exec();
 
     oldUser.Astromon_Associated = Astromon_Associated
-    oldUser.Leader_Skill_Name = Leader_Skill_Name
-    oldUser.Leader_Skill_Title = Leader_Skill_Title
-    oldUser.Leader_Skill_Desc = Leader_Skill_Desc
-    oldUser.Leader_Skill_Url = Leader_Skill_Url
     oldUser.Passive_Skill_Name = Passive_Skill_Name
     oldUser.Passive_Skill_Target = Passive_Skill_Target
     oldUser.Passive_Skill_Desc = Passive_Skill_Desc

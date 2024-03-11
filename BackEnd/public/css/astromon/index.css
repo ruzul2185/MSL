@@ -1,0 +1,5 @@
+.baseContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 100px 100px;
+}

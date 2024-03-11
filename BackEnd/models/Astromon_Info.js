@@ -5,22 +5,6 @@ const astromon_infoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    Leader_Skill_Name: {
-        type:String,
-        required:true
-    },
-    Leader_Skill_Title: {
-        type:String,
-        required: true
-    },
-    Leader_Skill_Desc: {
-        type:String,
-        required: true
-    },
-    Leader_Skill_Url:{
-        type:String,
-        required: true
-    },
     Passive_Skill_Name: {
         type: String,
         required: true

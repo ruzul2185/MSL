@@ -55,6 +55,7 @@
         <!-- Type Dropdown -->
         <label for="Type" class="label">Type:</label>
         <select id="Type" name="Type" class="dropdown" required>
+            <option value="Leader" <%= skill && skill.Type === 'Leader' ? 'selected' : '' %>>Leader</option>
             <option value="Active" <%= skill && skill.Type === 'Active' ? 'selected' : '' %>>Active</option>
             <option value="Passive" <%= skill && skill.Type === 'Passive' ? 'selected' : '' %>>Passive</option>
             <option value="Super" <%= skill && skill.Type === 'Super' ? 'selected' : '' %>>Super</option>

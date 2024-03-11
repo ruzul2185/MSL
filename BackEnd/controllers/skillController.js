@@ -73,7 +73,7 @@ const addSkill = asyncHandler(async(req, res, next)=> {
         Type
     }
 
-    const duplicate = await SkillModel.findOne({Name}).lean().exec();
+    const duplicate = await SkillModel.findOne({Name,Type}).lean().exec();
     if(duplicate) {
         req.flash('error', 'Duplicate Skill')
         return res.redirect('/skills/add');

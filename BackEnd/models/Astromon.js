@@ -5,10 +5,22 @@ const astromonSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    Type: {
+        type: String,
+        required: true
+    },
+    URL: {
+        type: String,
+        required: true
+    },
     // Dropdown
     Evolution_Level: {
         type: String,
         required:true
+    },
+    Star: {
+        type: Number,
+        required: true
     },
     HP: {
         type: Number,
@@ -58,7 +70,12 @@ const astromonSchema = new mongoose.Schema({
         required: true
     },
     // Dropdown
-    Super_Skill: {
+    Leader_Skill: {
+        type: String,
+        required: true
+    },
+    // Dropdown
+    Ultimate_Skill: {
         type: String,
         default: '',
         required: false
@@ -71,7 +88,11 @@ const astromonSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    Super_Skill_Figure: {
+    Leader_Skill_Figure: {
+        type: String,
+        required: true
+    },
+    Ultimate_Skill_Figure: {
         type: String,
         default: '',
         required: false
