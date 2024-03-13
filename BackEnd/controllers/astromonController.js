@@ -140,6 +140,7 @@ const updateAstromon = asyncHandler(async(req,res,next) => {
         id,
         page,
         Name,
+        Star,
         Evolution_Level,
         URL,
         Type,
@@ -165,6 +166,7 @@ const updateAstromon = asyncHandler(async(req,res,next) => {
 
     oldAstromon.Name = Name
     oldAstromon.Evolution_Level = Evolution_Level
+    oldAstromon.Star = Star
     oldAstromon.URL = URL
     oldAstromon.Type = Type
     oldAstromon.Critical_Dmg = Critical_Dmg
@@ -221,6 +223,7 @@ const addAstromon = asyncHandler(async (req, res, next) => {
         Name,
         Evolution_Level,
         URL,
+        Star,
         Type,
         Critical_Dmg,
         Critical_Rate,
@@ -241,7 +244,7 @@ const addAstromon = asyncHandler(async (req, res, next) => {
     } = req.body;
 
     let HP = Number(req.body.HP);
-    let Star = Number(req.body.Star);
+    // let Star = Number(req.body.Star);
     let Attack = Number(req.body.Attack);
     let Defence = Number(req.body.Defence);
     let Recovery = Number(req.body.Recovery);

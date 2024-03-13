@@ -19,7 +19,7 @@ const astromonSchema = new mongoose.Schema({
         required:true
     },
     Star: {
-        type: Number,
+        type: String,
         required: true
     },
     HP: {
