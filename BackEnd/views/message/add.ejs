@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('../includes/link.ejs') %>
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/sidebar.css"/>
+    <link rel="stylesheet" href="/css/user/add-user.css"/>
+    <title>Add Message</title>
+</head>
+<body>
+<%- include('../includes/header.ejs') %>
+<div style="display: flex; flex-direction: row;padding-top: 10px;">
+    <%- include('../includes/sideMenu.ejs') %>
+
+    <% if(message.success) { %>
+        <%- include('../includes/alerts/success.ejs') %>
+    <% } else if(message.error) {%>
+        <%- include('../includes/alerts/danger.ejs') %>
+    <% } %>
+</div>
+<main class="primaryContainer" >
+
+    <h2 class="headTitle">Add Message</h2>
+
+    <!--        <form action="/users/add" method="post" class="formContainer">-->
+    <form action="<%= member ? "/messages/update" : "/messages/add" %>" method="post" class="formContainer">
+
+        <% if(member){ %>
+        <input type="text" id="id" name="id" class="textInput" hidden="hidden" value="<%=member._id%>"><br>
+
+        <input type="text" id="page" name="page" class="textInput" hidden="hidden" value="<%=page%>"><br>
+        <% } %>
+
+        <!-- Title -->
+        <label for="Title" class="label">Title:</label>
+        <input type="text" id="Title" name="Title" class="textInput"  value="<%= member ? member.Title : '' %>" required><br>
+
+        <!-- SubTitle -->
+        <label for="SubTitle" class="label">Subtitle:</label>
+        <input type="text" id="SubTitle" name="SubTitle" class="textInput"  value="<%= member ? member.SubTitle : '' %>"><br>
+
+        <!-- Body -->
+        <label for="Body" class="label">Body (You can use HTML tags to structure the body):</label><br>
+        <textarea id="Body" name="Body" class="textInput" rows="8" style="height: 200px;" required><%= member ? member.Body : '' %></textarea>
+
+        <!-- Submit Button -->
+        <div style="display: flex; flex-direction: row;">
+            <input type="submit" value="Submit" class="submitButton">
+            <% if(member) { %>
+            <a type="submit" class="submitButton" href="/messages/?page=<%=page%>" style="background-color: red;text-decoration: none">X</a>
+            <% } %>
+        </div>
+    </form>
+
+
+</main>
+<%- include('../includes/footer.ejs')%>
+<%- include('../includes/scriptBottom.ejs') %>
+</body>
+</html>

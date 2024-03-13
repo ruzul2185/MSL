@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('../includes/link.ejs') %>
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/sidebar.css"/>
+    <link rel="stylesheet" href="/css/user/add-user.css"/>
+    <title>Add Member</title>
+</head>
+<body>
+<%- include('../includes/header.ejs') %>
+<div style="display: flex; flex-direction: row;padding-top: 10px;">
+    <%- include('../includes/sideMenu.ejs') %>
+
+    <% if(message.success) { %>
+        <%- include('../includes/alerts/success.ejs') %>
+    <% } else if(message.error) {%>
+        <%- include('../includes/alerts/danger.ejs') %>
+    <% } %>
+</div>
+<main class="primaryContainer" >
+
+    <h2 class="headTitle">Add Member</h2>
+
+    <!--        <form action="/users/add" method="post" class="formContainer">-->
+    <form action="<%= member ? "/members/update" : "/members/add" %>" method="post" class="formContainer">
+
+        <% if(member){ %>
+        <input type="text" id="id" name="id" class="textInput" hidden="hidden" value="<%=member._id%>"><br>
+
+        <input type="text" id="page" name="page" class="textInput" hidden="hidden" value="<%=page%>"><br>
+        <% } %>
+
+        <!-- Name -->
+        <label for="Name" class="label">Member Name:</label>
+        <input type="text" id="Name" name="Name" class="textInput"  value="<%= member ? member.Name : '' %>" required><br>
+
+        <!-- Type Dropdown -->
+        <label for="Type" class="label">Type:</label>
+        <select id="Type" name="Type" class="dropdown" required>
+            <option value="Member" <%= member && member.Type === 'Member' ? 'selected' : '' %>>Member</option>
+            <option value="Honorable Mentions" <%= member && member.Type === 'Honorable Mentions' ? 'selected' : '' %>>Honorable Mentions</option>
+            <!-- Add more role options as needed -->
+        </select><br>
+
+        <!-- Submit Button -->
+        <div style="display: flex; flex-direction: row;">
+            <input type="submit" value="Submit" class="submitButton">
+            <% if(member) { %>
+            <a type="submit" class="submitButton" href="/skills/?page=<%=page%>" style="background-color: red;text-decoration: none">X</a>
+            <% } %>
+        </div>
+    </form>
+
+
+</main>
+<%- include('../includes/footer.ejs')%>
+<%- include('../includes/scriptBottom.ejs') %>
+</body>
+</html>

@@ -1,44 +1,47 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {TextCard} from "../components/Cards";
 import {MemberCard} from "../components/Cards";
 
 import classes from '../styles/Home.module.css';
+import {useDispatch, useSelector} from "react-redux";
+import {getMemberList, getMessageList} from "../stores/actions/auth";
 
-const randomArray = [
-    87, 22, 34, 56, 91, 12, 7, 66, 42, 18,
-    49, 59, 77, 8, 32, 53, 28, 93, 64, 3,
-    17, 41, 82, 95, 13, 61, 44, 37, 69, 81,
-    72, 19, 79, 25, 68, 15, 52, 97, 46, 29,
-    74, 2, 36, 88, 11, 63, 84, 71, 38, 5
-];
-
-const welcomeMessage = "Some quick example text to build on the card title and make up the\n" +
-    "                    bulk of the card's content.\n" +
-    "                    Some quick example text to build on the card title and make up the\n" +
-    "                    bulk of the card's content.\n" +
-    "                    Some quick example text to build on the card title and make up the\n" +
-    "                    bulk of the card's content.\n" +
-    "                    Some quick example text to build on the card title and make up the\n" +
-    "                    bulk of the card's content.\n" +
-    "                    Some quick example text to build on the card title and make up the\n" +
-    "                    bulk of the card's content.\n" +
-    "                    Some quick example text to build on the card title and make up the\n" +
-    "                    bulk of the card's content.\n" +
-    "                    Some quick example text to build on the card title and make up the\n" +
-    "                    bulk of the card's content.\n" +
-    "                    Some quick example text to build on the card title and make up the\n" +
-    "                    bulk of the card's content."
+const welcomeMessage = `
+<strong>5 Main Rules of Astral</strong>\n
+1. 12 hits minimum in Titan per week
+2. Daily donation of golds (300 guild coins = 60k golds)
+3. 1 week inactivity without prior notice will be dismissed.
+   [Ping the leaders about your absence]
+4. Respect your fellow members
+5. BE ACTIVE\n
+<strong>Fun Fact:</strong> The birth of the name AstralSwag started when Dazai became a kdrama addict. Watching the most popular kdrama that time 'Weightlifting Fairy Kim Bokjo' where the swag effect started- She got addicted and shamelessly created a clan with a "swag" attached to it.
+(I deeply regret it now. I'm sorry my dear members)
+`
 
 const Home = () => {
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getMemberList());
+        dispatch(getMessageList());
+    }, [dispatch]);
+
+    const List = useSelector(state => state.auth.memberList);
+    const MessageList = useSelector(state => state.auth.messageList);
+
     return(
        <React.Fragment>
            <div className={classes.TextCard}>
-               <TextCard Title={"Welcome!"} Message={welcomeMessage}/>
-               <MemberCard Title={"Members"} Array={randomArray}/>
-               <MemberCard Title={"Honorable Mentions"} Array={randomArray}/>
+               {MessageList && MessageList.map((item) => (
+                   <TextCard key={item._id} Title={item.Title} SubTitle={item.SubTitle} Message={item.Body} />
+               ))}
+               {List && List.length>0 && <MemberCard Title={"Members"} Array={List}/>}
+               {/*{List && List.HonorableMentionList.length>0 && <MemberCard Title={"Honorable Mentions"} Array={List.HonorableMentionList}/>}*/}
            </div>
        </React.Fragment>
     );
 };
+
+
 
 export default Home;

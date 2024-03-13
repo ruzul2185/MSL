@@ -61,8 +61,13 @@ app.use('/users',require('./routes/controllers/userRoutes'));
 app.use('/astromon-infos',require('./routes/controllers/astromonInfoRoutes'));
 app.use('/astromons',require('./routes/controllers/astromonRoutes'));
 app.use('/skills',require('./routes/controllers/skillRoutes'));
+app.use('/members',require('./routes/controllers/memberRoutes'));
+app.use('/messages',require('./routes/controllers/messageRoutes'));
 app.use('/api/auth', require('./routes/apis/authRoutes'));
 app.use('/api/users', require('./routes/apis/userRoutes'));
+app.use('/api/members',require('./routes/apis/memberRoutes'));
+app.use('/api/astromons',require('./routes/apis/astromonRoutes'));
+app.use('/api/messages',require('./routes/apis/messageRoutes'));
 
 app.all('*',(req,res)=>{
     res.status(404);
