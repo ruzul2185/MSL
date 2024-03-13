@@ -8,10 +8,10 @@ import authReducers from './stores/reducers/auth';
 import WebNavigation from "./navigation/WebNavigation";
 
 const rootReducer = combineReducers({
-  auth: authReducers,
+    auth: authReducers,
 });
 
-const store = createStore(applyMiddleware(thunk));
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 function App() {
   return (
