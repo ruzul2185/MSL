@@ -1,0 +1,17 @@
+.WelcomeContainer {
+    width: 80%;
+    margin-top: 30px;
+}
+.TextCardTitle {
+    font-size: xx-large;
+}
+.MemberNameContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+@media (max-width: 768px) {
+    .WelcomeContainer {
+        width: 100%;
+    }
+}
