@@ -3,6 +3,6 @@ const router = express.Router();
 const astromonController = require('../../apis/astromonController');
 
 router.route('/')
-    .get(astromonController.getAllAstromons)
+    .post(astromonController.getAllAstromons)
 
 module.exports = router;

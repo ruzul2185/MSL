@@ -5,7 +5,9 @@ const SkillModel = require("../models/Skill");
 const getAllAstromons = asyncHandler(async(req, res, next)=> {
 
     const resultPerPage = 10;
-    let { page } = req.query;
+
+    // let { page } = req.query;
+    let { element,star,leaderSkill,passiveSkill,activeSkill,page } = req.body;
     const numOfUsers = await AstromonModel.find().countDocuments();
     const numOfPages = Math.ceil(numOfUsers / resultPerPage);
     // page = page ? Number(page) : 1;
@@ -21,7 +23,36 @@ const getAllAstromons = asyncHandler(async(req, res, next)=> {
         page = 1
     }
     let id = page > 1 ? (page-1)*10 + 1 : 1;
-    const Astromon = await AstromonModel.find().limit(resultPerPage).skip(skip).exec();
+
+    const query = {};
+    const filters = {
+        Star: star,
+        Element: element,
+        Active_Skill: activeSkill,
+        Passive_Skill: passiveSkill,
+        Leader_Skill: leaderSkill,
+    };
+
+// Check if any filter value is not "None"
+    const hasFilters = Object.values(filters).some(value => value !== "None");
+
+// Set properties in the query object if their corresponding filter value is not "None"
+    if (hasFilters) {
+        for (const [key, value] of Object.entries(filters)) {
+            if (value !== "None") {
+                query[key] = value;
+            }
+        }
+    }
+
+    let Astromon;
+
+    if (hasFilters) {
+        Astromon = await AstromonModel.find(query).limit(resultPerPage).skip(skip).exec();
+    } else {
+        Astromon = await AstromonModel.find().limit(resultPerPage).skip(skip).exec();
+    }
+
 
     const passiveSkills = await SkillModel.find({Type: 'Passive'}).exec();
 
@@ -103,6 +134,9 @@ const getAllAstromons = asyncHandler(async(req, res, next)=> {
         endingLink,
         iterator,
         numOfPages,
+        passiveSkills,
+        activeSkills,
+        leaderSkills
     };
 
     res.json(responseObject);

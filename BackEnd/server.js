@@ -68,6 +68,7 @@ app.use('/api/users', require('./routes/apis/userRoutes'));
 app.use('/api/members',require('./routes/apis/memberRoutes'));
 app.use('/api/astromons',require('./routes/apis/astromonRoutes'));
 app.use('/api/messages',require('./routes/apis/messageRoutes'));
+app.use('/api/skills', require('./routes/apis/skillRoutes'));
 
 app.all('*',(req,res)=>{
     res.status(404);
