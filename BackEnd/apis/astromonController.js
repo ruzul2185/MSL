@@ -8,21 +8,6 @@ const getAllAstromons = asyncHandler(async(req, res, next)=> {
 
     // let { page } = req.query;
     let { element,star,leaderSkill,passiveSkill,activeSkill,page } = req.body;
-    const numOfUsers = await AstromonModel.find().countDocuments();
-    const numOfPages = Math.ceil(numOfUsers / resultPerPage);
-    // page = page ? Number(page) : 1;
-    page = page ? (isNaN(Number(page)) ? 1 : Number(page)) : 1;
-    let skip = (page - 1)*resultPerPage;
-    if(skip < 0){
-        skip = 0;
-    }
-    if(page > numOfPages){
-        // res.redirect('/astromons/?page=' + encodeURIComponent(numOfPages));
-        page = 1
-    }else if(page < 1){
-        page = 1
-    }
-    let id = page > 1 ? (page-1)*10 + 1 : 1;
 
     const query = {};
     const filters = {
@@ -44,6 +29,27 @@ const getAllAstromons = asyncHandler(async(req, res, next)=> {
             }
         }
     }
+
+    let numOfUsers;
+    if(hasFilters) {
+        numOfUsers = await AstromonModel.find(query).countDocuments();
+    } else {
+        numOfUsers = await AstromonModel.find().countDocuments();
+    }
+    const numOfPages = Math.ceil(numOfUsers / resultPerPage);
+    // page = page ? Number(page) : 1;
+    page = page ? (isNaN(Number(page)) ? 1 : Number(page)) : 1;
+    let skip = (page - 1)*resultPerPage;
+    if(skip < 0){
+        skip = 0;
+    }
+    if(page > numOfPages){
+        // res.redirect('/astromons/?page=' + encodeURIComponent(numOfPages));
+        page = 1
+    }else if(page < 1){
+        page = 1
+    }
+    let id = page > 1 ? (page-1)*10 + 1 : 1;
 
     let Astromon;
 

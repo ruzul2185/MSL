@@ -131,7 +131,6 @@ const Astromon = () => {
             <div>
                 <nav aria-label="...">
                     <ul className="pagination">
-
                         {AstromonList && [...Array(AstromonList.numOfPages).keys()].map((pageNumber) => (
                             <li key={pageNumber} className={`page-item ${pageNumber + 1 === page ? 'active' : ''}`}>
                                 <button

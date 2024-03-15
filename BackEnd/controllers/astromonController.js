@@ -6,7 +6,7 @@ const AstromonInfoModel = require('../models/Astromon_Info');
 const SkillModel = require('../models/Skill');
 
 const viewAstromonPage = asyncHandler(async (req, res, next) => {
-    const resultPerPage = 10;
+    const resultPerPage = 8;
     let { page } = req.query;
     const numOfUsers = await AstromonModel.find().countDocuments();
     const numOfPages = Math.ceil(numOfUsers / resultPerPage);
@@ -275,7 +275,7 @@ const addAstromon = asyncHandler(async (req, res, next) => {
         Passive_Book,
         Astromon_Info}
 
-    const duplicate = await AstromonModel.findOne({Name}).lean().exec();
+    const duplicate = await AstromonModel.findOne({Name,Element}).lean().exec();
     if(duplicate) {
         req.flash('error', 'Duplicate Astromon')
         return res.redirect('/astromons/add');
