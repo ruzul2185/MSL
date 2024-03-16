@@ -6,10 +6,23 @@ import {ELEMENT_LIST, NATURAL_RARITY} from "../constants/WebDefine";
 import {useDispatch, useSelector} from "react-redux";
 import {getAllAstromons} from "../stores/actions/auth";
 
+import bronzeFrame from '../assets/bronze_border_large.webp';
+import silverFrame from '../assets/silver_border_large.webp';
+import goldenFrame from '../assets/gold_border_large.webp';
+import superFrame from '../assets/super_border_large.webp';
+
+import Fire from '../assets/monster_element_fire.png';
+import Water from '../assets/monster_element_water.png';
+import Wood from '../assets/monster_element_tree.png';
+import Light from '../assets/monster_element_light.png';
+import Dark from '../assets/monster_element_dark.png';
+
+import Star from '../assets/YellowStar.png';
 
 
 const Astromon = () => {
 
+    const isMobile = window.innerWidth <= 768;
 
     const [element, setElement] = useState('None');
     const [star, setStar] = useState('None');
@@ -50,6 +63,35 @@ const Astromon = () => {
 
     const AstromonList = useSelector(state => state.auth.allAstromonList);
     console.log(AstromonList)
+
+    function getFrameImageUrl(item) {
+        if(item.Evolution_Level === 'Evo 1'){
+            return bronzeFrame;
+        } else if(item.Evolution_Level === 'Evo 2'){
+            return silverFrame;
+        } else if (item.Evolution_Level === 'Evo 3') {
+            return goldenFrame;
+        } else if (item.Evolution_Level === 'Super Evo') {
+            return superFrame;
+        } else if (item.Evolution_Level === 'Ultimate Evo') {
+            return superFrame;
+        }
+    }
+
+    function getElement(item) {
+        if(item.Element === 'Fire'){
+            return Fire;
+        } else if(item.Element === 'Water'){
+            return Water;
+        } else if (item.Element === 'Wood') {
+            return Wood;
+        } else if (item.Element === 'Light') {
+            return Light;
+        } else if (item.Element === 'Dark') {
+            return Dark;
+        }
+    }
+
     return(
         <div className={classes.MainContainer}>
             <div className={classes.TitleContainer}>
@@ -86,7 +128,15 @@ const Astromon = () => {
                 {AstromonList.astromonData.map((item) => (
                         <tr key={item._id} className={classes.IndividualAstromonContainer}>
                             <th scope="row">
-                                    <img src={item.URL} alt={"..."} className={classes.AstromonImage}/>
+                                    <div className={classes.AstromonWrapperContainer} style={{backgroundImage: `url(${item.URL})`}}>
+                                        <img src={getFrameImageUrl(item)} alt={"..."} className={classes.AstromonFrame}/>
+                                        <img src={getElement(item)} alt={"..."} className={classes.AstromonElement}/>
+                                        <div className={classes.AstromonStarContainer} style={isMobile ? { marginLeft: `${(item.Star - 1) * 6}px` } : { marginLeft: `${(item.Star - 1) * 9}px` }}>
+                                            {[...Array(Number(item.Star))].map((_, index) => (
+                                                <img key={index} src={Star} alt={"..."} className={classes.AstromonStar} style={isMobile ? {transform: `translateX(${index * -6}px)`} : { transform: `translateX(${index * -9}px)` }}/>
+                                            ))}
+                                        </div>
+                                    </div>
                             </th>
                             <th scope="row">
                                 <div className={classes.NameContainer}>

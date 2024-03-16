@@ -16,6 +16,11 @@ const getAllAstromons = asyncHandler(async(req, res, next)=> {
         Active_Skill: activeSkill,
         Passive_Skill: passiveSkill,
         Leader_Skill: leaderSkill,
+        $or: [
+            { Evolution_Level: { $in: ["Evo 3", "Super Evo", "Ultimate Evo"] } },
+            { Name: { $regex: "Gleem", $options: "i" } },
+            { Name: { $regex: "Shark", $options: "i" } }
+        ]
     };
 
 // Check if any filter value is not "None"
@@ -64,7 +69,7 @@ const getAllAstromons = asyncHandler(async(req, res, next)=> {
 
     const activeSkills = await SkillModel.find({Type: 'Active'}).exec();
 
-    const ultimateSkills = await SkillModel.find({Type: 'Ultimate'}).exec();
+    // const ultimateSkills = await SkillModel.find({Type: 'Ultimate'}).exec();
 
     const leaderSkills = await SkillModel.find({Type: 'Leader'}).exec();
 
@@ -106,17 +111,17 @@ const getAllAstromons = asyncHandler(async(req, res, next)=> {
             ASDesc = '';
         }
 
-        const SS = ultimateSkills.find(item => item.Name === Astromon.Ultimate_Skill);
-        let SSDesc;
-
-        if (SS && SS.Desc) {
-            const figures = Astromon.Ultimate_Skill_Figure.split(','); // Split the string into an array
-            SSDesc = figures.reduce((desc, figure) => {
-                return desc.split('&').join(figure);
-            }, SS.Desc);
-        } else {
-            SSDesc = '';
-        }
+        // const SS = ultimateSkills.find(item => item.Name === Astromon.Ultimate_Skill);
+        // let SSDesc;
+        //
+        // if (SS && SS.Desc) {
+        //     const figures = Astromon.Ultimate_Skill_Figure.split(','); // Split the string into an array
+        //     SSDesc = figures.reduce((desc, figure) => {
+        //         return desc.split('&').join(figure);
+        //     }, SS.Desc);
+        // } else {
+        //     SSDesc = '';
+        // }
 
         return {
             ...Astromon.toObject(),
@@ -124,7 +129,7 @@ const getAllAstromons = asyncHandler(async(req, res, next)=> {
             id: id + index,
             Passive_Skill_Object: PS !== undefined ? PS : '',
             Active_Skill_Object: AS !== undefined ? AS : '',
-            Ultimate_Skill_Object: SS !== undefined ? SS : '',
+            // Ultimate_Skill_Object: SS !== undefined ? SS : '',
             Leader_Skill_Object: LS !== undefined ? LS : '',
             createdAt: new Date(Astromon.createdAt).toLocaleString(),
             updatedAt: new Date(Astromon.updatedAt).toLocaleString(),
