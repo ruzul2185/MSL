@@ -46,6 +46,11 @@
     /*justify-content: space-around;*/
     margin-bottom: 10px;
 }
+.IndividualAstromonContainer:hover {
+    /*border: 1px solid blue;*/
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
+}
 .AstromonImage {
     height: 40px;
     /*position: absolute;*/

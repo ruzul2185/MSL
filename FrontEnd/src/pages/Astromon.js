@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import Form from 'react-bootstrap/Form';
 import classes from "../styles/Astromon.module.css";
 import FilterSelect from "../components/Select";
+import {useNavigate} from 'react-router-dom';
 import {ELEMENT_LIST, NATURAL_RARITY} from "../constants/WebDefine";
 import {useDispatch, useSelector} from "react-redux";
 import {getAllAstromons} from "../stores/actions/auth";
@@ -21,6 +21,8 @@ import Star from '../assets/YellowStar.png';
 
 
 const Astromon = () => {
+
+    const navigate= useNavigate();
 
     const isMobile = window.innerWidth <= 768;
 
@@ -92,6 +94,13 @@ const Astromon = () => {
         }
     }
 
+    const viewAstromon = (item) => {
+        let id = item.includes("(") && item.includes(")")
+            ? item.split("(")[1].split(")")[0].trim()  // Extract substring within parentheses and trim
+            : item.trim();
+        navigate('/astromon/'+`${id}`);
+    }
+
     return(
         <div className={classes.MainContainer}>
             <div className={classes.TitleContainer}>
@@ -126,7 +135,7 @@ const Astromon = () => {
                     </thead>
                     <tbody>
                 {AstromonList.astromonData.map((item) => (
-                        <tr key={item._id} className={classes.IndividualAstromonContainer}>
+                        <tr key={item._id} className={classes.IndividualAstromonContainer} onClick={()=> viewAstromon(item.Name)}>
                             <th scope="row">
                                     <div className={classes.AstromonWrapperContainer} style={{backgroundImage: `url(${item.URL})`}}>
                                         <img src={getFrameImageUrl(item)} alt={"..."} className={classes.AstromonFrame}/>
@@ -140,7 +149,7 @@ const Astromon = () => {
                             </th>
                             <th scope="row">
                                 <div className={classes.NameContainer}>
-                                    <div>{item.Name}</div>
+                                    <div>{item.Name.includes("(") ? item.Name.split("(")[0] : item.Name}</div>
                                 </div>
                             </th>
                             <th scope="row">
@@ -198,28 +207,5 @@ const Astromon = () => {
         </div>
     );
 };
-{/*<div key={item._id} className={classes.IndividualAstromonContainer}>*/}
-{/*<img src={item.URL} alt={"..."} className={classes.AstromonImage}/>*/}
-{/*<div className={classes.NameContainer}>*/}
-{/*    <div>{item.Name}</div>*/}
-{/*</div>*/}
-{/*<div className={classes.StatContainer}>*/}
-{/*    <div style={{color:"#FF0000"}}>HP</div>*/}
-{/*    <div>{item.HP}</div>*/}
-{/*</div>*/}
-{/*<div className={classes.StatContainer}>*/}
-{/*    <div style={{color:"#FFA500"}}>ATK</div>*/}
-{/*    <div>{item.Attack}</div>*/}
-{/*</div>*/}
-{/*<div className={classes.StatContainer}>*/}
-{/*    <div style={{color:"#0000FF"}}>DEF</div>*/}
-{/*    <div>{item.Defence}</div>*/}
-{/*</div>*/}
-{/*<div className={classes.StatContainer}>*/}
-{/*    <div style={{color:"#008000"}}>REC</div>*/}
-{/*    <div>{item.Recovery}</div>*/}
-{/*</div>*/}
-{/*<img src={item.Passive_Skill_Object.Url} alt={"..."} className={classes.AstromonImage}/>*/}
-{/*<img src={item.Active_Skill_Object.Url} alt={"..."} className={classes.AstromonImage}/>*/}
-{/*</div>*/}
+
 export default Astromon;

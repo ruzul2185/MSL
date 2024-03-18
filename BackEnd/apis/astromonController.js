@@ -153,8 +153,22 @@ const getAllAstromons = asyncHandler(async(req, res, next)=> {
     res.json(responseObject);
 });
 
+const getIndividualAstromon = asyncHandler(async (req, res, next) => {
+    const {name} = req.query;
 
+    let query = {
+        Name: {
+            $regex: new RegExp(`\\(${name}\\)`, 'i')
+        }
+    };
+
+    const Astromon = await AstromonModel.find(query).exec();
+
+    res.json(Astromon);
+
+});
 
 module.exports = {
     getAllAstromons,
+    getIndividualAstromon
 }

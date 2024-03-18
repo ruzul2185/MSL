@@ -3,6 +3,8 @@ export const MESSAGE_LIST = 'MESSAGE_LIST';
 
 export const ASTROMON_LIST = 'ASTROMON_LIST';
 
+export const INDIVIDUAL_ASTROMON = 'INDIVIDUAL_ASTROMON';
+
 export const KEY_USER_TOKEN = 'KEY_USER_TOKEN';
 
 export const ELEMENT_LIST = [
