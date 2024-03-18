@@ -1,0 +1,119 @@
+.MainContainer {
+    display: flex;
+    flex-direction: column;
+}
+.IndividualContainer {
+    /*background-color: #4CAF50;*/
+    width:100%;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+}
+.IndividualElementContainer {
+    padding-bottom: 20px;
+}
+.skillContainer {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding:10px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.UpperIndividualContainer {
+    text-align: center;
+}
+.LowerIndividualContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.UpperIndividualTitle {
+    font-weight: bold;
+}
+.AtromonWrapperContainer {
+    width:120px;
+    height:120px;
+    /*background-image: url("../assets/DaddyShark_large.png");*/
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.AstromonFrame {
+    width:140px;
+    height:140px;
+}
+.AstromonElement {
+    position: absolute;
+    width:40px;
+    height:40px;
+    transform: translate(-49px, 49px);
+}
+.AstromonStarContainer {
+    transform: translate(0px, -140px);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.AstromonStar {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+}
+.conditionalContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.conditionalContainerB {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.TypeContainerB {
+    display: block;
+}
+.TypeContainerA {
+    display: none;
+}
+.mediaQueryContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@media (min-width: 768px){
+    .conditionalContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .conditionalContainerB {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .TypeContainerB {
+        display: None;
+    }
+    .TypeContainerA {
+        display: block;
+    }
+    .statContainer {
+        padding: 40px;
+    }
+    .IndividualContainer {
+        /*background-color: #4CAF50;*/
+        /*max-width:30%;*/
+    }
+    .skillContainer {
+        width: 30%;
+    }
+    .mediaQueryContainer {
+        display: flex;
+        flex-direction: row;
+        /*align-items: center;*/
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+}

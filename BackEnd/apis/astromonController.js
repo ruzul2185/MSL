@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const AstromonModel = require('../models/Astromon');
+const AstromonInfoModel = require('../models/Astromon_Info');
 const SkillModel = require("../models/Skill");
 
 const getAllAstromons = asyncHandler(async(req, res, next)=> {
@@ -162,9 +163,62 @@ const getIndividualAstromon = asyncHandler(async (req, res, next) => {
         }
     };
 
-    const Astromon = await AstromonModel.find(query).exec();
+    const AstromonData = await AstromonModel.find(query).lean().exec();
+    const AstromonInfo = await AstromonInfoModel.find().exec();
+    const passiveSkills = await SkillModel.find({Type: 'Passive'}).exec();
+    const activeSkills = await SkillModel.find({Type: 'Active'}).exec();
+    const ultimateSkills = await SkillModel.find({Type: 'Ultimate'}).exec();
+    const leaderSkills = await SkillModel.find({Type: 'Leader'}).exec();
 
-    res.json(Astromon);
+    AstromonData.forEach((data) => {
+        const matchAstromonInfo = AstromonInfo.find((info) => info.Astromon_Associated === data.Astromon_Info);
+        if (matchAstromonInfo) {
+            data.Astromon_Info = matchAstromonInfo;
+        }
+        const matchPassiveSkill = passiveSkills.find((info) => info.Name === data.Passive_Skill);
+        if (matchPassiveSkill) {
+            data.Passive_Skill = matchPassiveSkill;
+        }
+        const matchActiveSkill = activeSkills.find((info) => info.Name === data.Active_Skill);
+        if (matchActiveSkill) {
+            data.Active_Skill = matchActiveSkill;
+        }
+        const matchUltimateSkill = ultimateSkills.find((info) => info.Name === data.Ultimate_Skill);
+        if (matchUltimateSkill) {
+            data.Ultimate_Skill = matchUltimateSkill;
+        } else if (matchUltimateSkill === "None") {
+            data.Ultimate_Skill = "None";
+        }
+        const matchLeaderSkill = leaderSkills.find((info) => info.Name === data.Leader_Skill);
+        if (matchLeaderSkill) {
+            data.Leader_Skill = matchLeaderSkill;
+        }
+    });
+
+
+
+    const Evo1 = AstromonData.filter((item) => item.Evolution_Level === 'Evo 1');
+
+    const Evo2 = AstromonData.filter((item) => item.Evolution_Level === 'Evo 2');
+
+    const Evo3 = AstromonData.filter((item) => item.Evolution_Level === 'Evo 3');
+
+    const SuperEvo2 = AstromonData.filter((item) => item.Evolution_Level === 'Super Evo 2');
+
+    const SuperEvo3 = AstromonData.filter((item) => item.Evolution_Level === "Super Evo 3");
+
+    const Ultimate = AstromonData.filter((item) => item.Evolution_Level === "Ultimate Evo");
+
+    const AstromonObject = {
+        Evo1,
+        Evo2,
+        Evo3,
+        SuperEvo2,
+        SuperEvo3,
+        Ultimate
+    }
+
+    res.json(AstromonObject);
 
 });
 

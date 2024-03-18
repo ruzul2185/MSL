@@ -41,30 +41,30 @@ const Astromon = () => {
 
     const updateElementState = (event) => {
         setElement(event.target.value)
-        console.log(event.target.value)
+        // console.log(event.target.value)
     };
     const updateStarState = (event) => {
         setStar(event.target.value)
-        console.log(event.target.value)
+        // console.log(event.target.value)
     };
 
     const updateLeaderSkillState = (event) => {
         setLeaderSkill(event.target.value)
-        console.log(event.target.value)
+        // console.log(event.target.value)
     };
 
     const updatePassiveSkillState = (event) => {
         setPassiveSkill(event.target.value)
-        console.log(event.target.value)
+        // console.log(event.target.value)
     };
 
     const updateActiveSkillState = (event) => {
         setActiveSkill(event.target.value)
-        console.log(event.target.value)
+        // console.log(event.target.value)
     };
 
     const AstromonList = useSelector(state => state.auth.allAstromonList);
-    console.log(AstromonList)
+    // console.log(AstromonList)
 
     function getFrameImageUrl(item) {
         if(item.Evolution_Level === 'Evo 1'){
@@ -94,11 +94,11 @@ const Astromon = () => {
         }
     }
 
-    const viewAstromon = (item) => {
+    const viewAstromon = (item,Evo) => {
         let id = item.includes("(") && item.includes(")")
             ? item.split("(")[1].split(")")[0].trim()  // Extract substring within parentheses and trim
             : item.trim();
-        navigate('/astromon/'+`${id}`);
+        navigate('/astromon/'+`${id}`+ '/?state=' + Evo);
     }
 
     return(
@@ -135,7 +135,7 @@ const Astromon = () => {
                     </thead>
                     <tbody>
                 {AstromonList.astromonData.map((item) => (
-                        <tr key={item._id} className={classes.IndividualAstromonContainer} onClick={()=> viewAstromon(item.Name)}>
+                        <tr key={item._id} className={classes.IndividualAstromonContainer} onClick={()=> viewAstromon(item.Name,item.Evolution_Level)}>
                             <th scope="row">
                                     <div className={classes.AstromonWrapperContainer} style={{backgroundImage: `url(${item.URL})`}}>
                                         <img src={getFrameImageUrl(item)} alt={"..."} className={classes.AstromonFrame}/>

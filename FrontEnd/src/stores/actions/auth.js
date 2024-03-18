@@ -68,3 +68,16 @@ export const getIndividualAstromons = (name) => {
     }
 };
 
+export const getCleanINDIVIDUAL_ASTROMON = () => {
+    return dispatch => {
+        try{
+            dispatch({
+                type: INDIVIDUAL_ASTROMON,
+                payload: null
+            });
+        }catch(error){
+            console.log(error);
+            throw error;
+        }
+    }
+}
