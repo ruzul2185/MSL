@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import classes from '../styles/IndividualAstromon.module.css';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+import Table from 'react-bootstrap/Table';
 import {useDispatch, useSelector} from "react-redux";
 import {getCleanINDIVIDUAL_ASTROMON, getIndividualAstromons} from "../stores/actions/auth";
 
@@ -191,150 +192,163 @@ const IndividualAstromon = () => {
                                                 </div>
                                             </div>
                                             <div className={classes.mediaQueryContainer}>
-                                                <div className={classes.skillContainer} key={item._id + item.Leader_Skill.Name}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Leader_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            Leader Skill
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Leader_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}} key={item._id + "1"}>
-                                                            {getDescription(item.Leader_Skill.Desc,item.Leader_Skill_Figure)}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Passive_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            {item.Astromon_Info.Passive_Skill_Target}
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Passive_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}}>
-                                                            {getDescription(item.Passive_Skill.Desc,item.Passive_Skill_Figure)}
-                                                            <div>
-                                                                {item.Passive_Skill.AI_Desc}
+                                                <Table className="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        {item.Astromon_Info.Super_Skill_Name !== "" && <th></th>}
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Leader_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    Leader Skill
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Passive_Book}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Leader_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}} key={item._id + "1"}>
+                                                                    {getDescription(item.Leader_Skill.Desc,item.Leader_Skill_Figure)}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Active_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            {item.Astromon_Info.Active_Skill_Target}
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Active_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}}>
-                                                            {getDescription(item.Active_Skill.Desc,item.Active_Skill_Figure)}
-                                                            <div>
-                                                                {item.Active_Skill.AI_Desc}
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Astromon_Info.Passive_Skill_Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Passive_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                Books: {item.Active_Book}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Astromon_Info.Passive_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {item.Astromon_Info.Passive_Skill_Desc}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {item.Ultimate_Skill.Name !== "None" && <div className={classes.skillContainer}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Ultimate_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            {item.Astromon_Info.Super_Skill_Target}
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Ultimate_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}}>
-                                                            {getDescription(item.Ultimate_Skill.Desc,item.Ultimate_Skill_Figure)}
-                                                        </div>
-                                                    </div>
-                                                </div>}
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.IndividualElementContainer}>
-                                                        <div className={classes.UpperIndividualContainer}>
-                                                            <div className={classes.UpperIndividualTitle}>
-                                                                {item.Astromon_Info.Passive_Skill_Name}
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Astromon_Info.Active_Skill_Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Active_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Astromon_Info.Passive_Skill_Target}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Astromon_Info.Active_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {item.Astromon_Info.Active_Skill_Desc}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className={classes.LowerIndividualContainer}>
-                                                            <div style={{paddingRight:"20px"}}>
-                                                                <img src={item.Astromon_Info.Passive_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                        </td>
+                                                        {item.Ultimate_Skill.Name !== "None" && <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Astromon_Info.Super_Skill_Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Super_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div style={{wordBreak: 'break-word'}}>
-                                                                {item.Astromon_Info.Passive_Skill_Desc}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Astromon_Info.Super_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {item.Astromon_Info.Super_Skill_Desc}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.IndividualElementContainer}>
-                                                        <div className={classes.UpperIndividualContainer}>
-                                                            <div className={classes.UpperIndividualTitle}>
-                                                                {item.Astromon_Info.Active_Skill_Name}
+                                                        </td>}
+                                                    </tr>
+                                                    <tr className={classes.tableQuery}>
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Passive_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Passive_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Astromon_Info.Active_Skill_Target}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Passive_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {getDescription(item.Passive_Skill.Desc,item.Passive_Skill_Figure)}
+                                                                    <div>
+                                                                        {item.Passive_Skill.AI_Desc}
+                                                                    </div>
+                                                                    <div>
+                                                                        Books: {item.Passive_Book}
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className={classes.LowerIndividualContainer}>
-                                                            <div style={{paddingRight:"20px"}}>
-                                                                <img src={item.Astromon_Info.Active_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Active_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Active_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div style={{wordBreak: 'break-word'}}>
-                                                                {item.Astromon_Info.Active_Skill_Desc}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Active_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {getDescription(item.Active_Skill.Desc,item.Active_Skill_Figure)}
+                                                                    <div>
+                                                                        {item.Active_Skill.AI_Desc}
+                                                                    </div>
+                                                                    <div>
+                                                                        Books: {item.Active_Book}
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {item.Astromon_Info.Super_Skill_Name !== "" && <div className={classes.skillContainer}>
-                                                    {item.Astromon_Info.Super_Skill_Name !== "" && <div className={classes.IndividualElementContainer}>
-                                                        <div className={classes.UpperIndividualContainer}>
-                                                            <div className={classes.UpperIndividualTitle}>
-                                                                {item.Astromon_Info.Super_Skill_Name}
+                                                        </td>
+                                                        {item.Ultimate_Skill.Name !== "None" && <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Ultimate_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Super_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Astromon_Info.Super_Skill_Target}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Ultimate_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {getDescription(item.Ultimate_Skill.Desc,item.Ultimate_Skill_Figure)}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className={classes.LowerIndividualContainer}>
-                                                            <div style={{paddingRight:"20px"}}>
-                                                                <img src={item.Astromon_Info.Super_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                            </div>
-                                                            <div style={{wordBreak: 'break-word'}}>
-                                                                {item.Astromon_Info.Super_Skill_Desc}
-                                                            </div>
-                                                        </div>
-                                                    </div>}
-                                                </div>}
+                                                        </td>}
+                                                    </tr>
+                                                    </tbody>
+                                                </Table>
                                             </div>
                                         </div>
                                     </div>)}
@@ -437,150 +451,163 @@ const IndividualAstromon = () => {
                                                 </div>
                                             </div>
                                             <div className={classes.mediaQueryContainer}>
-                                                <div className={classes.skillContainer} key={item._id + item.Leader_Skill.Name}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Leader_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            Leader Skill
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Leader_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}} key={item._id + "1"}>
-                                                            {getDescription(item.Leader_Skill.Desc,item.Leader_Skill_Figure)}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Passive_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            {item.Astromon_Info.Passive_Skill_Target}
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Passive_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}}>
-                                                            {getDescription(item.Passive_Skill.Desc,item.Passive_Skill_Figure)}
-                                                            <div>
-                                                                {item.Passive_Skill.AI_Desc}
+                                                <Table className="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        {item.Astromon_Info.Super_Skill_Name !== "" && <th></th>}
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr className={classes.tableQuery}>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Leader_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    Leader Skill
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Passive_Book}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Leader_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}} key={item._id + "1"}>
+                                                                    {getDescription(item.Leader_Skill.Desc,item.Leader_Skill_Figure)}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Active_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            {item.Astromon_Info.Active_Skill_Target}
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Active_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}}>
-                                                            {getDescription(item.Active_Skill.Desc,item.Active_Skill_Figure)}
-                                                            <div>
-                                                                {item.Active_Skill.AI_Desc}
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Astromon_Info.Passive_Skill_Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Passive_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                Books: {item.Active_Book}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Astromon_Info.Passive_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {item.Astromon_Info.Passive_Skill_Desc}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {item.Ultimate_Skill.Name !== "None" && <div className={classes.skillContainer}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Ultimate_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            {item.Astromon_Info.Super_Skill_Target}
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Ultimate_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}}>
-                                                            {getDescription(item.Ultimate_Skill.Desc,item.Ultimate_Skill_Figure)}
-                                                        </div>
-                                                    </div>
-                                                </div>}
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.IndividualElementContainer}>
-                                                        <div className={classes.UpperIndividualContainer}>
-                                                            <div className={classes.UpperIndividualTitle}>
-                                                                {item.Astromon_Info.Passive_Skill_Name}
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Astromon_Info.Active_Skill_Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Active_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Astromon_Info.Passive_Skill_Target}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Astromon_Info.Active_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {item.Astromon_Info.Active_Skill_Desc}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className={classes.LowerIndividualContainer}>
-                                                            <div style={{paddingRight:"20px"}}>
-                                                                <img src={item.Astromon_Info.Passive_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                        </td>
+                                                        {item.Ultimate_Skill.Name !== "None" && <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Astromon_Info.Super_Skill_Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Super_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div style={{wordBreak: 'break-word'}}>
-                                                                {item.Astromon_Info.Passive_Skill_Desc}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Astromon_Info.Super_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {item.Astromon_Info.Super_Skill_Desc}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.IndividualElementContainer}>
-                                                        <div className={classes.UpperIndividualContainer}>
-                                                            <div className={classes.UpperIndividualTitle}>
-                                                                {item.Astromon_Info.Active_Skill_Name}
+                                                        </td>}
+                                                    </tr>
+                                                    <tr className={classes.tableQuery}>
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Passive_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Passive_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Astromon_Info.Active_Skill_Target}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Passive_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {getDescription(item.Passive_Skill.Desc,item.Passive_Skill_Figure)}
+                                                                    <div>
+                                                                        {item.Passive_Skill.AI_Desc}
+                                                                    </div>
+                                                                    <div>
+                                                                        Books: {item.Passive_Book}
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className={classes.LowerIndividualContainer}>
-                                                            <div style={{paddingRight:"20px"}}>
-                                                                <img src={item.Astromon_Info.Active_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Active_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Active_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div style={{wordBreak: 'break-word'}}>
-                                                                {item.Astromon_Info.Active_Skill_Desc}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Active_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {getDescription(item.Active_Skill.Desc,item.Active_Skill_Figure)}
+                                                                    <div>
+                                                                        {item.Active_Skill.AI_Desc}
+                                                                    </div>
+                                                                    <div>
+                                                                        Books: {item.Active_Book}
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {item.Astromon_Info.Super_Skill_Name !== "" && <div className={classes.skillContainer}>
-                                                    {item.Astromon_Info.Super_Skill_Name !== "" && <div className={classes.IndividualElementContainer}>
-                                                        <div className={classes.UpperIndividualContainer}>
-                                                            <div className={classes.UpperIndividualTitle}>
-                                                                {item.Astromon_Info.Super_Skill_Name}
+                                                        </td>
+                                                        {item.Ultimate_Skill.Name !== "None" && <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Ultimate_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Super_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Astromon_Info.Super_Skill_Target}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Ultimate_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {getDescription(item.Ultimate_Skill.Desc,item.Ultimate_Skill_Figure)}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className={classes.LowerIndividualContainer}>
-                                                            <div style={{paddingRight:"20px"}}>
-                                                                <img src={item.Astromon_Info.Super_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                            </div>
-                                                            <div style={{wordBreak: 'break-word'}}>
-                                                                {item.Astromon_Info.Super_Skill_Desc}
-                                                            </div>
-                                                        </div>
-                                                    </div>}
-                                                </div>}
+                                                        </td>}
+                                                    </tr>
+                                                    </tbody>
+                                                </Table>
                                             </div>
                                         </div>
                                     </div>)}
@@ -683,150 +710,163 @@ const IndividualAstromon = () => {
                                                 </div>
                                             </div>
                                             <div className={classes.mediaQueryContainer}>
-                                                <div className={classes.skillContainer} key={item._id + item.Leader_Skill.Name}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Leader_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            Leader Skill
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Leader_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}} key={item._id + "1"}>
-                                                            {getDescription(item.Leader_Skill.Desc,item.Leader_Skill_Figure)}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Passive_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            {item.Astromon_Info.Passive_Skill_Target}
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Passive_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}}>
-                                                            {getDescription(item.Passive_Skill.Desc,item.Passive_Skill_Figure)}
-                                                            <div>
-                                                                {item.Passive_Skill.AI_Desc}
+                                                <Table className="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        {item.Astromon_Info.Super_Skill_Name !== "" && <th></th>}
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr className={classes.tableQuery}>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Leader_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    Leader Skill
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Passive_Book}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Leader_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}} key={item._id + "1"}>
+                                                                    {getDescription(item.Leader_Skill.Desc,item.Leader_Skill_Figure)}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Active_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            {item.Astromon_Info.Active_Skill_Target}
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Active_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}}>
-                                                            {getDescription(item.Active_Skill.Desc,item.Active_Skill_Figure)}
-                                                            <div>
-                                                                {item.Active_Skill.AI_Desc}
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Astromon_Info.Passive_Skill_Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Passive_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                Books: {item.Active_Book}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Astromon_Info.Passive_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {item.Astromon_Info.Passive_Skill_Desc}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {item.Ultimate_Skill.Name !== "None" && <div className={classes.skillContainer}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Ultimate_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            {item.Astromon_Info.Super_Skill_Target}
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Ultimate_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}}>
-                                                            {getDescription(item.Ultimate_Skill.Desc,item.Ultimate_Skill_Figure)}
-                                                        </div>
-                                                    </div>
-                                                </div>}
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.IndividualElementContainer}>
-                                                        <div className={classes.UpperIndividualContainer}>
-                                                            <div className={classes.UpperIndividualTitle}>
-                                                                {item.Astromon_Info.Passive_Skill_Name}
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Astromon_Info.Active_Skill_Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Active_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Astromon_Info.Passive_Skill_Target}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Astromon_Info.Active_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {item.Astromon_Info.Active_Skill_Desc}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className={classes.LowerIndividualContainer}>
-                                                            <div style={{paddingRight:"20px"}}>
-                                                                <img src={item.Astromon_Info.Passive_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                        </td>
+                                                        {item.Ultimate_Skill.Name !== "None" && <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Astromon_Info.Super_Skill_Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Super_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div style={{wordBreak: 'break-word'}}>
-                                                                {item.Astromon_Info.Passive_Skill_Desc}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Astromon_Info.Super_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {item.Astromon_Info.Super_Skill_Desc}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.IndividualElementContainer}>
-                                                        <div className={classes.UpperIndividualContainer}>
-                                                            <div className={classes.UpperIndividualTitle}>
-                                                                {item.Astromon_Info.Active_Skill_Name}
+                                                        </td>}
+                                                    </tr>
+                                                    <tr className={classes.tableQuery}>
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Passive_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Passive_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Astromon_Info.Active_Skill_Target}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Passive_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {getDescription(item.Passive_Skill.Desc,item.Passive_Skill_Figure)}
+                                                                    <div>
+                                                                        {item.Passive_Skill.AI_Desc}
+                                                                    </div>
+                                                                    <div>
+                                                                        Books: {item.Passive_Book}
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className={classes.LowerIndividualContainer}>
-                                                            <div style={{paddingRight:"20px"}}>
-                                                                <img src={item.Astromon_Info.Active_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Active_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Active_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div style={{wordBreak: 'break-word'}}>
-                                                                {item.Astromon_Info.Active_Skill_Desc}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Active_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {getDescription(item.Active_Skill.Desc,item.Active_Skill_Figure)}
+                                                                    <div>
+                                                                        {item.Active_Skill.AI_Desc}
+                                                                    </div>
+                                                                    <div>
+                                                                        Books: {item.Active_Book}
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {item.Astromon_Info.Super_Skill_Name !== "" && <div className={classes.skillContainer}>
-                                                    {item.Astromon_Info.Super_Skill_Name !== "" && <div className={classes.IndividualElementContainer}>
-                                                        <div className={classes.UpperIndividualContainer}>
-                                                            <div className={classes.UpperIndividualTitle}>
-                                                                {item.Astromon_Info.Super_Skill_Name}
+                                                        </td>
+                                                        {item.Ultimate_Skill.Name !== "None" && <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Ultimate_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Super_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Astromon_Info.Super_Skill_Target}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Ultimate_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {getDescription(item.Ultimate_Skill.Desc,item.Ultimate_Skill_Figure)}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className={classes.LowerIndividualContainer}>
-                                                            <div style={{paddingRight:"20px"}}>
-                                                                <img src={item.Astromon_Info.Super_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                            </div>
-                                                            <div style={{wordBreak: 'break-word'}}>
-                                                                {item.Astromon_Info.Super_Skill_Desc}
-                                                            </div>
-                                                        </div>
-                                                    </div>}
-                                                </div>}
+                                                        </td>}
+                                                    </tr>
+                                                    </tbody>
+                                                </Table>
                                             </div>
                                         </div>
                                     </div>)}
@@ -929,150 +969,163 @@ const IndividualAstromon = () => {
                                                 </div>
                                             </div>
                                             <div className={classes.mediaQueryContainer}>
-                                                <div className={classes.skillContainer} key={item._id + item.Leader_Skill.Name}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Leader_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            Leader Skill
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Leader_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}} key={item._id + "1"}>
-                                                            {getDescription(item.Leader_Skill.Desc,item.Leader_Skill_Figure)}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Passive_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            {item.Astromon_Info.Passive_Skill_Target}
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Passive_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}}>
-                                                            {getDescription(item.Passive_Skill.Desc,item.Passive_Skill_Figure)}
-                                                            <div>
-                                                                {item.Passive_Skill.AI_Desc}
+                                                <Table className="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        {item.Astromon_Info.Super_Skill_Name !== "" && <th></th>}
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr className={classes.tableQuery}>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Leader_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    Leader Skill
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Passive_Book}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Leader_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}} key={item._id + "1"}>
+                                                                    {getDescription(item.Leader_Skill.Desc,item.Leader_Skill_Figure)}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Active_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            {item.Astromon_Info.Active_Skill_Target}
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Active_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}}>
-                                                            {getDescription(item.Active_Skill.Desc,item.Active_Skill_Figure)}
-                                                            <div>
-                                                                {item.Active_Skill.AI_Desc}
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Astromon_Info.Passive_Skill_Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Passive_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                Books: {item.Active_Book}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Astromon_Info.Passive_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {item.Astromon_Info.Passive_Skill_Desc}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {item.Ultimate_Skill.Name !== "None" && <div className={classes.skillContainer}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Ultimate_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            {item.Astromon_Info.Super_Skill_Target}
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Ultimate_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}}>
-                                                            {getDescription(item.Ultimate_Skill.Desc,item.Ultimate_Skill_Figure)}
-                                                        </div>
-                                                    </div>
-                                                </div>}
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.IndividualElementContainer}>
-                                                        <div className={classes.UpperIndividualContainer}>
-                                                            <div className={classes.UpperIndividualTitle}>
-                                                                {item.Astromon_Info.Passive_Skill_Name}
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Astromon_Info.Active_Skill_Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Active_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Astromon_Info.Passive_Skill_Target}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Astromon_Info.Active_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {item.Astromon_Info.Active_Skill_Desc}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className={classes.LowerIndividualContainer}>
-                                                            <div style={{paddingRight:"20px"}}>
-                                                                <img src={item.Astromon_Info.Passive_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                        </td>
+                                                        {item.Ultimate_Skill.Name !== "None" && <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Astromon_Info.Super_Skill_Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Super_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div style={{wordBreak: 'break-word'}}>
-                                                                {item.Astromon_Info.Passive_Skill_Desc}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Astromon_Info.Super_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {item.Astromon_Info.Super_Skill_Desc}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.IndividualElementContainer}>
-                                                        <div className={classes.UpperIndividualContainer}>
-                                                            <div className={classes.UpperIndividualTitle}>
-                                                                {item.Astromon_Info.Active_Skill_Name}
+                                                        </td>}
+                                                    </tr>
+                                                    <tr className={classes.tableQuery}>
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Passive_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Passive_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Astromon_Info.Active_Skill_Target}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Passive_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {getDescription(item.Passive_Skill.Desc,item.Passive_Skill_Figure)}
+                                                                    <div>
+                                                                        {item.Passive_Skill.AI_Desc}
+                                                                    </div>
+                                                                    <div>
+                                                                        Books: {item.Passive_Book}
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className={classes.LowerIndividualContainer}>
-                                                            <div style={{paddingRight:"20px"}}>
-                                                                <img src={item.Astromon_Info.Active_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Active_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Active_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div style={{wordBreak: 'break-word'}}>
-                                                                {item.Astromon_Info.Active_Skill_Desc}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Active_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {getDescription(item.Active_Skill.Desc,item.Active_Skill_Figure)}
+                                                                    <div>
+                                                                        {item.Active_Skill.AI_Desc}
+                                                                    </div>
+                                                                    <div>
+                                                                        Books: {item.Active_Book}
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {item.Astromon_Info.Super_Skill_Name !== "" && <div className={classes.skillContainer}>
-                                                    {item.Astromon_Info.Super_Skill_Name !== "" && <div className={classes.IndividualElementContainer}>
-                                                        <div className={classes.UpperIndividualContainer}>
-                                                            <div className={classes.UpperIndividualTitle}>
-                                                                {item.Astromon_Info.Super_Skill_Name}
+                                                        </td>
+                                                        {item.Ultimate_Skill.Name !== "None" && <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Ultimate_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Super_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Astromon_Info.Super_Skill_Target}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Ultimate_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {getDescription(item.Ultimate_Skill.Desc,item.Ultimate_Skill_Figure)}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className={classes.LowerIndividualContainer}>
-                                                            <div style={{paddingRight:"20px"}}>
-                                                                <img src={item.Astromon_Info.Super_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                            </div>
-                                                            <div style={{wordBreak: 'break-word'}}>
-                                                                {item.Astromon_Info.Super_Skill_Desc}
-                                                            </div>
-                                                        </div>
-                                                    </div>}
-                                                </div>}
+                                                        </td>}
+                                                    </tr>
+                                                    </tbody>
+                                                </Table>
                                             </div>
                                         </div>
                                     </div>)}
@@ -1175,150 +1228,163 @@ const IndividualAstromon = () => {
                                                 </div>
                                             </div>
                                             <div className={classes.mediaQueryContainer}>
-                                                <div className={classes.skillContainer} key={item._id + item.Leader_Skill.Name}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Leader_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            Leader Skill
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Leader_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}} key={item._id + "1"}>
-                                                            {getDescription(item.Leader_Skill.Desc,item.Leader_Skill_Figure)}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Passive_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            {item.Astromon_Info.Passive_Skill_Target}
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Passive_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}}>
-                                                            {getDescription(item.Passive_Skill.Desc,item.Passive_Skill_Figure)}
-                                                            <div>
-                                                                {item.Passive_Skill.AI_Desc}
+                                                <Table className="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        {item.Astromon_Info.Super_Skill_Name !== "" && <th></th>}
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr className={classes.tableQuery}>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Leader_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    Leader Skill
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Passive_Book}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Leader_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}} key={item._id + "1"}>
+                                                                    {getDescription(item.Leader_Skill.Desc,item.Leader_Skill_Figure)}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Active_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            {item.Astromon_Info.Active_Skill_Target}
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Active_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}}>
-                                                            {getDescription(item.Active_Skill.Desc,item.Active_Skill_Figure)}
-                                                            <div>
-                                                                {item.Active_Skill.AI_Desc}
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Astromon_Info.Passive_Skill_Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Passive_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                Books: {item.Active_Book}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Astromon_Info.Passive_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {item.Astromon_Info.Passive_Skill_Desc}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {item.Ultimate_Skill.Name !== "None" && <div className={classes.skillContainer}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Ultimate_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            {item.Astromon_Info.Super_Skill_Target}
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Ultimate_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}}>
-                                                            {getDescription(item.Ultimate_Skill.Desc,item.Ultimate_Skill_Figure)}
-                                                        </div>
-                                                    </div>
-                                                </div>}
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.IndividualElementContainer}>
-                                                        <div className={classes.UpperIndividualContainer}>
-                                                            <div className={classes.UpperIndividualTitle}>
-                                                                {item.Astromon_Info.Passive_Skill_Name}
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Astromon_Info.Active_Skill_Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Active_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Astromon_Info.Passive_Skill_Target}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Astromon_Info.Active_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {item.Astromon_Info.Active_Skill_Desc}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className={classes.LowerIndividualContainer}>
-                                                            <div style={{paddingRight:"20px"}}>
-                                                                <img src={item.Astromon_Info.Passive_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                        </td>
+                                                        {item.Ultimate_Skill.Name !== "None" && <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Astromon_Info.Super_Skill_Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Super_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div style={{wordBreak: 'break-word'}}>
-                                                                {item.Astromon_Info.Passive_Skill_Desc}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Astromon_Info.Super_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {item.Astromon_Info.Super_Skill_Desc}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.IndividualElementContainer}>
-                                                        <div className={classes.UpperIndividualContainer}>
-                                                            <div className={classes.UpperIndividualTitle}>
-                                                                {item.Astromon_Info.Active_Skill_Name}
+                                                        </td>}
+                                                    </tr>
+                                                    <tr className={classes.tableQuery}>
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Passive_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Passive_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Astromon_Info.Active_Skill_Target}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Passive_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {getDescription(item.Passive_Skill.Desc,item.Passive_Skill_Figure)}
+                                                                    <div>
+                                                                        {item.Passive_Skill.AI_Desc}
+                                                                    </div>
+                                                                    <div>
+                                                                        Books: {item.Passive_Book}
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className={classes.LowerIndividualContainer}>
-                                                            <div style={{paddingRight:"20px"}}>
-                                                                <img src={item.Astromon_Info.Active_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Active_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Active_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div style={{wordBreak: 'break-word'}}>
-                                                                {item.Astromon_Info.Active_Skill_Desc}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Active_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {getDescription(item.Active_Skill.Desc,item.Active_Skill_Figure)}
+                                                                    <div>
+                                                                        {item.Active_Skill.AI_Desc}
+                                                                    </div>
+                                                                    <div>
+                                                                        Books: {item.Active_Book}
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {item.Astromon_Info.Super_Skill_Name !== "" && <div className={classes.skillContainer}>
-                                                    {item.Astromon_Info.Super_Skill_Name !== "" && <div className={classes.IndividualElementContainer}>
-                                                        <div className={classes.UpperIndividualContainer}>
-                                                            <div className={classes.UpperIndividualTitle}>
-                                                                {item.Astromon_Info.Super_Skill_Name}
+                                                        </td>
+                                                        {item.Ultimate_Skill.Name !== "None" && <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Ultimate_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Super_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Astromon_Info.Super_Skill_Target}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Ultimate_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {getDescription(item.Ultimate_Skill.Desc,item.Ultimate_Skill_Figure)}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className={classes.LowerIndividualContainer}>
-                                                            <div style={{paddingRight:"20px"}}>
-                                                                <img src={item.Astromon_Info.Super_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                            </div>
-                                                            <div style={{wordBreak: 'break-word'}}>
-                                                                {item.Astromon_Info.Super_Skill_Desc}
-                                                            </div>
-                                                        </div>
-                                                    </div>}
-                                                </div>}
+                                                        </td>}
+                                                    </tr>
+                                                    </tbody>
+                                                </Table>
                                             </div>
                                         </div>
                                     </div>)}
@@ -1421,150 +1487,163 @@ const IndividualAstromon = () => {
                                                 </div>
                                             </div>
                                             <div className={classes.mediaQueryContainer}>
-                                                <div className={classes.skillContainer} key={item._id + item.Leader_Skill.Name}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Leader_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            Leader Skill
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Leader_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}} key={item._id + "1"}>
-                                                            {getDescription(item.Leader_Skill.Desc,item.Leader_Skill_Figure)}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Passive_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            {item.Astromon_Info.Passive_Skill_Target}
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Passive_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}}>
-                                                            {getDescription(item.Passive_Skill.Desc,item.Passive_Skill_Figure)}
-                                                            <div>
-                                                                {item.Passive_Skill.AI_Desc}
+                                                <Table className={classes.table}>
+                                                    <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        {item.Astromon_Info.Super_Skill_Name !== "" && <th></th>}
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr className={classes.tableQuery}>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Leader_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    Leader Skill
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Passive_Book}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Leader_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}} key={item._id + "1"}>
+                                                                    {getDescription(item.Leader_Skill.Desc,item.Leader_Skill_Figure)}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Active_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            {item.Astromon_Info.Active_Skill_Target}
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Active_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}}>
-                                                            {getDescription(item.Active_Skill.Desc,item.Active_Skill_Figure)}
-                                                            <div>
-                                                                {item.Active_Skill.AI_Desc}
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Astromon_Info.Passive_Skill_Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Passive_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                Books: {item.Active_Book}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Astromon_Info.Passive_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {item.Astromon_Info.Passive_Skill_Desc}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {item.Ultimate_Skill.Name !== "None" && <div className={classes.skillContainer}>
-                                                    <div className={classes.UpperIndividualContainer}>
-                                                        <div className={classes.UpperIndividualTitle}>
-                                                            {item.Ultimate_Skill.Name}
-                                                        </div>
-                                                        <div>
-                                                            {item.Astromon_Info.Super_Skill_Target}
-                                                        </div>
-                                                    </div>
-                                                    <div className={classes.LowerIndividualContainer}>
-                                                        <div style={{paddingRight:"20px"}}>
-                                                            <img src={item.Ultimate_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                        </div>
-                                                        <div style={{wordBreak: 'break-word'}}>
-                                                            {getDescription(item.Ultimate_Skill.Desc,item.Ultimate_Skill_Figure)}
-                                                        </div>
-                                                    </div>
-                                                </div>}
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.IndividualElementContainer}>
-                                                        <div className={classes.UpperIndividualContainer}>
-                                                            <div className={classes.UpperIndividualTitle}>
-                                                                {item.Astromon_Info.Passive_Skill_Name}
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Astromon_Info.Active_Skill_Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Active_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Astromon_Info.Passive_Skill_Target}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Astromon_Info.Active_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {item.Astromon_Info.Active_Skill_Desc}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className={classes.LowerIndividualContainer}>
-                                                            <div style={{paddingRight:"20px"}}>
-                                                                <img src={item.Astromon_Info.Passive_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                        </td>
+                                                        {item.Ultimate_Skill.Name !== "None" && <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Astromon_Info.Super_Skill_Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Super_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div style={{wordBreak: 'break-word'}}>
-                                                                {item.Astromon_Info.Passive_Skill_Desc}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Astromon_Info.Super_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {item.Astromon_Info.Super_Skill_Desc}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={classes.skillContainer}>
-                                                    <div className={classes.IndividualElementContainer}>
-                                                        <div className={classes.UpperIndividualContainer}>
-                                                            <div className={classes.UpperIndividualTitle}>
-                                                                {item.Astromon_Info.Active_Skill_Name}
+                                                        </td>}
+                                                    </tr>
+                                                    <tr className={classes.tableQuery}>
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Passive_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Passive_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Astromon_Info.Active_Skill_Target}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Passive_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {getDescription(item.Passive_Skill.Desc,item.Passive_Skill_Figure)}
+                                                                    <div>
+                                                                        {item.Passive_Skill.AI_Desc}
+                                                                    </div>
+                                                                    <div>
+                                                                        Books: {item.Passive_Book}
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className={classes.LowerIndividualContainer}>
-                                                            <div style={{paddingRight:"20px"}}>
-                                                                <img src={item.Astromon_Info.Active_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                        </td>
+                                                        <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Active_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Active_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div style={{wordBreak: 'break-word'}}>
-                                                                {item.Astromon_Info.Active_Skill_Desc}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Active_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {getDescription(item.Active_Skill.Desc,item.Active_Skill_Figure)}
+                                                                    <div>
+                                                                        {item.Active_Skill.AI_Desc}
+                                                                    </div>
+                                                                    <div>
+                                                                        Books: {item.Active_Book}
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {item.Astromon_Info.Super_Skill_Name !== "" && <div className={classes.skillContainer}>
-                                                   <div className={classes.IndividualElementContainer}>
-                                                        <div className={classes.UpperIndividualContainer}>
-                                                            <div className={classes.UpperIndividualTitle}>
-                                                                {item.Astromon_Info.Super_Skill_Name}
+                                                        </td>
+                                                        {item.Ultimate_Skill.Name !== "None" && <td>
+                                                            <div className={classes.UpperIndividualContainer}>
+                                                                <div className={classes.UpperIndividualTitle}>
+                                                                    {item.Ultimate_Skill.Name}
+                                                                </div>
+                                                                <div>
+                                                                    {item.Astromon_Info.Super_Skill_Target}
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                {item.Astromon_Info.Super_Skill_Target}
+                                                            <div className={classes.LowerIndividualContainer}>
+                                                                <div style={{paddingRight:"20px"}}>
+                                                                    <img src={item.Ultimate_Skill.Url} alt="..." style={{height: "60px", width: "60px"}} />
+                                                                </div>
+                                                                <div style={{wordBreak: 'break-word'}}>
+                                                                    {getDescription(item.Ultimate_Skill.Desc,item.Ultimate_Skill_Figure)}
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className={classes.LowerIndividualContainer}>
-                                                            <div style={{paddingRight:"20px"}}>
-                                                                <img src={item.Astromon_Info.Super_Skill_Url} alt="..." style={{height: "60px", width: "60px"}} />
-                                                            </div>
-                                                            <div style={{wordBreak: 'break-word'}}>
-                                                                {item.Astromon_Info.Super_Skill_Desc}
-                                                            </div>
-                                                        </div>
-                                                   </div>
-                                                </div>}
+                                                        </td>}
+                                                    </tr>
+                                                    </tbody>
+                                                </Table>
                                             </div>
                                         </div>
                                     </div>)}
