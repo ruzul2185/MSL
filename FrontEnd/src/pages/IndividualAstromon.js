@@ -24,6 +24,7 @@ const IndividualAstromon = () => {
 
     let { id ,state } = useParams();
 
+
     const isMobile = window.innerWidth <= 768;
 
     const dispatch = useDispatch();
@@ -84,6 +85,10 @@ const IndividualAstromon = () => {
         );
     }
 
+    const titleParser = (item) => {
+        return item.split("(")[0];
+    };
+
     return(
         <React.Fragment>
             {astromon && <div className="container">
@@ -95,7 +100,7 @@ const IndividualAstromon = () => {
                             onSelect={(k) => setKey(k)}
                             className="mb-3"
                         >
-                            {astromon.Evo1.length > 0 && <Tab eventKey="Evo 1" title="Evo 1">
+                            {astromon.Evo1.length > 0 && <Tab eventKey="Evo1" title={titleParser(astromon.Evo1[0].Name)}>
                                 <div className={classes.MainContainer}>
                                     {astromon.Evo1.map((item,index) => <div className={classes.IndividualContainer} key={item._id || index}>
                                         <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
@@ -202,7 +207,7 @@ const IndividualAstromon = () => {
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr>
+                                                    <tr className={classes.tableQuery}>
                                                         <td>
                                                             <div className={classes.UpperIndividualContainer}>
                                                                 <div className={classes.UpperIndividualTitle}>
@@ -354,7 +359,7 @@ const IndividualAstromon = () => {
                                     </div>)}
                                 </div>
                             </Tab>}
-                            {astromon.Evo2.length > 0 && <Tab eventKey="Evo 2" title="Evo 2">
+                            {astromon.Evo2.length > 0 && <Tab eventKey="Evo2" title={titleParser(astromon.Evo2[0].Name)}>
                                 <div className={classes.MainContainer}>
                                     {astromon.Evo2.map((item,index) => <div className={classes.IndividualContainer} key={item._id || index}>
                                         <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
@@ -613,7 +618,7 @@ const IndividualAstromon = () => {
                                     </div>)}
                                 </div>
                             </Tab>}
-                            {astromon.Evo3.length > 0 && <Tab eventKey="Evo 3" title="Evo 3">
+                            {astromon.Evo3.length > 0 && <Tab eventKey="Evo3" title={titleParser(astromon.Evo3[0].Name)}>
                                 <div className={classes.MainContainer}>
                                     {astromon.Evo3.map((item,index) => <div className={classes.IndividualContainer} key={item._id || index}>
                                         <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
@@ -872,7 +877,7 @@ const IndividualAstromon = () => {
                                     </div>)}
                                 </div>
                             </Tab>}
-                            {astromon.SuperEvo2.length > 0 && <Tab eventKey="Super Evo 2" title="Super Evo 2">
+                            {astromon.SuperEvo2.length > 0 && <Tab eventKey="SuperEvo2" title={titleParser(astromon.SuperEvo2[0].Name)}>
                                 <div className={classes.MainContainer}>
                                     {astromon.SuperEvo2.map((item,index) => <div className={classes.IndividualContainer} key={item._id || index}>
                                         <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
@@ -1131,7 +1136,7 @@ const IndividualAstromon = () => {
                                     </div>)}
                                 </div>
                             </Tab>}
-                            {astromon.SuperEvo3.length > 0 && <Tab eventKey="Super Evo 3" title="Super Evo 3">
+                            {astromon.SuperEvo3.length > 0 && <Tab eventKey="SuperEvo3" title={titleParser(astromon.SuperEvo3[0].Name)}>
                                 <div className={classes.MainContainer}>
                                     {astromon.SuperEvo3.map((item,index) => <div className={classes.IndividualContainer} key={item._id || index}>
                                         <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
@@ -1390,7 +1395,7 @@ const IndividualAstromon = () => {
                                     </div>)}
                                 </div>
                             </Tab>}
-                            {astromon.Ultimate.length > 0 && <Tab eventKey="Ultimate Evo" title="Ultimate Evo">
+                            {astromon.Ultimate.length > 0 && <Tab eventKey="UltimateEvo" title={titleParser(astromon.Ultimate[0].Name)}>
                                 <div className={classes.MainContainer}>
                                     {astromon.Ultimate.map((item,index) => <div className={classes.IndividualContainer} key={item._id || index}>
                                         <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
@@ -1487,7 +1492,7 @@ const IndividualAstromon = () => {
                                                 </div>
                                             </div>
                                             <div className={classes.mediaQueryContainer}>
-                                                <Table className={classes.table}>
+                                                <Table className="table">
                                                     <thead>
                                                     <tr>
                                                         <th></th>

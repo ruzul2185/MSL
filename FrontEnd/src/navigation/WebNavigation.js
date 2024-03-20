@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     {path: '/', element: <RootLayout/>, children:[
             {path:'/', element:<Home/>},
             {path:'/astromon', element:<Astromon/>},
-            {path:'/astromon/:id', element:<IndividualAstromon/>}
+            {path:'/astromon/:id/:state', element:<IndividualAstromon/>}
         ]},
     // Add a catch-all route for 404 Not Found
     { path: '*', element: <Navigate to="/" /> }

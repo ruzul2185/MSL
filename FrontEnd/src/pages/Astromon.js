@@ -98,7 +98,8 @@ const Astromon = () => {
         let id = item.includes("(") && item.includes(")")
             ? item.split("(")[1].split(")")[0].trim()  // Extract substring within parentheses and trim
             : item.trim();
-        navigate('/astromon/'+`${id}`+ '/?state=' + Evo);
+        let state = Evo.split(" ").join("");
+        navigate('/astromon/'+`${id}`+ '/' + state);
     }
 
     return(
