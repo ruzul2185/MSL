@@ -108,9 +108,9 @@ const IndividualAstromon = () => {
                                                 <div className={classes.AtromonWrapperContainer} style={{backgroundImage: `url(${item.URL})`}}>
                                                     <img src={getFrameImageUrl(item)} alt={"..."} className={classes.AstromonFrame}/>
                                                     <img src={getElement(item)} alt={"..."} className={classes.AstromonElement}/>
-                                                    <div className={classes.AstromonStarContainer} style={isMobile ? { marginLeft: `${(item.Star - 1) * 17}px` } : { marginLeft: `${(item.Star - 1) * 9}px` }}>
+                                                    <div className={classes.AstromonStarContainer} style={isMobile ? { marginLeft: `${(item.Star - 1) * 17}px` } : { marginLeft: `${(item.Star - 1) * 15}px` }}>
                                                         {[...Array(Number(item.Star))].map((_, index) => (
-                                                            <img key={index} src={Star} alt={"..."} className={classes.AstromonStar} style={isMobile ? {transform: `translateX(${index * -18}px)`} : { transform: `translateX(${index * -9}px)` }}/>
+                                                            <img key={index} src={Star} alt={"..."} className={classes.AstromonStar} style={isMobile ? {transform: `translateX(${index * -18}px)`} : { transform: `translateX(${index * -17}px)` }}/>
                                                         ))}
                                                     </div>
                                                     <div className={classes.TypeContainerA} style={{transform: 'translate(0px, 80px)',fontWeight:'bold',position:'absolute'}}>
@@ -367,9 +367,9 @@ const IndividualAstromon = () => {
                                                 <div className={classes.AtromonWrapperContainer} style={{backgroundImage: `url(${item.URL})`}}>
                                                     <img src={getFrameImageUrl(item)} alt={"..."} className={classes.AstromonFrame}/>
                                                     <img src={getElement(item)} alt={"..."} className={classes.AstromonElement}/>
-                                                    <div className={classes.AstromonStarContainer} style={isMobile ? { marginLeft: `${(item.Star - 1) * 17}px` } : { marginLeft: `${(item.Star - 1) * 9}px` }}>
+                                                    <div className={classes.AstromonStarContainer} style={isMobile ? { marginLeft: `${(item.Star - 1) * 17}px` } : { marginLeft: `${(item.Star - 1) * 15}px` }}>
                                                         {[...Array(Number(item.Star))].map((_, index) => (
-                                                            <img key={index} src={Star} alt={"..."} className={classes.AstromonStar} style={isMobile ? {transform: `translateX(${index * -18}px)`} : { transform: `translateX(${index * -9}px)` }}/>
+                                                            <img key={index} src={Star} alt={"..."} className={classes.AstromonStar} style={isMobile ? {transform: `translateX(${index * -18}px)`} : { transform: `translateX(${index * -17}px)` }}/>
                                                         ))}
                                                     </div>
                                                     <div className={classes.TypeContainerA} style={{transform: 'translate(0px, 80px)',fontWeight:'bold',position:'absolute'}}>
@@ -626,9 +626,9 @@ const IndividualAstromon = () => {
                                                 <div className={classes.AtromonWrapperContainer} style={{backgroundImage: `url(${item.URL})`}}>
                                                     <img src={getFrameImageUrl(item)} alt={"..."} className={classes.AstromonFrame}/>
                                                     <img src={getElement(item)} alt={"..."} className={classes.AstromonElement}/>
-                                                    <div className={classes.AstromonStarContainer} style={isMobile ? { marginLeft: `${(item.Star - 1) * 17}px` } : { marginLeft: `${(item.Star - 1) * 9}px` }}>
+                                                    <div className={classes.AstromonStarContainer} style={isMobile ? { marginLeft: `${(item.Star - 1) * 17}px` } : { marginLeft: `${(item.Star - 1) * 15}px` }}>
                                                         {[...Array(Number(item.Star))].map((_, index) => (
-                                                            <img key={index} src={Star} alt={"..."} className={classes.AstromonStar} style={isMobile ? {transform: `translateX(${index * -18}px)`} : { transform: `translateX(${index * -9}px)` }}/>
+                                                            <img key={index} src={Star} alt={"..."} className={classes.AstromonStar} style={isMobile ? {transform: `translateX(${index * -18}px)`} : { transform: `translateX(${index * -17}px)` }}/>
                                                         ))}
                                                     </div>
                                                     <div className={classes.TypeContainerA} style={{transform: 'translate(0px, 80px)',fontWeight:'bold',position:'absolute'}}>
@@ -885,9 +885,9 @@ const IndividualAstromon = () => {
                                                 <div className={classes.AtromonWrapperContainer} style={{backgroundImage: `url(${item.URL})`}}>
                                                     <img src={getFrameImageUrl(item)} alt={"..."} className={classes.AstromonFrame}/>
                                                     <img src={getElement(item)} alt={"..."} className={classes.AstromonElement}/>
-                                                    <div className={classes.AstromonStarContainer} style={isMobile ? { marginLeft: `${(item.Star - 1) * 17}px` } : { marginLeft: `${(item.Star - 1) * 9}px` }}>
+                                                    <div className={classes.AstromonStarContainer} style={isMobile ? { marginLeft: `${(item.Star - 1) * 17}px` } : { marginLeft: `${(item.Star - 1) * 15}px` }}>
                                                         {[...Array(Number(item.Star))].map((_, index) => (
-                                                            <img key={index} src={Star} alt={"..."} className={classes.AstromonStar} style={isMobile ? {transform: `translateX(${index * -18}px)`} : { transform: `translateX(${index * -9}px)` }}/>
+                                                            <img key={index} src={Star} alt={"..."} className={classes.AstromonStar} style={isMobile ? {transform: `translateX(${index * -18}px)`} : { transform: `translateX(${index * -17}px)` }}/>
                                                         ))}
                                                     </div>
                                                     <div className={classes.TypeContainerA} style={{transform: 'translate(0px, 80px)',fontWeight:'bold',position:'absolute'}}>
@@ -1144,9 +1144,9 @@ const IndividualAstromon = () => {
                                                 <div className={classes.AtromonWrapperContainer} style={{backgroundImage: `url(${item.URL})`}}>
                                                     <img src={getFrameImageUrl(item)} alt={"..."} className={classes.AstromonFrame}/>
                                                     <img src={getElement(item)} alt={"..."} className={classes.AstromonElement}/>
-                                                    <div className={classes.AstromonStarContainer} style={isMobile ? { marginLeft: `${(item.Star - 1) * 17}px` } : { marginLeft: `${(item.Star - 1) * 9}px` }}>
+                                                    <div className={classes.AstromonStarContainer} style={isMobile ? { marginLeft: `${(item.Star - 1) * 17}px` } : { marginLeft: `${(item.Star - 1) * 15}px` }}>
                                                         {[...Array(Number(item.Star))].map((_, index) => (
-                                                            <img key={index} src={Star} alt={"..."} className={classes.AstromonStar} style={isMobile ? {transform: `translateX(${index * -18}px)`} : { transform: `translateX(${index * -9}px)` }}/>
+                                                            <img key={index} src={Star} alt={"..."} className={classes.AstromonStar} style={isMobile ? {transform: `translateX(${index * -18}px)`} : { transform: `translateX(${index * -17}px)` }}/>
                                                         ))}
                                                     </div>
                                                     <div className={classes.TypeContainerA} style={{transform: 'translate(0px, 80px)',fontWeight:'bold',position:'absolute'}}>
@@ -1403,9 +1403,9 @@ const IndividualAstromon = () => {
                                                 <div className={classes.AtromonWrapperContainer} style={{backgroundImage: `url(${item.URL})`}}>
                                                     <img src={getFrameImageUrl(item)} alt={"..."} className={classes.AstromonFrame}/>
                                                     <img src={getElement(item)} alt={"..."} className={classes.AstromonElement}/>
-                                                    <div className={classes.AstromonStarContainer} style={isMobile ? { marginLeft: `${(item.Star - 1) * 17}px` } : { marginLeft: `${(item.Star - 1) * 9}px` }}>
+                                                    <div className={classes.AstromonStarContainer} style={isMobile ? { marginLeft: `${(item.Star - 1) * 17}px` } : { marginLeft: `${(item.Star - 1) * 15}px` }}>
                                                         {[...Array(Number(item.Star))].map((_, index) => (
-                                                            <img key={index} src={Star} alt={"..."} className={classes.AstromonStar} style={isMobile ? {transform: `translateX(${index * -18}px)`} : { transform: `translateX(${index * -9}px)` }}/>
+                                                            <img key={index} src={Star} alt={"..."} className={classes.AstromonStar} style={isMobile ? {transform: `translateX(${index * -18}px)`} : { transform: `translateX(${index * -17}px)` }}/>
                                                         ))}
                                                     </div>
                                                     <div className={classes.TypeContainerA} style={{transform: 'translate(0px, 80px)',fontWeight:'bold',position:'absolute'}}>
