@@ -45,7 +45,7 @@ const DimensionalDefense = () => {
                     Dimensional Defense
                 </div>
                 <div>
-                    <Table border hover>
+                    <Table border="true" hover>
                         <thead>
                         <tr>
                         </tr>
@@ -53,24 +53,24 @@ const DimensionalDefense = () => {
                         <tbody>
                         {apophisList && apophisList.Apophis.map((item) => (
                             <tr className={classes.tableQuery} key={item._id}>
-                                <td style={{ paddingTop: '40px' }}>
+                                <td className={classes.cell}>
                                     <p style={{fontSize:'large'}}>Apophis ({item.Element})</p>
                                     <img src={item.URL} alt={"..."} />
                                 </td>
-                                <td style={{ paddingTop: '40px' }}>
+                                <td className={classes.cell}>
                                     <p style={{fontSize:'medium'}}>{parenthesisFilter(item.PassiveSkill.Name)}</p>
                                     <img src={item.PassiveSkill.Url} alt={"..."} />
-                                    <p>{descriptionFiller(item.PassiveSkillFigure,item.PassiveSkill.Desc)}</p>
+                                    <div>{descriptionFiller(item.PassiveSkillFigure,item.PassiveSkill.Desc)}</div>
                                 </td>
-                                <td style={{ paddingTop: '40px' }}>
+                                <td className={classes.cell}>
                                     <p style={{fontSize:'medium'}}>{parenthesisFilter(item.ActiveSkill.Name)}</p>
                                     <img src={item.ActiveSkill.Url} alt={"..."} />
-                                    <p>{descriptionFiller(item.ActiveSkillFigure,item.ActiveSkill.Desc)}</p>
+                                    <div>{descriptionFiller(item.ActiveSkillFigure,item.ActiveSkill.Desc)}</div>
                                 </td>
-                                <td style={{ paddingTop: '40px' }}>
+                                <td className={classes.cell}>
                                     <p style={{fontSize:'medium'}}>{parenthesisFilter(item.AOESkill.Name)}</p>
                                     <img src={item.AOESkill.Url} alt={"..."} />
-                                    <p>{descriptionFiller(item.AOESkillFigure,item.AOESkill.Desc)}</p>
+                                    <div>{descriptionFiller(item.AOESkillFigure,item.AOESkill.Desc)}</div>
                                 </td>
                             </tr>
                         ))}

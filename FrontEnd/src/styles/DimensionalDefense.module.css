@@ -8,11 +8,18 @@
 .query {
     display: none;
 }
+.cell {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 @media (min-width: 768px) {
     .query {
         display: inline-block;
     }
     .tableQuery {
         display: table-row;
+    }
+    .cell {
+        width:25%;
     }
 }
