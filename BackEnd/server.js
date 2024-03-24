@@ -64,6 +64,7 @@ app.use('/skills',require('./routes/controllers/skillRoutes'));
 app.use('/members',require('./routes/controllers/memberRoutes'));
 app.use('/messages',require('./routes/controllers/messageRoutes'));
 app.use('/apophis',require('./routes/controllers/apophisRoutes'));
+app.use('/golems',require('./routes/controllers/golemRoutes'));
 app.use('/api/auth', require('./routes/apis/authRoutes'));
 app.use('/api/users', require('./routes/apis/userRoutes'));
 app.use('/api/members',require('./routes/apis/memberRoutes'));
@@ -71,6 +72,7 @@ app.use('/api/astromons',require('./routes/apis/astromonRoutes'));
 app.use('/api/messages',require('./routes/apis/messageRoutes'));
 app.use('/api/skills', require('./routes/apis/skillRoutes'));
 app.use('/api/apophis',require('./routes/apis/apophisRoutes'));
+app.use('/api/golems',require('./routes/apis/golemroutes'));
 
 app.all('*',(req,res)=>{
     res.status(404);

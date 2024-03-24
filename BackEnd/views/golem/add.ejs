@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('../includes/link.ejs') %>
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/user/index.css"/>
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/sidebar.css"/>
+    <link rel="stylesheet" href="/css/user/add-user.css"/>
+    <title>Add Golem</title>
+</head>
+<body>
+<%- include('../includes/header.ejs') %>
+<div style="display: flex; flex-direction: row;padding-top: 10px;">
+    <%- include('../includes/sideMenu.ejs') %>
+
+    <% if(message.success) { %>
+        <%- include('../includes/alerts/success.ejs') %>
+    <% } else if(message.error) {%>
+        <%- include('../includes/alerts/danger.ejs') %>
+    <% } %>
+</div>
+<main class="primaryContainer" >
+
+    <h2 class="headTitle">Add Golem</h2>
+
+    <!--        <form action="/users/add" method="post" class="formContainer">-->
+    <form action="<%= golem ? "/golems/update" : "/golems/add" %>" method="post" class="formContainer">
+
+        <% if(golem){ %>
+            <input type="text" id="id" name="id" class="textInput" hidden="hidden" value="<%=golem._id%>"><br>
+        <% } %>
+
+        <!-- Element Dropdown -->
+        <label for="Element" class="label">Element:</label>
+        <select id="Element" name="Element" class="dropdown" required>
+            <option value="Fire" <%= golem && golem.Element === 'Fire' ? 'selected' : '' %>>Fire</option>
+            <option value="Water" <%= golem && golem.Element === 'Water' ? 'selected' : '' %>>Water</option>
+            <option value="Wood" <%= golem && golem.Element === 'Wood' ? 'selected' : '' %>>Wood</option>
+            <option value="Light" <%= golem && golem.Element === 'Light' ? 'selected' : '' %>>Light</option>
+            <option value="Dark" <%= golem && golem.Element === 'Dark' ? 'selected' : '' %>>Dark</option>
+            <!-- Add more role options as needed -->
+        </select><br>
+
+        <!-- URL -->
+        <label for="URL" class="label">URL:</label>
+        <input type="text" id="URL" name="URL" class="textInput"  value="<%= golem ? golem.URL : '' %>" required><br>
+
+        <!-- Skill One -->
+        <label for="SkillOne" class="label">Skill One:</label>
+        <input type="text" id="SkillOne" name="SkillOne" class="textInput"  value="<%= golem ? golem.SkillOne : '' %>" required><br>
+
+        <!-- Skill One URL -->
+        <label for="SkillOneUrl" class="label">Skill One URL:</label>
+        <input type="text" id="SkillOneUrl" name="SkillOneUrl" class="textInput"  value="<%= golem ? golem.SkillOneUrl : '' %>" required><br>
+
+        <!-- Skill One Desc -->
+        <label for="SkillOneDesc" class="label">Skill One Desc:</label>
+        <input type="text" id="SkillOneDesc" name="SkillOneDesc" class="textInput"  value="<%= golem ? golem.SkillOneDesc : '' %>" required><br>
+
+        <!-- Skill Second -->
+        <label for="SkillSecond" class="label">Skill Second:</label>
+        <input type="text" id="SkillSecond" name="SkillSecond" class="textInput"  value="<%= golem ? golem.SkillSecond : '' %>" required><br>
+
+        <!-- Skill Second URL -->
+        <label for="SkillSecondUrl" class="label">Skill Second URL:</label>
+        <input type="text" id="SkillSecondUrl" name="SkillSecondUrl" class="textInput"  value="<%= golem ? golem.SkillSecondUrl : '' %>" required><br>
+
+        <!-- Skill Second Desc -->
+        <label for="SkillSecondDesc" class="label">Skill Second Desc:</label>
+        <input type="text" id="SkillSecondDesc" name="SkillSecondDesc" class="textInput"  value="<%= golem ? golem.SkillSecondDesc : '' %>" required><br>
+
+        <!-- Skill Third -->
+        <label for="SkillThird" class="label">Skill Third:</label>
+        <input type="text" id="SkillThird" name="SkillThird" class="textInput"  value="<%= golem ? golem.SkillThird : '' %>" required><br>
+
+        <!-- Skill Third URL -->
+        <label for="SkillThirdUrl" class="label">Skill Third URL:</label>
+        <input type="text" id="SkillThirdUrl" name="SkillThirdUrl" class="textInput"  value="<%= golem ? golem.SkillThirdUrl : '' %>" required><br>
+
+        <!-- Skill Third Desc -->
+        <label for="SkillThirdDesc" class="label">Skill Third Desc:</label>
+        <input type="text" id="SkillThirdDesc" name="SkillThirdDesc" class="textInput"  value="<%= golem ? golem.SkillThirdDesc : '' %>" required><br>
+
+        <!-- PassiveSkillOne -->
+        <label for="PassiveSkillOne" class="label">Passive Skill One:</label>
+        <select id="PassiveSkillOne" name="PassiveSkillOne" class="dropdown" required>
+            <% passiveSkills.forEach(item => { %>
+                <option value="<%= item.Name %>" <%= golem && golem.PassiveSkillOne === item.Name ? 'selected' : '' %>><%= item.Name %></option>
+            <% }) %>
+            <!-- Add more role options as needed -->
+        </select><br>
+
+        <!-- PassiveSkillOneFigure -->
+        <label for="PassiveSkillOneFigure" class="label">Passive Skill One Figure:</label>
+        <input type="text" id="PassiveSkillOneFigure" name="PassiveSkillOneFigure" class="textInput"  value="<%= golem ? golem.PassiveSkillOneFigure : '' %>" required><br>
+
+        <!-- PassiveSkillSecond -->
+        <label for="PassiveSkillSecond" class="label">Passive Skill Second:</label>
+        <select id="PassiveSkillSecond" name="PassiveSkillSecond" class="dropdown" required>
+            <% passiveSkills.forEach(item => { %>
+                <option value="<%= item.Name %>" <%= golem && golem.PassiveSkillSecond === item.Name ? 'selected' : '' %>><%= item.Name %></option>
+            <% }) %>
+            <!-- Add more role options as needed -->
+        </select><br>
+
+        <!-- PassiveSkillSecondFigure -->
+        <label for="PassiveSkillSecondFigure" class="label">Passive Skill Second Figure:</label>
+        <input type="text" id="PassiveSkillSecondFigure" name="PassiveSkillSecondFigure" class="textInput"  value="<%= golem ? golem.PassiveSkillSecondFigure : '' %>" required><br>
+
+        <!-- PassiveSkillThird -->
+        <label for="PassiveSkillThird" class="label">Passive Skill Third:</label>
+        <select id="PassiveSkillThird" name="PassiveSkillThird" class="dropdown" required>
+            <% passiveSkills.forEach(item => { %>
+                <option value="<%= item.Name %>" <%= golem && golem.PassiveSkillThird === item.Name ? 'selected' : '' %>><%= item.Name %></option>
+            <% }) %>
+            <!-- Add more role options as needed -->
+        </select><br>
+
+        <!-- PassiveSkillThirdFigure -->
+        <label for="PassiveSkillThirdFigure" class="label">Passive Skill Third Figure:</label>
+        <input type="text" id="PassiveSkillThirdFigure" name="PassiveSkillThirdFigure" class="textInput"  value="<%= golem ? golem.PassiveSkillThirdFigure : '' %>" required><br>
+
+        <!-- PassiveBuffOne -->
+        <label for="PassiveBuffOne" class="label">Passive Buff One:</label>
+        <input type="text" id="PassiveBuffOne" name="PassiveBuffOne" class="textInput"  value="<%= golem ? golem.PassiveBuffOne : '' %>" required><br>
+
+        <!-- Passive Buff One Url -->
+        <label for="PassiveBuffOneUrl" class="label">Passive Buff One Url:</label>
+        <input type="text" id="PassiveBuffOneUrl" name="PassiveBuffOneUrl" class="textInput"  value="<%= golem ? golem.PassiveBuffOneUrl : '' %>" required><br>
+
+        <!-- PassiveBuffOneFigure -->
+        <label for="PassiveBuffOneFigure" class="label">Passive Buff One Figure:</label>
+        <input type="text" id="PassiveBuffOneFigure" name="PassiveBuffOneFigure" class="textInput"  value="<%= golem ? golem.PassiveBuffOneFigure : '' %>" required><br>
+
+        <!-- PassiveBuffOneDesc -->
+        <label for="PassiveBuffOneDesc" class="label">Passive Buff One Desc:</label>
+        <input type="text" id="PassiveBuffOneDesc" name="PassiveBuffOneDesc" class="textInput"  value="<%= golem ? golem.PassiveBuffOneDesc : '' %>" required><br>
+
+        <!-- PassiveBuffSecond -->
+        <label for="PassiveBuffSecond" class="label">Passive Buff Second:</label>
+        <input type="text" id="PassiveBuffSecond" name="PassiveBuffSecond" class="textInput"  value="<%= golem ? golem.PassiveBuffSecond : '' %>" required><br>
+
+        <!-- Passive Buff Second Url -->
+        <label for="PassiveBuffSecondUrl" class="label">Passive Buff Second Url:</label>
+        <input type="text" id="PassiveBuffSecondUrl" name="PassiveBuffSecondUrl" class="textInput"  value="<%= golem ? golem.PassiveBuffSecondUrl : '' %>" required><br>
+
+        <!-- PassiveBuffSecondFigure -->
+        <label for="PassiveBuffSecondFigure" class="label">Passive Buff Second Figure:</label>
+        <input type="text" id="PassiveBuffSecondFigure" name="PassiveBuffSecondFigure" class="textInput"  value="<%= golem ? golem.PassiveBuffSecondFigure : '' %>" required><br>
+
+        <!-- PassiveBuffSecondDesc -->
+        <label for="PassiveBuffSecondDesc" class="label">Passive Buff Second Desc:</label>
+        <input type="text" id="PassiveBuffSecondDesc" name="PassiveBuffSecondDesc" class="textInput"  value="<%= golem ? golem.PassiveBuffSecondDesc : '' %>" required><br>
+
+        <!-- PassiveBuffThird -->
+        <label for="PassiveBuffThird" class="label">Passive Buff Third:</label>
+        <input type="text" id="PassiveBuffThird" name="PassiveBuffThird" class="textInput"  value="<%= golem ? golem.PassiveBuffThird : '' %>" required><br>
+
+        <!-- Passive Buff Third Url -->
+        <label for="PassiveBuffThirdUrl" class="label">Passive Buff Third Url:</label>
+        <input type="text" id="PassiveBuffThirdUrl" name="PassiveBuffThirdUrl" class="textInput"  value="<%= golem ? golem.PassiveBuffThirdUrl : '' %>" required><br>
+
+        <!-- PassiveBuffThirdFigure -->
+        <label for="PassiveBuffThirdFigure" class="label">Passive Buff Third Figure:</label>
+        <input type="text" id="PassiveBuffThirdFigure" name="PassiveBuffThirdFigure" class="textInput"  value="<%= golem ? golem.PassiveBuffThirdFigure : '' %>" required><br>
+
+        <!-- PassiveBuffThirdDesc -->
+        <label for="PassiveBuffThirdDesc" class="label">Passive Buff Third Desc:</label>
+        <input type="text" id="PassiveBuffThirdDesc" name="PassiveBuffThirdDesc" class="textInput"  value="<%= golem ? golem.PassiveBuffThirdDesc : '' %>" required><br>
+
+        <!-- Submit Button -->
+        <div style="display: flex; flex-direction: row;">
+            <input type="submit" value="Submit" class="submitButton">
+            <% if(golem) { %>
+            <a type="submit" class="submitButton" href="/golems" style="background-color: red;text-decoration: none">X</a>
+            <% } %>
+        </div>
+    </form>
+
+
+</main>
+<%- include('../includes/footer.ejs')%>
+<%- include('../includes/scriptBottom.ejs') %>
+</body>
+</html>

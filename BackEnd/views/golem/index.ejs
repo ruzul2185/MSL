@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('../includes/link.ejs') %>
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/user/index.css"/>
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/sidebar.css"/>
+    <link rel="stylesheet" href="/css/pagination.css" />
+    <title>Golem</title>
+</head>
+<body>
+<!--This is the header-->
+<%- include('../includes/header.ejs') %>
+
+<div style="display: flex; flex-direction: row;padding-top: 10px;">
+    <!--        This is the sidebar Menu-->
+    <%- include('../includes/sideMenu.ejs') %>
+
+    <% if(message.success) { %>
+        <%- include('../includes/alerts/success.ejs') %>
+    <% } else if(message.error) {%>
+        <%- include('../includes/alerts/danger.ejs') %>
+    <% } %>
+
+</div>
+<main class="primaryContainer" >
+
+    <div class="outerContainerForEntries">
+        <% golem.forEach((item) => { %>
+            <Table striped hover>
+                <thead>
+                <tr>
+                    <th colSpan="3" style="text-align: center">
+                        <div>
+                            <%=item.Element%> Dimensional Golem
+                        </div>
+                        <div style="padding: 10px">
+                            <img src="<%=item.URL%>" alt="..."/>
+                        </div>
+                        <div style="padding: 10px">
+                            <a class="btn btn-success" href="/golems/update/?id=<%= item._id %>">
+                                Edit
+                            </a>
+                            <a class="btn btn-danger" href="/golems/delete/?id=<%= item._id %>">
+                                Delete
+                            </a>
+                        </div>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td style="text-align: center;font-weight: bold" colspan="3">Abilities</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;width:30%">
+                        <div>
+                            <img src="<%=item.SkillOneUrl%>" alt="..."/>
+                        </div>
+                        <div>
+                            <div>
+                                <%=item.SkillOne%>
+                            </div>
+                            <div style="font-size: small">
+                                <%=item.SkillOneDesc%>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="text-align: center;width:30%">
+                        <div>
+                            <img src="<%=item.SkillSecondUrl%>" alt="..."/>
+                        </div>
+                        <div>
+                            <div>
+                                <%=item.SkillSecond%>
+                            </div>
+                            <div style="font-size: small">
+                                <%=item.SkillSecondDesc%>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="text-align: center;width:30%">
+                        <div>
+                            <img src="<%=item.SkillThirdUrl%>" alt="..."/>
+                        </div>
+                        <div>
+                            <div>
+                                <%=item.SkillThird%>
+                            </div>
+                            <div style="font-size: small">
+                                <%=item.SkillThirdDesc%>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;width:30%">
+                        <div>
+                            <img src="<%=item.PassiveSkillOne.Url%>" alt="..."/>
+                        </div>
+                        <div>
+                            <div>
+                                <%=item.PassiveSkillOne.Name%>
+                            </div>
+                            <div style="font-size: small">
+                                <%=item.PassiveSkillOne.Desc%>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="text-align: center;width:30%">
+                        <div>
+                            <img src="<%=item.PassiveSkillSecond.Url%>" alt="..."/>
+                        </div>
+                        <div>
+                            <div>
+                                <%=item.PassiveSkillSecond.Name%>
+                            </div>
+                            <div style="font-size: small">
+                                <%=item.PassiveSkillSecond.Desc%>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="text-align: center;width:30%">
+                        <div>
+                            <img src="<%=item.PassiveSkillThird.Url%>" alt="..."/>
+                        </div>
+                        <div>
+                            <div>
+                                <%=item.PassiveSkillThird.Name%>
+                            </div>
+                            <div style="font-size: small">
+                                <%=item.PassiveSkillThird.Desc%>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;font-weight: bold" colspan="3">Passive Buffs</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;width:30%">
+                        <div>
+                            <img src="<%=item.PassiveBuffOneUrl%>" alt="..."/>
+                        </div>
+                        <div>
+                            <div>
+                                <%=item.PassiveBuffOne%>
+                            </div>
+                            <div style="font-size: small">
+                                <%=item.PassiveBuffOneDesc%>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="text-align: center;width:30%">
+                        <div>
+                            <img src="<%=item.PassiveBuffSecondUrl%>" alt="..."/>
+                        </div>
+                        <div>
+                            <div>
+                                <%=item.PassiveBuffSecond%>
+                            </div>
+                            <div style="font-size: small">
+                                <%=item.PassiveBuffSecondDesc%>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="text-align: center;width:30%">
+                        <div>
+                            <img src="<%=item.PassiveBuffThirdUrl%>" alt="..."/>
+                        </div>
+                        <div>
+                            <div>
+                                <%=item.PassiveBuffThird%>
+                            </div>
+                            <div style="font-size: small">
+                                <%=item.PassiveBuffThirdDesc%>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </Table>
+        <hr>
+        <% }); %>
+    </div>
+
+</main>
+
+<!--This line is for footer-->
+<%- include('../includes/footer.ejs')%>
+<%- include('../includes/scriptBottom.ejs') %>
+</body>
+</html>

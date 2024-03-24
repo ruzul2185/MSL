@@ -101,8 +101,6 @@ const addApophisPage = asyncHandler(async (req, res, next) => {
 
 const addApophis = asyncHandler(async (req, res, next) => {
     const {
-        id,
-        page,
         Element,
         URL,
         PassiveSkill,
@@ -184,7 +182,7 @@ const updateApophis = asyncHandler(async (req, res, next) => {
     oldApophis.ActiveSkill = ActiveSkill
     oldApophis.ActiveSkillFigure = ActiveSkillFigure
     oldApophis.AOESkill = AOESkill
-    oldApophis.AOESkillFigure
+    oldApophis.AOESkillFigure = AOESkillFigure
 
     const updatedApophis = await oldApophis.save();
 
