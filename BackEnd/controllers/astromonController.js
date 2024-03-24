@@ -6,10 +6,11 @@ const AstromonInfoModel = require('../models/Astromon_Info');
 const SkillModel = require('../models/Skill');
 
 const viewAstromonPage = asyncHandler(async (req, res, next) => {
-    const resultPerPage = 8;
+    const resultPerPage = 20;
     let { page } = req.query;
     const numOfUsers = await AstromonModel.find().countDocuments();
     const numOfPages = Math.ceil(numOfUsers / resultPerPage);
+    // console.log(numOfPages)
     // page = page ? Number(page) : 1;
     page = page ? (isNaN(Number(page)) ? 1 : Number(page)) : 1;
     let skip = (page - 1)*resultPerPage;

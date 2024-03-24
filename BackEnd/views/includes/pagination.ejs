@@ -3,7 +3,7 @@
     <a href="/<%=title%>/?page=<%=page-1%>">Before</a>
     <% } %>
 
-    <% for (let i = iterator; i <= endingLink; i++) { %>
+    <% for (let i = 1; i <= numOfPages; i++) { %>
         <% if (i === page) { %>
         <a class="selectedLink" href="/<%=title%>/?page=<%=i%>"><%= i %></a>
         <% } else { %>

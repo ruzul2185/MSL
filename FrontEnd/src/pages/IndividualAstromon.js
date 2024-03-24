@@ -114,11 +114,11 @@ const IndividualAstromon = () => {
                                                         ))}
                                                     </div>
                                                     <div className={classes.TypeContainerA} style={{transform: 'translate(0px, 80px)',fontWeight:'bold',position:'absolute'}}>
-                                                        Tank
+                                                        {item.Type}
                                                     </div>
                                                 </div>
                                                 <div className={classes.TypeContainerB} style={{marginTop:"5px",fontWeight:'bold'}}>
-                                                    Tank
+                                                    {item.Type}
                                                 </div>
                                                 <div className={classes.statContainer} style={{textAlign:'center'}}>
                                                     <div style={{fontWeight:'bold'}}>
@@ -373,11 +373,11 @@ const IndividualAstromon = () => {
                                                         ))}
                                                     </div>
                                                     <div className={classes.TypeContainerA} style={{transform: 'translate(0px, 80px)',fontWeight:'bold',position:'absolute'}}>
-                                                        Tank
+                                                        {item.Type}
                                                     </div>
                                                 </div>
                                                 <div className={classes.TypeContainerB} style={{marginTop:"5px",fontWeight:'bold'}}>
-                                                    Tank
+                                                    {item.Type}
                                                 </div>
                                                 <div className={classes.statContainer} style={{textAlign:'center'}}>
                                                     <div style={{fontWeight:'bold'}}>
@@ -632,11 +632,11 @@ const IndividualAstromon = () => {
                                                         ))}
                                                     </div>
                                                     <div className={classes.TypeContainerA} style={{transform: 'translate(0px, 80px)',fontWeight:'bold',position:'absolute'}}>
-                                                        Tank
+                                                        {item.Type}
                                                     </div>
                                                 </div>
                                                 <div className={classes.TypeContainerB} style={{marginTop:"5px",fontWeight:'bold'}}>
-                                                    Tank
+                                                    {item.Type}
                                                 </div>
                                                 <div className={classes.statContainer} style={{textAlign:'center'}}>
                                                     <div style={{fontWeight:'bold'}}>
@@ -891,11 +891,11 @@ const IndividualAstromon = () => {
                                                         ))}
                                                     </div>
                                                     <div className={classes.TypeContainerA} style={{transform: 'translate(0px, 80px)',fontWeight:'bold',position:'absolute'}}>
-                                                        Tank
+                                                        {item.Type}
                                                     </div>
                                                 </div>
                                                 <div className={classes.TypeContainerB} style={{marginTop:"5px",fontWeight:'bold'}}>
-                                                    Tank
+                                                    {item.Type}
                                                 </div>
                                                 <div className={classes.statContainer} style={{textAlign:'center'}}>
                                                     <div style={{fontWeight:'bold'}}>
@@ -1150,11 +1150,11 @@ const IndividualAstromon = () => {
                                                         ))}
                                                     </div>
                                                     <div className={classes.TypeContainerA} style={{transform: 'translate(0px, 80px)',fontWeight:'bold',position:'absolute'}}>
-                                                        Tank
+                                                        {item.Type}
                                                     </div>
                                                 </div>
                                                 <div className={classes.TypeContainerB} style={{marginTop:"5px",fontWeight:'bold'}}>
-                                                    Tank
+                                                    {item.Type}
                                                 </div>
                                                 <div className={classes.statContainer} style={{textAlign:'center'}}>
                                                     <div style={{fontWeight:'bold'}}>
@@ -1409,11 +1409,11 @@ const IndividualAstromon = () => {
                                                         ))}
                                                     </div>
                                                     <div className={classes.TypeContainerA} style={{transform: 'translate(0px, 80px)',fontWeight:'bold',position:'absolute'}}>
-                                                        Tank
+                                                        {item.Type}
                                                     </div>
                                                 </div>
                                                 <div className={classes.TypeContainerB} style={{marginTop:"5px",fontWeight:'bold'}}>
-                                                    Tank
+                                                    {item.Type}
                                                 </div>
                                                 <div className={classes.statContainer} style={{textAlign:'center'}}>
                                                     <div style={{fontWeight:'bold'}}>
