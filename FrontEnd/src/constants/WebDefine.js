@@ -7,6 +7,8 @@ export const INDIVIDUAL_ASTROMON = 'INDIVIDUAL_ASTROMON';
 
 export const KEY_USER_TOKEN = 'KEY_USER_TOKEN';
 
+export const APOPHIS_LIST = 'APOPHIS_LIST';
+
 export const ELEMENT_LIST = [
     {
         _id:"Fire",

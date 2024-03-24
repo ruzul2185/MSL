@@ -1,5 +1,5 @@
 
-import {MEMBER_LIST, MESSAGE_LIST, ASTROMON_LIST, INDIVIDUAL_ASTROMON} from "../../constants/WebDefine";
+import {MEMBER_LIST, MESSAGE_LIST, ASTROMON_LIST, INDIVIDUAL_ASTROMON,APOPHIS_LIST} from "../../constants/WebDefine";
 import {ALL_ASTROMON_URL} from "../../constants/URLconstants";
 
 const initialState = {
@@ -7,6 +7,7 @@ const initialState = {
     messageList:null,
     allAstromonList:null,
     individualAstromon:null,
+    apophisList: null,
 };
 
 export default (state = initialState, action) => {
@@ -31,6 +32,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 individualAstromon: action.payload,
+            }
+        case APOPHIS_LIST:
+            return {
+                ...state,
+                apophisList: action.payload,
             }
 
         default:

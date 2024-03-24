@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('../includes/link.ejs') %>
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/user/index.css"/>
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/sidebar.css"/>
+    <link rel="stylesheet" href="/css/user/add-user.css"/>
+    <title>Add Apophis</title>
+</head>
+<body>
+<%- include('../includes/header.ejs') %>
+<div style="display: flex; flex-direction: row;padding-top: 10px;">
+    <%- include('../includes/sideMenu.ejs') %>
+
+    <% if(message.success) { %>
+        <%- include('../includes/alerts/success.ejs') %>
+    <% } else if(message.error) {%>
+        <%- include('../includes/alerts/danger.ejs') %>
+    <% } %>
+</div>
+<main class="primaryContainer" >
+
+    <h2 class="headTitle">Add Apophis</h2>
+
+    <!--        <form action="/users/add" method="post" class="formContainer">-->
+    <form action="<%= apophis ? "/apophis/update" : "/apophis/add" %>" method="post" class="formContainer">
+
+        <% if(apophis){ %>
+        <input type="text" id="id" name="id" class="textInput" hidden="hidden" value="<%=apophis._id%>"><br>
+
+        <input type="text" id="page" name="page" class="textInput" hidden="hidden" value="<%=page%>"><br>
+        <% } %>
+
+        <!-- Element Dropdown -->
+        <label for="Element" class="label">Element:</label>
+        <select id="Element" name="Element" class="dropdown" required>
+            <option value="Fire" <%= apophis && apophis.Element === 'Fire' ? 'selected' : '' %>>Fire</option>
+            <option value="Water" <%= apophis && apophis.Element === 'Water' ? 'selected' : '' %>>Water</option>
+            <option value="Wood" <%= apophis && apophis.Element === 'Wood' ? 'selected' : '' %>>Wood</option>
+            <option value="Light" <%= apophis && apophis.Element === 'Light' ? 'selected' : '' %>>Light</option>
+            <option value="Dark" <%= apophis && apophis.Element === 'Dark' ? 'selected' : '' %>>Dark</option>
+            <option value="Light Variant" <%= apophis && apophis.Element === 'Light Variant' ? 'selected' : '' %>>Light Variant</option>
+            <option value="Dark Variant" <%= apophis && apophis.Element === 'Dark Variant' ? 'selected' : '' %>>Dark Variant</option>
+            <!-- Add more role options as needed -->
+        </select><br>
+
+        <!-- URL -->
+        <label for="URL" class="label">URL:</label>
+        <input type="URL" id="URL" name="URL" class="textInput" value="<%= apophis ? apophis.URL : '' %>" required><br>
+
+        <!-- Passive Skill Dropdown -->
+        <label for="PassiveSkill" class="label">Passive Skill:</label>
+        <select id="PassiveSkill" name="PassiveSkill" class="dropdown" required>
+            <% passiveSkills.forEach(item => { %>
+                <option value="<%= item.Name %>" <%= apophis && apophis.PassiveSkill === item.Name ? 'selected' : '' %>><%= item.Name %></option>
+            <% }) %>
+            <!-- Add more role options as needed -->
+        </select><br>
+
+        <!-- Passive Skill Figure -->
+        <label for="PassiveSkillFigure" class="label">Passive Skill Figure(use , as separator):</label>
+        <input type="text" id="PassiveSkillFigure" name="PassiveSkillFigure" class="textInput" value="<%= apophis ? apophis.PassiveSkillFigure : '' %>" required><br>
+
+        <!-- ActiveSkill Dropdown -->
+        <label for="ActiveSkill" class="label">Active Skill:</label>
+        <select id="ActiveSkill" name="ActiveSkill" class="dropdown" required>
+            <% passiveSkills.forEach(item => { %>
+                <option value="<%= item.Name %>" <%= apophis && apophis.ActiveSkill === item.Name ? 'selected' : '' %>><%= item.Name %></option>
+            <% }) %>
+            <!-- Add more options as needed -->
+        </select><br>
+
+        <!-- Active Skill Figure -->
+        <label for="ActiveSkillFigure" class="label">Active Skill Figure(use , as separator):</label>
+        <input type="text" id="ActiveSkillFigure" name="ActiveSkillFigure" class="textInput" value="<%= apophis ? apophis.ActiveSkillFigure : '' %>" required><br>
+
+        <!-- AOESkill Dropdown -->
+        <label for="AOESkill" class="label">AOE Skill:</label>
+        <select id="AOESkill" name="AOESkill" class="dropdown" required>
+            <% passiveSkills.forEach(item => { %>
+                <option value="<%= item.Name %>" <%= apophis && apophis.AOESkill === item.Name ? 'selected' : '' %>><%= item.Name %></option>
+            <% }) %>
+            <!-- Add more options as needed -->
+        </select><br>
+
+        <!-- AOE Skill Figure -->
+        <label for="AOESkillFigure" class="label">AOE Skill Figure(use , as separator):</label>
+        <input type="text" id="AOESkillFigure" name="AOESkillFigure" class="textInput" value="<%= apophis ? apophis.AOESkillFigure : '' %>" required><br>
+
+        <!-- Submit Button -->
+        <div style="display: flex; flex-direction: row;">
+            <input type="submit" value="Submit" class="submitButton">
+            <% if(apophis) { %>
+            <a type="submit" class="submitButton" href="/apophis/?page=<%=page%>" style="background-color: red;text-decoration: none">X</a>
+            <% } %>
+        </div>
+    </form>
+
+
+</main>
+<%- include('../includes/footer.ejs')%>
+<%- include('../includes/scriptBottom.ejs') %>
+</body>
+</html>

@@ -14,6 +14,7 @@ function NavigationBar() {
                     <Nav className="ms-auto">
                         <Nav.Link href="/" style={{color:"white",}}>Home</Nav.Link>
                         <Nav.Link href="/astromon" style={{color:"white",}}>Astromon</Nav.Link>
+                        <Nav.Link href="/dimensional-defense" style={{color:"white",}}>Dim. Defense</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
