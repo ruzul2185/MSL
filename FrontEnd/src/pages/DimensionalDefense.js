@@ -72,7 +72,7 @@ const DimensionalDefense = () => {
                                                     </div>
                                                     <div>
                                                         <div>
-                                                            {item.PassiveSkill.Name}
+                                                            {parenthesisFilter(item.PassiveSkill.Name)}
                                                         </div>
                                                         <div style={{fontSize:'small'}}>
                                                             {descriptionFiller(item.PassiveSkillFigure,item.PassiveSkill.Desc)}
@@ -85,7 +85,7 @@ const DimensionalDefense = () => {
                                                     </div>
                                                     <div>
                                                         <div>
-                                                            {item.ActiveSkill.Name}
+                                                            {parenthesisFilter(item.ActiveSkill.Name)}
                                                         </div>
                                                         <div style={{fontSize:'small'}}>
                                                             {descriptionFiller(item.ActiveSkillFigure,item.ActiveSkill.Desc)}
@@ -98,7 +98,7 @@ const DimensionalDefense = () => {
                                                     </div>
                                                     <div>
                                                         <div>
-                                                            {item.AOESkill.Name}
+                                                            {parenthesisFilter(item.AOESkill.Name)}
                                                         </div>
                                                         <div style={{fontSize:'small'}}>
                                                             {descriptionFiller(item.AOESkillFigure,item.AOESkill.Desc)}

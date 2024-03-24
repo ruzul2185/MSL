@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('../includes/link.ejs') %>
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/sidebar.css"/>
+    <link rel="stylesheet" href="/css/user/add-user.css"/>
+    <title>Add Team</title>
+</head>
+<body>
+<%- include('../includes/header.ejs') %>
+<div style="display: flex; flex-direction: row;padding-top: 10px;">
+    <%- include('../includes/sideMenu.ejs') %>
+
+    <% if(message.success) { %>
+        <%- include('../includes/alerts/success.ejs') %>
+    <% } else if(message.error) {%>
+        <%- include('../includes/alerts/danger.ejs') %>
+    <% } %>
+</div>
+<main class="primaryContainer" >
+
+    <h2 class="headTitle">Add Team</h2>
+
+    <!--        <form action="/users/add" method="post" class="formContainer">-->
+    <form action="<%= team ? "/teams/update" : "/teams/add" %>" method="post" class="formContainer">
+
+        <% if(team){ %>
+        <input type="text" id="id" name="id" class="textInput" hidden="hidden" value="<%=team._id%>"><br>
+
+        <input type="text" id="page" name="page" class="textInput" hidden="hidden" value="<%=page%>"><br>
+        <% } %>
+
+        <!-- Name -->
+        <label for="Name" class="label">Name:</label>
+        <input type="text" id="Name" name="Name" class="textInput"  value="<%= team ? team.Name : '' %>" required><br>
+
+        <!-- Element Dropdown -->
+        <label for="Element" class="label">Element:</label>
+        <select id="Element" name="Element" class="dropdown" required>
+            <option value="Fire" <%= team && team.Element === 'Fire' ? 'selected' : '' %>>Fire</option>
+            <option value="Water" <%= team && team.Element === 'Water' ? 'selected' : '' %>>Water</option>
+            <option value="Wood" <%= team && team.Element === 'Wood' ? 'selected' : '' %>>Wood</option>
+            <option value="Light" <%= team && team.Element === 'Light' ? 'selected' : '' %>>Light</option>
+            <option value="Dark" <%= team && team.Element === 'Dark' ? 'selected' : '' %>>Dark</option>
+            <!-- Add more role options as needed -->
+        </select><br>
+
+        <!-- TeamURL -->
+        <label for="TeamURL" class="label">URL:</label>
+        <input type="text" id="TeamURL" name="TeamURL" class="textInput" value="<%= team ? team.TeamURL : '' %>" required><br>
+
+        <!-- TeamDamage -->
+        <label for="TeamDamage" class="label">URL:</label>
+        <input type="text" id="TeamDamage" name="TeamDamage" class="textInput" value="<%= team ? team.TeamDamage : '' %>" required><br>
+
+        <!-- Submit Button -->
+        <div style="display: flex; flex-direction: row;">
+            <input type="submit" value="Submit" class="submitButton">
+            <% if(team) { %>
+            <a type="submit" class="submitButton" href="/teams/?page=<%=page%>" style="background-color: red;text-decoration: none">X</a>
+            <% } %>
+        </div>
+    </form>
+
+
+</main>
+<%- include('../includes/footer.ejs')%>
+<%- include('../includes/scriptBottom.ejs') %>
+</body>
+</html>

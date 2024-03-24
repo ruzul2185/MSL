@@ -12,6 +12,10 @@
     padding-top: 20px;
     padding-bottom: 20px;
 }
+.row {
+    display: flex;
+    flex-direction: column;
+}
 @media (min-width: 768px) {
     .query {
         display: inline-block;
@@ -21,5 +25,8 @@
     }
     .cell {
         width:25%;
+    }
+    .row {
+        display: table-row;
     }
 }
