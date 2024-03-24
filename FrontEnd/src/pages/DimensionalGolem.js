@@ -18,18 +18,12 @@ const DimensionalGolem = () => {
 
     const DimensionalGolemList = useSelector(state => state.auth.dimensionalGolemList);
 
-    const parenthesisFilter = (item) => {
-        if (item.includes('(')) {
-            return item.split('(')[0].trim();
-        } else {
-            return item;
-        }
-    }
-
     const descriptionFiller = (figure,desc) => {
         const elements = figure.split(",");
         const newDescParts = desc.split('&');
-
+        if(elements[0] === '0'){
+            return desc;
+        }
         let coloredElements = [];
         for (let i = 0; i < Math.max(elements.length, newDescParts.length); i++) {
             if (newDescParts[i]) coloredElements.push(<span key={`desc_${i}`} style={{color: 'black'}}>{newDescParts[i]}</span>);
@@ -119,7 +113,7 @@ const DimensionalGolem = () => {
                                                         {item.PassiveSkillOne.Name}
                                                     </div>
                                                     <div style={{fontSize:'small'}}>
-                                                        {item.PassiveSkillOne.Desc}
+                                                        {descriptionFiller(item.PassiveSkillOneFigure,item.PassiveSkillOne.Desc)}
                                                     </div>
                                                 </div>
                                             </td>
@@ -132,7 +126,7 @@ const DimensionalGolem = () => {
                                                         {item.PassiveSkillSecond.Name}
                                                     </div>
                                                     <div style={{fontSize:'small'}}>
-                                                        {item.PassiveSkillSecond.Desc}
+                                                        {descriptionFiller(item.PassiveSkillSecondFigure,item.PassiveSkillSecond.Desc)}
                                                     </div>
                                                 </div>
                                             </td>
@@ -145,7 +139,7 @@ const DimensionalGolem = () => {
                                                         {item.PassiveSkillThird.Name}
                                                     </div>
                                                     <div style={{fontSize:'small'}}>
-                                                        {item.PassiveSkillThird.Desc}
+                                                        {descriptionFiller(item.PassiveSkillThirdFigure,item.PassiveSkillThird.Desc)}
                                                     </div>
                                                 </div>
                                             </td>
@@ -189,7 +183,7 @@ const DimensionalGolem = () => {
                                                         {item.PassiveBuffThird}
                                                     </div>
                                                     <div style={{fontSize:'small'}}>
-                                                        {item.PassiveBuffThirdDesc}
+                                                        {descriptionFiller(item.PassiveBuffThirdFigure,item.PassiveBuffThirdDesc)}
                                                     </div>
                                                 </div>
                                             </td>

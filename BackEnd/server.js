@@ -65,6 +65,7 @@ app.use('/members',require('./routes/controllers/memberRoutes'));
 app.use('/messages',require('./routes/controllers/messageRoutes'));
 app.use('/apophis',require('./routes/controllers/apophisRoutes'));
 app.use('/golems',require('./routes/controllers/golemRoutes'));
+app.use('/titans',require('./routes/controllers/titanRoutes'));
 app.use('/api/auth', require('./routes/apis/authRoutes'));
 app.use('/api/users', require('./routes/apis/userRoutes'));
 app.use('/api/members',require('./routes/apis/memberRoutes'));
