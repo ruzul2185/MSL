@@ -3,7 +3,7 @@ import {
     APOPHIS_URL,
     DIMENSIONAL_GOLEM_URL,
     MEMBER_URL,
-    MESSAGE_URL
+    MESSAGE_URL, TITAN_URL
 } from "../../constants/URLconstants";
 import {unAuthFetchGET, unAuthFetchPOST} from "../../utils/NetworkUtils";
 import {
@@ -12,7 +12,7 @@ import {
     DIMENSIONAL_GOLEM_LIST,
     INDIVIDUAL_ASTROMON,
     MEMBER_LIST,
-    MESSAGE_LIST
+    MESSAGE_LIST, TITAN_LIST
 } from "../../constants/WebDefine";
 
 export const getMemberList = () => {
@@ -118,6 +118,22 @@ export const getAllDimensionalGolem = () => {
 
             dispatch({
                 type: DIMENSIONAL_GOLEM_LIST,
+                payload: resData
+            });
+        }catch(error){
+            console.log(error)
+            throw error
+        }
+    }
+}
+
+export const getAllTitan = () => {
+    return async dispatch => {
+        try{
+            const resData = await unAuthFetchGET(TITAN_URL);
+
+            dispatch({
+                type: TITAN_LIST,
                 payload: resData
             });
         }catch(error){

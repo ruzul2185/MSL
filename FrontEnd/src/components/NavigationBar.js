@@ -16,6 +16,7 @@ function NavigationBar() {
                         <Nav.Link href="/astromon" style={{color:"white",}}>Astromon</Nav.Link>
                         <Nav.Link href="/dimensional-defense" style={{color:"white",}}>Dim. Defense</Nav.Link>
                         <Nav.Link href="/dimensional-golem" style={{color:"white",}}>Dim. Golem</Nav.Link>
+                        <Nav.Link href="/titan" style={{color:"white",}}>Titan</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

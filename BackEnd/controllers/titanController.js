@@ -2,7 +2,6 @@ const asyncHandler = require('express-async-handler');
 const dynamicMenu = require('../config/dynamicMenu');
 const TItanModel = require('../models/Titan');
 const SkillModel = require("../models/Skill");
-const GolemModel = require("../models/Golem");
 
 const viewTitanPage = asyncHandler(async(req, res, next) => {
     const Titan = await TItanModel.find().exec();

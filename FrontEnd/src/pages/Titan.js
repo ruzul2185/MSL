@@ -1,22 +1,22 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {getAllApophis} from "../stores/actions/auth";
-import Table from 'react-bootstrap/Table';
-import classes from '../styles/DimensionalDefense.module.css';
+import {getAllTitan} from "../stores/actions/auth";
+import Table from "react-bootstrap/Table";
+import classes from "../styles/DimensionalDefense.module.css";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 
-const DimensionalDefense = () => {
+const Titan = () => {
 
     const isMobile = window.innerWidth <= 768;
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getAllApophis());
+        dispatch(getAllTitan());
     },[dispatch]);
 
-    const apophisList = useSelector(state => state.auth.apophisList);
+    const TitanList = useSelector(state => state.auth.titanList);
 
     const parenthesisFilter = (item) => {
         if (item.includes('(')) {
@@ -40,21 +40,21 @@ const DimensionalDefense = () => {
         );
     }
 
-    return (
+    return(
         <React.Fragment>
             <div style={{width:"100%", textAlign:"center"}}>
                 <div style={{fontSize:'xx-large'}}>
-                    Dimensional Defense
+                    Region Defense
                 </div>
-                {apophisList && <div className="container">
+                {TitanList && <div className="container">
                     <div className="row">
                         <div className="col">
                             <Tabs
-                                defaultActiveKey="Dark"
+                                defaultActiveKey="Fire"
                                 id="uncontrolled-tab-example"
                                 className="mb-3"
                             >
-                                {apophisList.Apophis.map((item) => (
+                                {TitanList.map((item) => (
                                     <Tab key={item._id} eventKey={item.Element} title={item.Element}>
                                         <Table hover>
                                             <thead>
@@ -92,19 +92,6 @@ const DimensionalDefense = () => {
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td className={classes.cell}>
-                                                    <div>
-                                                        <img src={item.AOESkill.Url} alt="..."/>
-                                                    </div>
-                                                    <div>
-                                                        <div>
-                                                            {item.AOESkill.Name}
-                                                        </div>
-                                                        <div style={{fontSize:'small'}}>
-                                                            {descriptionFiller(item.AOESkillFigure,item.AOESkill.Desc)}
-                                                        </div>
-                                                    </div>
-                                                </td>
                                             </tr>
                                             </tbody>
                                         </Table>
@@ -119,4 +106,4 @@ const DimensionalDefense = () => {
     );
 };
 
-export default DimensionalDefense;
+export default Titan;

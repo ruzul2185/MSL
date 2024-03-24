@@ -11,6 +11,8 @@ export const APOPHIS_LIST = 'APOPHIS_LIST';
 
 export const DIMENSIONAL_GOLEM_LIST = 'DIMENSIONAL_GOLEM_LIST';
 
+export const TITAN_LIST = 'TITAN_LIST';
+
 export const ELEMENT_LIST = [
     {
         _id:"Fire",

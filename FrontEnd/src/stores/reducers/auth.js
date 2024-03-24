@@ -5,7 +5,8 @@ import {
     ASTROMON_LIST,
     INDIVIDUAL_ASTROMON,
     APOPHIS_LIST,
-    DIMENSIONAL_GOLEM_LIST
+    DIMENSIONAL_GOLEM_LIST,
+    TITAN_LIST,
 } from "../../constants/WebDefine";
 
 
@@ -16,6 +17,7 @@ const initialState = {
     individualAstromon:null,
     apophisList: null,
     dimensionalGolemList: null,
+    titanList: null,
 };
 
 export default (state = initialState, action) => {
@@ -50,6 +52,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 dimensionalGolemList: action.payload,
+            }
+        case TITAN_LIST:
+            return {
+                ...state,
+                titanList: action.payload,
             }
 
         default:
