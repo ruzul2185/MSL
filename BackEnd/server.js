@@ -54,7 +54,7 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-app.use('/', require('./routes/root'));
+app.use('/', require('./routes/controllers/authRoutes'));
 app.use('/auth',require('./routes/controllers/authRoutes'));
 app.use('/dashboard',require('./routes/controllers/dashboardRoutes'));
 app.use('/users',require('./routes/controllers/userRoutes'));
