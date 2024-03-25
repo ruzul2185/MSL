@@ -3,8 +3,9 @@ const path = require('path');
 
 const router = express.Router();
 
-router.get('^/$|/login(.html)?',(req,res) => {
-    res.sendFile(path.join(__dirname,'..','views','login.html'))
+router.get('^/$|/index(.html)?',(req,res) => {
+    // res.sendFile(path.join(__dirname,'..','views','index.html'))
+    res.redirect('auth');
 });
 
 module.exports = router;
