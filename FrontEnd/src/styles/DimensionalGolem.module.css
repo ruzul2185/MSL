@@ -8,11 +8,35 @@
     align-items: center;
     background: #4CAF50;
 }
+.image {
+    width:100%;
+    height:auto;
+    object-fit: contain;
+}
+.imageContainer {
+    display: flex;
+    flex-direction: column;
+}
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+}
 @media (min-width: 768px) {
     .row {
         display: table-row;
     }
     .cell {
         width:30%;
+    }
+    .image {
+        width:50%;
+        height:auto;
+        object-fit: contain;
+    }
+    .imageContainer {
+        display: flex;
+        flex-direction: row;
     }
 }

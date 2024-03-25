@@ -74,6 +74,7 @@ const addTeam = asyncHandler(async(req, res, next)=> {
     const {
         Name,
         Element,
+        Type,
         TeamURL,
         TeamDamage,
     } = req.body;
@@ -81,6 +82,7 @@ const addTeam = asyncHandler(async(req, res, next)=> {
     const teamObject = {
         Name,
         Element,
+        Type,
         TeamURL,
         TeamDamage,
     };
@@ -105,6 +107,7 @@ const updateTeam = asyncHandler(async(req, res, next)=> {
         id,
         page,
         Name,
+        Type,
         Element,
         TeamURL,
         TeamDamage,
@@ -113,6 +116,7 @@ const updateTeam = asyncHandler(async(req, res, next)=> {
     const oldTeam = await TeamModel.findById(id).exec();
 
     oldTeam.Name = Name
+    oldTeam.Type = Type
     oldTeam.Element = Element
     oldTeam.TeamURL = TeamURL
     oldTeam.TeamDamage = TeamDamage

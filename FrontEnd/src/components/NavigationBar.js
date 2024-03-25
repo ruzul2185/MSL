@@ -14,9 +14,9 @@ function NavigationBar() {
                     <Nav className="ms-auto">
                         <Nav.Link href="/" style={{color:"white",}}>Home</Nav.Link>
                         <Nav.Link href="/astromon" style={{color:"white",}}>Astromon</Nav.Link>
-                        <Nav.Link href="/dimensional-defense" style={{color:"white",}}>Dim. Defense</Nav.Link>
-                        <Nav.Link href="/dimensional-golem" style={{color:"white",}}>Dim. Golem</Nav.Link>
-                        <Nav.Link href="/titan" style={{color:"white",}}>Titan</Nav.Link>
+                        <Nav.Link href="/dimensional-defense/Fire" style={{color:"white",}}>Dim. Defense</Nav.Link>
+                        <Nav.Link href="/dimensional-golem/Fire" style={{color:"white",}}>Dim. Golem</Nav.Link>
+                        <Nav.Link href="/titan/Fire" style={{color:"white",}}>Titan</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

@@ -40,6 +40,15 @@
         <label for="Name" class="label">Name:</label>
         <input type="text" id="Name" name="Name" class="textInput"  value="<%= team ? team.Name : '' %>" required><br>
 
+        <!-- Type Dropdown -->
+        <label for="Type" class="label">Type:</label>
+        <select id="Type" name="Type" class="dropdown" required>
+            <option value="Region Defense" <%= team && team.Type === 'Region Defense' ? 'selected' : '' %>>Region Defense</option>
+            <option value="Dimensional Golem" <%= team && team.Type === 'Dimensional Golem' ? 'selected' : '' %>>Dimensional Golem</option>
+            <option value="Dimensional Defense" <%= team && team.Type === 'Dimensional Defense' ? 'selected' : '' %>>Dimensional Defense</option>
+            <!-- Add more role options as needed -->
+        </select><br>
+
         <!-- Element Dropdown -->
         <label for="Element" class="label">Element:</label>
         <select id="Element" name="Element" class="dropdown" required>
@@ -52,11 +61,11 @@
         </select><br>
 
         <!-- TeamURL -->
-        <label for="TeamURL" class="label">URL:</label>
+        <label for="TeamURL" class="label">Team URL:</label>
         <input type="text" id="TeamURL" name="TeamURL" class="textInput" value="<%= team ? team.TeamURL : '' %>" required><br>
 
         <!-- TeamDamage -->
-        <label for="TeamDamage" class="label">URL:</label>
+        <label for="TeamDamage" class="label">Team Damage URL:</label>
         <input type="text" id="TeamDamage" name="TeamDamage" class="textInput" value="<%= team ? team.TeamDamage : '' %>" required><br>
 
         <!-- Submit Button -->

@@ -38,7 +38,10 @@
             <div class="labelBox">
                 Name
             </div>
-            <div class="labelBox" style="width: 20%;">
+            <div class="labelBox" >
+                Type
+            </div>
+            <div class="labelBox" >
                 Element
             </div>
             <div class="labelBox">
@@ -46,12 +49,6 @@
             </div>
             <div class="labelBox">
                 Damage
-            </div>
-            <div class="labelBox">
-                Created
-            </div>
-            <div class="labelBox">
-                Updated
             </div>
             <div class="labelBox" style="width: 12%;">
                 Edit
@@ -68,21 +65,19 @@
                 <div class="box" style="word-wrap: break-word;  ">
                     <%= entry.Name %>
                 </div>
-                <div class="box" style="width: 20%;text-overflow: ellipsis;">
+                <div class="box" style="word-wrap: break-word;  ">
+                    <%= entry.Type %>
+                </div>
+                <div class="box" style="text-overflow: ellipsis;">
                     <%= entry.Element %>
                 </div>
                 <div class="box">
-                    <%= entry.TeamURL %>
+                    <img src="<%= entry.TeamURL %>" alt="..." style="width:280px;height:200px;object-fit: contain;"/>
                 </div>
                 <div class="box">
-                    <%= entry.TeamDamage %>
+                    <img src="<%= entry.TeamDamage %>" alt="..." style="width:280px;height:200px;object-fit: contain;"/>
                 </div>
-                <div class="box">
-                    <%= entry.createdAt %>
-                </div>
-                <div class="box">
-                    <%= entry.updatedAt %>
-                </div>
+<!--               -->
                 <div class="box" style="width: 12%;">
                     <a class="btn btn-success" href="/teams/update/?id=<%= entry._id %>&page=<%= page %>">
                         Edit

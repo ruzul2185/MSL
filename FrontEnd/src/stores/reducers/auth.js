@@ -7,6 +7,7 @@ import {
     APOPHIS_LIST,
     DIMENSIONAL_GOLEM_LIST,
     TITAN_LIST,
+    TITAN_TEAM_LIST, APOPHIS_TEAM_LIST, GOLEM_TEAM_LIST,
 } from "../../constants/WebDefine";
 
 
@@ -18,6 +19,9 @@ const initialState = {
     apophisList: null,
     dimensionalGolemList: null,
     titanList: null,
+    titanTeamList: null,
+    apophisTeamList: null,
+    golemTeamList: null,
 };
 
 export default (state = initialState, action) => {
@@ -57,6 +61,21 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 titanList: action.payload,
+            }
+        case TITAN_TEAM_LIST:
+            return {
+                ...state,
+                titanTeamList: action.payload,
+            }
+        case APOPHIS_TEAM_LIST:
+            return {
+                ...state,
+                apophisTeamList: action.payload,
+            }
+        case GOLEM_TEAM_LIST:
+            return {
+                ...state,
+                golemTeamList: action.payload,
             }
 
         default:

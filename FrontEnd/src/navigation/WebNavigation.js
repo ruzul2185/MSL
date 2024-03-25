@@ -13,9 +13,9 @@ const router = createBrowserRouter([
             {path:'/', element:<Home/>},
             {path:'/astromon', element:<Astromon/>},
             {path:'/astromon/:id/:state', element:<IndividualAstromon/>},
-            {path:'/dimensional-defense',element:<DimensionalDefense/>},
-            {path:'/dimensional-golem',element:<DimensionalGolem/>},
-            {path:'/titan',element:<Titan/>}
+            {path:'/dimensional-defense/:state',element:<DimensionalDefense/>},
+            {path:'/dimensional-golem/:state',element:<DimensionalGolem/>},
+            {path:'/titan/:state',element:<Titan/>}
         ]},
     // Add a catch-all route for 404 Not Found
     { path: '*', element: <Navigate to="/" /> }

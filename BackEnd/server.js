@@ -76,6 +76,7 @@ app.use('/api/skills', require('./routes/apis/skillRoutes'));
 app.use('/api/apophis',require('./routes/apis/apophisRoutes'));
 app.use('/api/golems',require('./routes/apis/golemroutes'));
 app.use('/api/titans',require('./routes/apis/titanRoutes'));
+app.use('/api/teams',require('./routes/apis/teamRoutes'));
 
 app.all('*',(req,res)=>{
     res.status(404);

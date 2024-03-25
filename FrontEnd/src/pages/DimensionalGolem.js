@@ -1,23 +1,30 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {getAllDimensionalGolem} from "../stores/actions/auth";
+import {getAllDimensionalGolem, getGolemTeam,} from "../stores/actions/auth";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Table from "react-bootstrap/Table";
 import classes from '../styles/DimensionalGolem.module.css';
+import sections from "../styles/Titan.module.css";
+import {useNavigate, useParams} from "react-router-dom";
 
 const DimensionalGolem = () => {
-
-    const isMobile = window.innerWidth <= 768;
-
+    const navigate = useNavigate();
+    const { state } = useParams();
     const dispatch = useDispatch();
-
+    const [key, setKey] = useState(state);
+    const [page, setPage] = useState(1);
     useEffect(() => {
         dispatch(getAllDimensionalGolem());
     },[dispatch]);
 
-    const DimensionalGolemList = useSelector(state => state.auth.dimensionalGolemList);
+    useEffect(()=>{
+        dispatch(getGolemTeam(page,key));
+        navigate('/dimensional-golem/' + key + '/?page=' + page);
+    },[dispatch,page,key])
 
+    const DimensionalGolemList = useSelector(state => state.auth.dimensionalGolemList);
+    const GolemTeamList = useSelector(state => state.auth.golemTeamList);
     const descriptionFiller = (figure,desc) => {
         const elements = figure.split(",");
         const newDescParts = desc.split('&');
@@ -44,8 +51,11 @@ const DimensionalGolem = () => {
                 <div className="row">
                     <div className="col">
                         <Tabs
-                            defaultActiveKey="Fire"
-                            id="uncontrolled-tab-example"
+                            id="controlled-tab-example"
+                            activeKey={key}
+                            onSelect={(k) => {
+                                setKey(k);
+                            }}
                             className="mb-3"
                         >
                             {DimensionalGolemList.map((item) => (
@@ -194,6 +204,36 @@ const DimensionalGolem = () => {
                             ))}
                         </Tabs>
                     </div>
+                    {GolemTeamList && GolemTeamList.DimensionalGolemTeams.map((item, index) => (
+                        <div>
+                            <div style={{fontSize:"large",fontWeight:"bold"}}>
+                                {item.Name}
+                            </div>
+                            <div>
+                                <div className={classes.imageContainer}>
+                                    <img src={item.TeamURL} alt={'...'} className={classes.image}/>
+                                    <img src={item.TeamDamage} alt={'...'} className={classes.image}/>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                    {GolemTeamList && <div className={classes.pagination}>
+                        <nav aria-label="...">
+                            <ul className="pagination">
+                                {GolemTeamList && [...Array(GolemTeamList.numOfPages).keys()].map((pageNumber) => (
+                                    <li key={pageNumber} className={`page-item ${pageNumber + 1 === page ? 'active' : ''}`}>
+                                        <button
+                                            className={`page-link ${pageNumber + 1 === page ? 'active-link' : ''}`}
+                                            onClick={() => setPage(pageNumber + 1)}
+                                            style={{ backgroundColor: pageNumber + 1 === page ? 'red' : 'inherit',fontWeight:"bold" }}
+                                        >
+                                            {pageNumber + 1}
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        </nav>
+                    </div>}
                 </div>
             </div>}
             </div>

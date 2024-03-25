@@ -5,6 +5,10 @@ const teamSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    Type: {
+        type: String,
+        required: true
+    },
     Element: {
         type: String,
         required: true
