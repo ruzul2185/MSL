@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     {path: '/', element: <RootLayout/>, children:[
             {path:'/', element:<Home/>},
             {path:'/astromon', element:<Astromon/>},
-            {path:'/astromon/:id/:state', element:<IndividualAstromon/>},
+            // {path:'/astromon/:id/:state', element:<IndividualAstromon/>},
             {path:'/dimensional-defense/:state',element:<DimensionalDefense/>},
             {path:'/dimensional-golem/:state',element:<DimensionalGolem/>},
             {path:'/titan/:state',element:<Titan/>}
