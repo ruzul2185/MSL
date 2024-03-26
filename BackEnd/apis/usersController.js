@@ -19,7 +19,7 @@ const getAllUsers = asyncHandler(async (req, res) => {
 // @access Private
 const createNewUser = asyncHandler(async (req, res) => {
     const {username , password, role} = req.body
-    console.log(req.body)
+
     //confirm data
     if(!username || !password || !role) {
         return res.status(400).json({ message: 'All fields are required'})
@@ -39,7 +39,6 @@ const createNewUser = asyncHandler(async (req, res) => {
     //Crete and Store new users
     const user = await User.create(userObject);
     if(user) {
-
         res.status(201).json({ message: `New user ${username} created`})
     }else {
         res.status(400).json({message: 'Invalid users data received'})

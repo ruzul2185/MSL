@@ -10,7 +10,7 @@ import {
     TITAN_ADVICE,
     APOPHIS_ADVICE,
     GOLEM_ADVICE,
-    LOGIN, LOGOUT, ACCESS_TOKEN,
+    LOGIN, LOGOUT, ACCESS_TOKEN,SIGNUP,
 } from "../../constants/WebDefine";
 
 
@@ -27,6 +27,7 @@ const initialState = {
     golemAdvice: null,
     login: null,
     accessToken:null,
+    signup:null,
 };
 
 export default (state = initialState, action) => {
@@ -96,6 +97,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 accessToken: action.payload,
+            }
+        case SIGNUP:
+            return {
+                ...state,
+                signup: action.payload,
             }
 
         default:

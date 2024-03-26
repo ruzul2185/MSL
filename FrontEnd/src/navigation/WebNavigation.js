@@ -10,6 +10,7 @@ import Titan from "../pages/Titan";
 import Login from "../pages/Login";
 import Community from "../pages/Community";
 import Cookies from "js-cookie";
+import Signup from "../pages/Signup";
 
 const accessToken = Cookies.get('accessToken');
 
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
             {path:'/dimensional-golem/:state',element:<DimensionalGolem/>},
             {path:'/titan/:state',element:<Titan/>},
             {path:'/login',element:<Login/>},
+            {path:'/signup',element:<Signup/>},
             {path:'/community',element:<Community/>},
         ]},
     // Add a catch-all route for 404 Not Found

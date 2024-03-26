@@ -39,39 +39,47 @@ const Login = () => {
 
     return(
         <React.Fragment>
-            {accessToken === "null" &&<div className={classes.container}>
-                <h2>Login</h2>
-                {loginData && loginData.message && <p style={{color:'red'}}>
-                    {loginData.message}
-                </p>}
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        Username:
-                        <input
-                            type="text"
-                            name="username"
-                            value={username}
-                            onChange={changeUsername}
-                            required
-                        />
-                    </label>
-                    <label>
-                        Password:
-                        <input
-                            type="password"
-                            name="password"
-                            value={password}
-                            onChange={changePassword}
-                            required
-                        />
-                    </label>
-                    <input type="submit" value="Submit" />
-                </form>
-            </div>}
-            {accessToken !== "null" && <div className={classes.container}>
-                <h2>username: {Username}</h2>
-                <h2>role: {role}</h2>
-            </div>}
+            {accessToken === "null" && (
+                <div className={classes.container}>
+                    <h2>Login</h2>
+                    {loginData && loginData.message && (
+                        <p style={{color:'red'}}>
+                            {loginData.message}
+                        </p>
+                    )}
+                    <form onSubmit={handleSubmit}>
+                        <label>
+                            Username:
+                            <input
+                                type="text"
+                                name="username"
+                                value={username}
+                                onChange={changeUsername}
+                                required
+                            />
+                        </label>
+                        <label>
+                            Password:
+                            <input
+                                type="password"
+                                name="password"
+                                value={password}
+                                onChange={changePassword}
+                                required
+                            />
+                        </label>
+                        <input type="submit" value="Submit" />
+                    </form>
+                    <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+                </div>
+            )}
+
+            {accessToken !== "null" && (
+                <div className={classes.container}>
+                    <h2>Username: {Username}</h2>
+                    <h2>Role: {role}</h2>
+                </div>
+            )}
         </React.Fragment>
     );
 };

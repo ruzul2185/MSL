@@ -34,6 +34,7 @@ function NavigationBar() {
                         <Nav.Link href="/dimensional-golem/Fire" style={{color:"white",}}>Dim. Golem</Nav.Link>
                         <Nav.Link href="/titan/Fire" style={{color:"white",}}>Titan</Nav.Link>
                         {login === 'null' && <Nav.Link href="/login" style={{color:"white",}}>Login</Nav.Link>}
+                        {login === 'null' && <Nav.Link href="/signup" style={{color:"white",}}>Signup</Nav.Link>}
                         {login !== 'null' && <Nav.Link href="/community" style={{color:"white",}}>Community</Nav.Link>}
                         {login !== 'null' && <Nav.Link href="/login" style={{color:"white",}} onClick={Logout}>Logout</Nav.Link>}
                     </Nav>

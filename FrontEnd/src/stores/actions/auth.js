@@ -3,9 +3,9 @@ import {
     APOPHIS_URL, AUTHENTICATION_URL,
     DIMENSIONAL_GOLEM_URL, GOLEM_ADVICE_URL,
     MEMBER_URL,
-    MESSAGE_URL, TITAN_ADVICE_URL, TITAN_URL
+    MESSAGE_URL, TITAN_ADVICE_URL, TITAN_URL, USER_URL
 } from "../../constants/URLconstants";
-import {fetchGET, fetchPOST, unAuthFetchGET, unAuthFetchPOST} from "../../utils/NetworkUtils";
+import {fetchGET, fetchPOST, fetchPOSTwithResponse, unAuthFetchGET, unAuthFetchPOST} from "../../utils/NetworkUtils";
 import {
     ACCESS_TOKEN,
     APOPHIS_ADVICE,
@@ -14,7 +14,7 @@ import {
     DIMENSIONAL_GOLEM_LIST, GOLEM_ADVICE,
     INDIVIDUAL_ASTROMON, LOGIN, LOGOUT,
     MEMBER_LIST,
-    MESSAGE_LIST, TITAN_ADVICE, TITAN_LIST
+    MESSAGE_LIST, SIGNUP, TITAN_ADVICE, TITAN_LIST
 } from "../../constants/WebDefine";
 import Cookies from 'js-cookie'
 
@@ -220,6 +220,28 @@ export const login = (username, password) => {
             // if(!resData.message){
             //     Cookies.set('credentials',resData.data);
             // }
+        }catch(error){
+            console.log(error)
+            throw error
+        }
+    }
+}
+
+export const signup = (username, password) => {
+    return async dispatch => {
+        try{
+            const resData = await fetchPOSTwithResponse(USER_URL,{
+                username: username,
+                password: password,
+                role:'User',
+                active: true,
+            })
+
+            dispatch({
+                type:SIGNUP,
+                payload: resData
+            })
+
         }catch(error){
             console.log(error)
             throw error
