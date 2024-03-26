@@ -9,6 +9,9 @@ import DimensionalGolem from "../pages/DimensionalGolem";
 import Titan from "../pages/Titan";
 import Login from "../pages/Login";
 import Community from "../pages/Community";
+import Cookies from "js-cookie";
+
+const accessToken = Cookies.get('accessToken');
 
 const router = createBrowserRouter([
     {path: '/', element: <RootLayout/>, children:[

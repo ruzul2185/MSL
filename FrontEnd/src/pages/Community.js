@@ -1,18 +1,17 @@
 import React, {useEffect} from 'react';
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Community = () => {
-
+    const accessToken = Cookies.get('accessToken');
     const navigate = useNavigate();
 
-    const accessToken = useSelector(state => state.auth.accessToken);
-
-    useEffect(()=> {
-        if(!accessToken){
+    useEffect(() => {
+        if(accessToken === 'null'){
             navigate('/login')
         }
-    },[accessToken])
+    },[])
 
     return(
         <React.Fragment>

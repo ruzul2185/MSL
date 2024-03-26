@@ -19,6 +19,7 @@ export const GOLEM_ADVICE = 'GOLEM_ADVICE';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const ACCESS_TOKEN = 'ACCESS_TOKEN';
+export const REFRESH = 'REFRESH';
 
 export const ELEMENT_LIST = [
     {

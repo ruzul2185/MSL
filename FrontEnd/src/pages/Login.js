@@ -3,27 +3,27 @@ import classes from '../styles/Login.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import {login, logout} from "../stores/actions/auth";
 import {useNavigate} from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Login = () => {
-
-    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const accessToken = Cookies.get('accessToken');
+    const Username = Cookies.get('username');
+    const role = Cookies.get('role');
+    const dispatch = useDispatch();
 
     const loginData = useSelector(state => state.auth.login);
-    const accessGranter = useSelector(state => state.auth.accessToken);
+
 
     const [username,setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     useEffect(() => {
-        if(accessGranter){
+        if (loginData && Array.isArray(loginData) && !loginData.includes('message')) {
             navigate('/community');
         }
-    },[accessGranter])
+    }, [loginData, navigate]);
 
-    useEffect(() => {
-        dispatch(logout())
-    },[])
 
     const changeUsername = (event) => {
         setUsername(event.target.value);
@@ -39,7 +39,7 @@ const Login = () => {
 
     return(
         <React.Fragment>
-            <div className={classes.container}>
+            {accessToken === "null" &&<div className={classes.container}>
                 <h2>Login</h2>
                 {loginData && loginData.message && <p style={{color:'red'}}>
                     {loginData.message}
@@ -67,7 +67,11 @@ const Login = () => {
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
-            </div>
+            </div>}
+            {accessToken !== "null" && <div className={classes.container}>
+                <h2>username: {Username}</h2>
+                <h2>role: {role}</h2>
+            </div>}
         </React.Fragment>
     );
 };

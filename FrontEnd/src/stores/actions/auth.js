@@ -1,21 +1,22 @@
 import {
-    ALL_ASTROMON_URL, APOPHIS_ADVICE_URL, APOPHIS_TEAM_URL,
+    ALL_ASTROMON_URL, APOPHIS_ADVICE_URL,
     APOPHIS_URL, AUTHENTICATION_URL,
-    DIMENSIONAL_GOLEM_URL, GOLEM_ADVICE_URL, GOLEM_TEAM_URL,
+    DIMENSIONAL_GOLEM_URL, GOLEM_ADVICE_URL,
     MEMBER_URL,
-    MESSAGE_URL, TEAM_URL, TITAN_ADVICE_URL, TITAN_TEAM_URL, TITAN_URL
+    MESSAGE_URL, TITAN_ADVICE_URL, TITAN_URL
 } from "../../constants/URLconstants";
-import {fetchPOST, unAuthFetchGET, unAuthFetchPOST} from "../../utils/NetworkUtils";
+import {fetchGET, fetchPOST, unAuthFetchGET, unAuthFetchPOST} from "../../utils/NetworkUtils";
 import {
     ACCESS_TOKEN,
     APOPHIS_ADVICE,
-    APOPHIS_LIST, APOPHIS_TEAM_LIST,
+    APOPHIS_LIST,
     ASTROMON_LIST,
-    DIMENSIONAL_GOLEM_LIST, GOLEM_ADVICE, GOLEM_TEAM_LIST,
+    DIMENSIONAL_GOLEM_LIST, GOLEM_ADVICE,
     INDIVIDUAL_ASTROMON, LOGIN, LOGOUT,
     MEMBER_LIST,
-    MESSAGE_LIST, TEAM_LIST, TITAN_ADVICE, TITAN_LIST, TITAN_TEAM_LIST
+    MESSAGE_LIST, TITAN_ADVICE, TITAN_LIST
 } from "../../constants/WebDefine";
+import Cookies from 'js-cookie'
 
 export const getMemberList = () => {
     return async dispatch => {
@@ -206,12 +207,19 @@ export const login = (username, password) => {
                     type:ACCESS_TOKEN,
                     payload: resData.data.accessToken,
                 })
+                Cookies.set('accessToken',resData.data.accessToken);
+                Cookies.set('refreshToken',resData.data.refreshToken);
+                Cookies.set('username',resData.data.username);
+                Cookies.set('role',resData.data.role);
             }
 
             dispatch({
                 type:LOGIN,
                 payload: resData
             })
+            // if(!resData.message){
+            //     Cookies.set('credentials',resData.data);
+            // }
         }catch(error){
             console.log(error)
             throw error
@@ -226,10 +234,31 @@ export const logout = () => {
                 type:ACCESS_TOKEN,
                 payload: null,
             })
+            Cookies.set('accessToken',null)
+            Cookies.set('refreshToken',null);
+            Cookies.set('username',null);
+            Cookies.set('role',null);
             dispatch({
                 type:LOGOUT,
                 payload: null,
             });
+            Cookies.set('credentials',null)
+        }catch(error){
+            console.log(error)
+            throw error
+        }
+    }
+}
+
+export const refresh = () => {
+    return async dispatch => {
+        try{
+            const resData = await fetchGET(AUTHENTICATION_URL + '/refresh');
+
+            dispatch({
+                type:ACCESS_TOKEN,
+                payload: resData,
+            })
         }catch(error){
             console.log(error)
             throw error
