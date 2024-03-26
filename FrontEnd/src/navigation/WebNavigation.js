@@ -7,6 +7,8 @@ import IndividualAstromon from "../pages/IndividualAstromon";
 import DimensionalDefense from "../pages/DimensionalDefense";
 import DimensionalGolem from "../pages/DimensionalGolem";
 import Titan from "../pages/Titan";
+import Login from "../pages/Login";
+import Community from "../pages/Community";
 
 const router = createBrowserRouter([
     {path: '/', element: <RootLayout/>, children:[
@@ -15,7 +17,9 @@ const router = createBrowserRouter([
             // {path:'/astromon/:id/:state', element:<IndividualAstromon/>},
             {path:'/dimensional-defense/:state',element:<DimensionalDefense/>},
             {path:'/dimensional-golem/:state',element:<DimensionalGolem/>},
-            {path:'/titan/:state',element:<Titan/>}
+            {path:'/titan/:state',element:<Titan/>},
+            {path:'/login',element:<Login/>},
+            {path:'/community',element:<Community/>},
         ]},
     // Add a catch-all route for 404 Not Found
     { path: '*', element: <Navigate to="/" /> }

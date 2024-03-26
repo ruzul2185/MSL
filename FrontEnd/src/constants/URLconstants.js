@@ -9,3 +9,5 @@ export const TITAN_URL = URL + 'api/titans';
 export const TITAN_ADVICE_URL = URL + 'api/messages/titan';
 export const APOPHIS_ADVICE_URL = URL + 'api/messages/apophis';
 export const GOLEM_ADVICE_URL = URL + 'api/messages/golem';
+export const AUTHENTICATION_URL = URL + 'api/auth';
+export const LOGOUT_URL = URL + 'api/auth/logout';

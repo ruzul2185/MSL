@@ -16,6 +16,9 @@ export const TITAN_LIST = 'TITAN_LIST';
 export const TITAN_ADVICE = 'TITAN_ADVICE';
 export const APOPHIS_ADVICE = 'APOPHIS_ADVICE';
 export const GOLEM_ADVICE = 'GOLEM_ADVICE';
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
+export const ACCESS_TOKEN = 'ACCESS_TOKEN';
 
 export const ELEMENT_LIST = [
     {

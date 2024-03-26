@@ -1,8 +1,20 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../stores/actions/auth";
+import Login from "../pages/Login";
 
 function NavigationBar() {
+
+    const dispatch = useDispatch();
+
+    const login = useSelector(state => state.auth.login);
+
+    const Logout = () => {
+        dispatch(logout());
+    };
+
     return (
         <Navbar expand="lg" className="bg-danger">
             <Container>
@@ -17,6 +29,9 @@ function NavigationBar() {
                         <Nav.Link href="/dimensional-defense/Fire" style={{color:"white",}}>Dim. Defense</Nav.Link>
                         <Nav.Link href="/dimensional-golem/Fire" style={{color:"white",}}>Dim. Golem</Nav.Link>
                         <Nav.Link href="/titan/Fire" style={{color:"white",}}>Titan</Nav.Link>
+                        {!login && <Nav.Link href="/login" style={{color:"white",}}>Login</Nav.Link>}
+                        {login && <Nav.Link href="/community" style={{color:"white",}}>Community</Nav.Link>}
+                        {login && <Nav.Link href="/login" style={{color:"white",}} onClick={Logout}>Logout</Nav.Link>}
                     </Nav>
                 </Navbar.Collapse>
             </Container>

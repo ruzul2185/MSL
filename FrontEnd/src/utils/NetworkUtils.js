@@ -37,8 +37,8 @@ export const fetchGET = async url => {
 };
 
 export const fetchPOST = async (url, postData) => {
-    console.log('URL ===>' + url);
-    console.log('POST DATA ===> ' + JSON.stringify(postData));
+    // console.log('URL ===>' + url);
+    // console.log('POST DATA ===> ' + JSON.stringify(postData));
 
     // any async code you want!
     let bearer =  localStorage.getItem(KEY_USER_TOKEN);
@@ -66,11 +66,11 @@ export const fetchPOST = async (url, postData) => {
 
     const resData = await response.json();
 
-    console.log('RESPONSE DATA ===> ' + JSON.stringify(resData));
+    // console.log('RESPONSE DATA ===> ' + JSON.stringify(resData));
 
-    if (resData.data.error_code !== undefined) {
-        throw new Error(resData.data.error_message);
-    }
+    // if (resData.data.error_code !== undefined) {
+    //     throw new Error(resData.data.error_message);
+    // }
 
     return resData;
 };
