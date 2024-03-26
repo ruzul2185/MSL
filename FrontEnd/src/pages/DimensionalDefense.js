@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {getAllApophis, getApophisTeam} from "../stores/actions/auth";
+import {getAllApophis, getApophisAdvice} from "../stores/actions/auth";
 import Table from 'react-bootstrap/Table';
 import classes from '../styles/DimensionalDefense.module.css';
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import {useNavigate, useParams} from "react-router-dom";
+import {TextCard} from "../components/Cards";
 
 const DimensionalDefense = () => {
     const { state } = useParams();
     const [key, setKey] = useState(state);
-    const [page, setPage] = useState(1);
     const dispatch = useDispatch();
     const navigate= useNavigate();
 
@@ -18,13 +18,16 @@ const DimensionalDefense = () => {
         dispatch(getAllApophis());
     },[dispatch]);
 
+    useEffect(() => {
+        dispatch(getApophisAdvice(state));
+    },[dispatch,state]);
+
     useEffect(()=>{
-        dispatch(getApophisTeam(page,key));
-        navigate('/dimensional-defense/' + key + '/?page=' + page);
-    },[dispatch,page,key])
+        navigate('/dimensional-defense/' + key);
+    },[key])
 
     const apophisList = useSelector(state => state.auth.apophisList);
-    const ApophisTeamList = useSelector(state => state.auth.apophisTeamList);
+    const ApophisAdviceArray = useSelector(state => state.auth.apophisAdvice);
 
     const parenthesisFilter = (item) => {
         if (item.includes('(')) {
@@ -50,7 +53,7 @@ const DimensionalDefense = () => {
 
     return (
         <React.Fragment>
-            <div style={{width:"100%", textAlign:"center"}}>
+            <div style={{width:"100%", textAlign:"center",display:'flex',flexDirection:'column',alignItems:"center"}}>
                 <div style={{fontSize:'xx-large'}}>
                     Dimensional Defense
                 </div>
@@ -123,38 +126,11 @@ const DimensionalDefense = () => {
                                 ))}
                             </Tabs>
                         </div>
-                        {ApophisTeamList && ApophisTeamList.DimensionalDefenseTeams.map((item, index) => (
-                            <div>
-                                <div style={{fontSize:"large",fontWeight:"bold"}}>
-                                    {item.Name}
-                                </div>
-                                <div>
-                                    <div className={classes.imageContainer}>
-                                        <img src={item.TeamURL} alt={'...'} className={classes.image}/>
-                                        <img src={item.TeamDamage} alt={'...'} className={classes.image}/>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                        {ApophisTeamList && <div className={classes.pagination}>
-                            <nav aria-label="...">
-                                <ul className="pagination">
-                                    {ApophisTeamList && [...Array(ApophisTeamList.numOfPages).keys()].map((pageNumber) => (
-                                        <li key={pageNumber} className={`page-item ${pageNumber + 1 === page ? 'active' : ''}`}>
-                                            <button
-                                                className={`page-link ${pageNumber + 1 === page ? 'active-link' : ''}`}
-                                                onClick={() => setPage(pageNumber + 1)}
-                                                style={{ backgroundColor: pageNumber + 1 === page ? 'red' : 'inherit',fontWeight:"bold" }}
-                                            >
-                                                {pageNumber + 1}
-                                            </button>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </nav>
-                        </div>}
                     </div>
                 </div>}
+                {ApophisAdviceArray && ApophisAdviceArray.map((item) => (
+                    <TextCard key={item._id} Title={item.Title} SubTitle={""} Message={item.Body} />
+                ))}
             </div>
         </React.Fragment>
     );

@@ -13,9 +13,9 @@ export const DIMENSIONAL_GOLEM_LIST = 'DIMENSIONAL_GOLEM_LIST';
 
 export const TITAN_LIST = 'TITAN_LIST';
 
-export const TITAN_TEAM_LIST = 'TITAN_TEAM_LIST';
-export const APOPHIS_TEAM_LIST = 'APOPHIS_TEAM_LIST';
-export const GOLEM_TEAM_LIST = 'GOLEM_TEAM_LIST';
+export const TITAN_ADVICE = 'TITAN_ADVICE';
+export const APOPHIS_ADVICE = 'APOPHIS_ADVICE';
+export const GOLEM_ADVICE = 'GOLEM_ADVICE';
 
 export const ELEMENT_LIST = [
     {

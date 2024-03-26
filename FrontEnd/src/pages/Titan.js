@@ -1,30 +1,34 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {getAllTitan,getTitanTeam} from "../stores/actions/auth";
+import {getAllTitan, getTitanAdvice} from "../stores/actions/auth";
 import Table from "react-bootstrap/Table";
 import classes from "../styles/DimensionalDefense.module.css";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import {useNavigate, useParams} from "react-router-dom";
+import {TextCard} from "../components/Cards";
 
 const Titan = () => {
     const { state } = useParams();
     const navigate= useNavigate();
     const [key, setKey] = useState(state);
-    const [page, setPage] = useState(1);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getAllTitan());
     },[dispatch]);
 
+    useEffect(() => {
+        dispatch(getTitanAdvice(state));
+    },[dispatch,state]);
+
     useEffect(()=>{
-        dispatch(getTitanTeam(page,key));
-        navigate('/titan/' + key + '/?page=' + page);
-    },[dispatch,key,page])
+        navigate('/titan/' + key);
+    },[key])
 
     const TitanList = useSelector(state => state.auth.titanList);
-    const TitanTeamList = useSelector(state => state.auth.titanTeamList);
+    const TitanAdviceArray = useSelector(state => state.auth.titanAdvice);
+
     const parenthesisFilter = (item) => {
         if (item.includes('(')) {
             return item.split('(')[0].trim();
@@ -49,7 +53,7 @@ const Titan = () => {
 
     return(
         <React.Fragment>
-            <div style={{width:"100%", textAlign:"center"}}>
+            <div style={{width:"100%", textAlign:"center",display:'flex',flexDirection:'column',alignItems:"center"}}>
                 <div style={{fontSize:'xx-large'}}>
                     Region Defense
                 </div>
@@ -109,38 +113,11 @@ const Titan = () => {
                                 ))}
                             </Tabs>
                         </div>
-                        {TitanTeamList && TitanTeamList.RegionDefenseTeams.map((item, index) => (
-                            <div>
-                                <div style={{fontSize:"large",fontWeight:"bold"}}>
-                                    {item.Name}
-                                </div>
-                                <div>
-                                    <div className={classes.imageContainer}>
-                                        <img src={item.TeamURL} alt={'...'} className={classes.image}/>
-                                        <img src={item.TeamDamage} alt={'...'} className={classes.image}/>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                        {TitanTeamList && <div className={classes.pagination}>
-                            <nav aria-label="...">
-                                <ul className="pagination">
-                                    {TitanTeamList && [...Array(TitanTeamList.numOfPages).keys()].map((pageNumber) => (
-                                        <li key={pageNumber} className={`page-item ${pageNumber + 1 === page ? 'active' : ''}`}>
-                                            <button
-                                                className={`page-link ${pageNumber + 1 === page ? 'active-link' : ''}`}
-                                                onClick={() => setPage(pageNumber + 1)}
-                                                style={{ backgroundColor: pageNumber + 1 === page ? 'red' : 'inherit',fontWeight:"bold" }}
-                                            >
-                                                {pageNumber + 1}
-                                            </button>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </nav>
-                        </div>}
                     </div>
                 </div>}
+                {TitanAdviceArray && TitanAdviceArray.map((item) => (
+                    <TextCard key={item._id} Title={item.Title} SubTitle={""} Message={item.Body} />
+                ))}
             </div>
         </React.Fragment>
     );

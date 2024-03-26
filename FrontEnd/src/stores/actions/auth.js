@@ -1,18 +1,19 @@
 import {
-    ALL_ASTROMON_URL, APOPHIS_TEAM_URL,
+    ALL_ASTROMON_URL, APOPHIS_ADVICE_URL, APOPHIS_TEAM_URL,
     APOPHIS_URL,
-    DIMENSIONAL_GOLEM_URL, GOLEM_TEAM_URL,
+    DIMENSIONAL_GOLEM_URL, GOLEM_ADVICE_URL, GOLEM_TEAM_URL,
     MEMBER_URL,
-    MESSAGE_URL, TEAM_URL, TITAN_TEAM_URL, TITAN_URL
+    MESSAGE_URL, TEAM_URL, TITAN_ADVICE_URL, TITAN_TEAM_URL, TITAN_URL
 } from "../../constants/URLconstants";
 import {unAuthFetchGET, unAuthFetchPOST} from "../../utils/NetworkUtils";
 import {
+    APOPHIS_ADVICE,
     APOPHIS_LIST, APOPHIS_TEAM_LIST,
     ASTROMON_LIST,
-    DIMENSIONAL_GOLEM_LIST, GOLEM_TEAM_LIST,
+    DIMENSIONAL_GOLEM_LIST, GOLEM_ADVICE, GOLEM_TEAM_LIST,
     INDIVIDUAL_ASTROMON,
     MEMBER_LIST,
-    MESSAGE_LIST, TEAM_LIST, TITAN_LIST, TITAN_TEAM_LIST
+    MESSAGE_LIST, TEAM_LIST, TITAN_ADVICE, TITAN_LIST, TITAN_TEAM_LIST
 } from "../../constants/WebDefine";
 
 export const getMemberList = () => {
@@ -143,13 +144,13 @@ export const getAllTitan = () => {
     }
 }
 
-export const getTitanTeam = (page,key) => {
+export const getTitanAdvice = (element) => {
     return async dispatch => {
         try{
-            const resData = await unAuthFetchGET(TITAN_TEAM_URL + '/?state=' + key + '&page=' + page);
+            const resData = await unAuthFetchGET(TITAN_ADVICE_URL + '?element=' + element);
 
             dispatch({
-                type: TITAN_TEAM_LIST,
+                type: TITAN_ADVICE,
                 payload: resData
             });
         }catch(error){
@@ -159,13 +160,13 @@ export const getTitanTeam = (page,key) => {
     }
 }
 
-export const getApophisTeam = (page,key) => {
+export const getApophisAdvice = (element) => {
     return async dispatch => {
         try{
-            const resData = await unAuthFetchGET(APOPHIS_TEAM_URL + '/?state=' + key + '&page=' + page);
+            const resData = await unAuthFetchGET(APOPHIS_ADVICE_URL + '?element=' + element);
 
             dispatch({
-                type: APOPHIS_TEAM_LIST,
+                type: APOPHIS_ADVICE,
                 payload: resData
             });
         }catch(error){
@@ -175,13 +176,13 @@ export const getApophisTeam = (page,key) => {
     }
 }
 
-export const getGolemTeam = (page,key) => {
+export const getGolemAdvice = (element) => {
     return async dispatch => {
         try{
-            const resData = await unAuthFetchGET(GOLEM_TEAM_URL + '/?state=' + key + '&page=' + page);
+            const resData = await unAuthFetchGET(GOLEM_ADVICE_URL + '?element=' + element);
 
             dispatch({
-                type: GOLEM_TEAM_LIST,
+                type: GOLEM_ADVICE,
                 payload: resData
             });
         }catch(error){

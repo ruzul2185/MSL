@@ -68,7 +68,7 @@ const addMessage = asyncHandler(async (req, res, next) => {
         Body
     }
 
-    const duplicate = await MessageModel.findOne({Title}).lean().exec();
+    const duplicate = await MessageModel.findOne({Title,SubTitle}).lean().exec();
     if(duplicate) {
         req.flash('error', 'Duplicate Member')
         return res.redirect('/messages/add');

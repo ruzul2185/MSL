@@ -1,30 +1,34 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {getAllDimensionalGolem, getGolemTeam,} from "../stores/actions/auth";
+import {getAllDimensionalGolem, getGolemAdvice} from "../stores/actions/auth";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Table from "react-bootstrap/Table";
 import classes from '../styles/DimensionalGolem.module.css';
-import sections from "../styles/Titan.module.css";
 import {useNavigate, useParams} from "react-router-dom";
+import {TextCard} from "../components/Cards";
 
 const DimensionalGolem = () => {
     const navigate = useNavigate();
     const { state } = useParams();
     const dispatch = useDispatch();
     const [key, setKey] = useState(state);
-    const [page, setPage] = useState(1);
+
     useEffect(() => {
         dispatch(getAllDimensionalGolem());
     },[dispatch]);
 
+    useEffect(() => {
+        dispatch(getGolemAdvice(state));
+    },[dispatch,state]);
+
     useEffect(()=>{
-        dispatch(getGolemTeam(page,key));
-        navigate('/dimensional-golem/' + key + '/?page=' + page);
-    },[dispatch,page,key])
+        navigate('/dimensional-golem/' + key);
+    },[key])
 
     const DimensionalGolemList = useSelector(state => state.auth.dimensionalGolemList);
-    const GolemTeamList = useSelector(state => state.auth.golemTeamList);
+    const GolemAdviceArray = useSelector(state => state.auth.golemAdvice);
+
     const descriptionFiller = (figure,desc) => {
         const elements = figure.split(",");
         const newDescParts = desc.split('&');
@@ -43,7 +47,7 @@ const DimensionalGolem = () => {
 
     return(
         <React.Fragment>
-            <div style={{display:'flex',flexDirection:'column',alignItems:'center',width:"100%"}}>
+            <div style={{width:"100%", textAlign:"center",display:'flex',flexDirection:'column',alignItems:"center"}}>
             <div style={{fontSize:'xx-large'}}>
                 Dimensional Golem
             </div>
@@ -204,38 +208,11 @@ const DimensionalGolem = () => {
                             ))}
                         </Tabs>
                     </div>
-                    {GolemTeamList && GolemTeamList.DimensionalGolemTeams.map((item, index) => (
-                        <div>
-                            <div style={{fontSize:"large",fontWeight:"bold"}}>
-                                {item.Name}
-                            </div>
-                            <div>
-                                <div className={classes.imageContainer}>
-                                    <img src={item.TeamURL} alt={'...'} className={classes.image}/>
-                                    <img src={item.TeamDamage} alt={'...'} className={classes.image}/>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                    {GolemTeamList && <div className={classes.pagination}>
-                        <nav aria-label="...">
-                            <ul className="pagination">
-                                {GolemTeamList && [...Array(GolemTeamList.numOfPages).keys()].map((pageNumber) => (
-                                    <li key={pageNumber} className={`page-item ${pageNumber + 1 === page ? 'active' : ''}`}>
-                                        <button
-                                            className={`page-link ${pageNumber + 1 === page ? 'active-link' : ''}`}
-                                            onClick={() => setPage(pageNumber + 1)}
-                                            style={{ backgroundColor: pageNumber + 1 === page ? 'red' : 'inherit',fontWeight:"bold" }}
-                                        >
-                                            {pageNumber + 1}
-                                        </button>
-                                    </li>
-                                ))}
-                            </ul>
-                        </nav>
-                    </div>}
                 </div>
             </div>}
+                {GolemAdviceArray && GolemAdviceArray.map((item) => (
+                    <TextCard key={item._id} Title={item.Title} SubTitle={""} Message={item.Body} />
+                ))}
             </div>
         </React.Fragment>
     );
